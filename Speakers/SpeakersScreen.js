@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image, AppRegistry, SectionList } from 'react-native';
 import { TabNavigator } from 'react-navigation';
@@ -18,17 +19,17 @@ export default class SpeakersScreen extends React.Component {
 
   render() {
     return (
-        <View style={styles.container}>
-          <SectionList
-            sections={[
-              {title: 'D', data: ['Devin']},
-              {title: 'J', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
-            ]}
-            renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-            keyExtractor={(item, index) => index}
-          />
-        </View>
+      <View style={styles.container}>
+        <SectionList
+          sections={[
+            {title: 'D', data: ['Devin']},
+            {title: 'J', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+          renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+          keyExtractor={(item, index) => index}
+        />
+      </View>
     );
   }
 }
