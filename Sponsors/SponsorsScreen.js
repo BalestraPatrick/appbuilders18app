@@ -1,9 +1,10 @@
 // @flow
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
+import SafariView from 'react-native-safari-view';
 
 class Sponsors extends React.Component {
 
@@ -12,7 +13,9 @@ class Sponsors extends React.Component {
     const sponsors = this.props.sponsors.map((sponsor) => {
       return (
         <View key={sponsor.id} style={isDiamond ? styles.diamondSponsorContainer : styles.normalSponsorContainer}>
-          <Image source={sponsor.image}/>
+          <TouchableOpacity onPress={this._onPress}>
+            <Image source={sponsor.image} />
+          </TouchableOpacity>
           <Text>{sponsor.name}</Text>
         </View>
       )
@@ -25,6 +28,14 @@ class Sponsors extends React.Component {
         </View>
       </View>
     )
+  }
+
+  _onPress() {
+    console.log("holo " + this.props.navigation);
+    SafariView.isAvailable()
+    .then(SafariView.show({
+      url: 'https://www.google.com'
+    }))
   }
 }
 
@@ -50,9 +61,9 @@ export default class ScheduleScreen extends React.Component {
     ]
     return (
       <ScrollView>
-        <Sponsors type={"💎 Diamond"} sponsors={diamond}/>
-        <Sponsors type={"🥈 Platinum"} sponsors={diamond}/>
-        <Sponsors type={"🏅 Gold"} sponsors={diamond}/>
+        <Sponsors type={"💎 Diamond"} sponsors={diamond} />
+        <Sponsors type={"🥈 Platinum"} sponsors={diamond} />
+        <Sponsors type={"🏅 Gold"} sponsors={diamond} />
       </ScrollView>
     );
   }
