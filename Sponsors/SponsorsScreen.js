@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
@@ -31,7 +30,6 @@ class Sponsors extends React.Component {
   }
 
   _onPress() {
-    console.log("holo " + this.props.navigation);
     SafariView.isAvailable()
     .then(SafariView.show({
       url: 'https://www.google.com'

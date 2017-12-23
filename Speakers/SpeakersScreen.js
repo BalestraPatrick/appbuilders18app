@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image, AppRegistry, SectionList } from 'react-native';
 import { TabNavigator } from 'react-navigation';
