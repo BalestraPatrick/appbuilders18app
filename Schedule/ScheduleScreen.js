@@ -2,9 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+import { StackNavigator } from 'react-navigation';
 
-export default class Schedule extends React.Component {
+export default class ScheduleScreen extends React.Component {
   static navigationOptions = {
+    title: 'Schedule',
     tabBarLabel: 'Schedule',
     showIcon: true,
     tabBarIcon: ({ tintColor }) => (
@@ -16,11 +18,12 @@ export default class Schedule extends React.Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <SafeAreaView style={styles.safeArea}>
         <Button
-          onPress={() => this.props.navigation.navigate('Notifications')}
-          title="Schedule"
+          onPress={() => navigate('Talk')}
+          title="View Talk Details"
         />
       </SafeAreaView>
     );

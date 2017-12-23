@@ -3,8 +3,9 @@ import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-nativ
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-export default class Speakers extends React.Component {
+export default class SpeakersScreen extends React.Component {
   static navigationOptions = {
+    title: 'Speakers',
     tabBarLabel: 'Speakers',
     showIcon: true,
     tabBarIcon: ({ tintColor }) => (
@@ -20,7 +21,7 @@ export default class Speakers extends React.Component {
       <SafeAreaView style={styles.safeArea}>
         <Button
           onPress={() => this.props.navigation.goBack()}
-          title="Go backe"
+          title="Go back"
         />
       </SafeAreaView>
     );

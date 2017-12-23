@@ -1,18 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button } from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-import Schedule from './Schedule/Schedule';
-import Speakers from './Speakers/Speakers';
+import ScheduleScreen from './Schedule/ScheduleScreen';
+import TalkScreen from './Schedule/TalkScreen';
+import SpeakersScreen from './Speakers/SpeakersScreen';
 
 const Tabs = TabNavigator({
   Schedule: {
-    screen: Schedule,
+    screen: StackNavigator({
+      Schedule: { screen: ScheduleScreen },
+      Talk: { screen: TalkScreen },
+    }),
   },
   Speakers: {
-    screen: Speakers,
-  },
+    screen: StackNavigator({
+      Speakers: {
+        screen: SpeakersScreen,
+      },
+    }),
+  }
 },
 {
   tabBarPosition: 'bottom',
