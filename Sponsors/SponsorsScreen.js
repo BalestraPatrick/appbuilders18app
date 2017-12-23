@@ -8,9 +8,10 @@ import { StackNavigator } from 'react-navigation';
 class Sponsors extends React.Component {
 
   render() {
+    const isDiamond = this.props.type == "💎 Diamond"
     const sponsors = this.props.sponsors.map((sponsor) => {
       return (
-        <View key={sponsor.id} style={styles.sponsorContainer}>
+        <View key={sponsor.id} style={isDiamond ? styles.diamondSponsorContainer : styles.normalSponsorContainer}>
           <Image source={sponsor.image}/>
           <Text>{sponsor.name}</Text>
         </View>
@@ -19,7 +20,7 @@ class Sponsors extends React.Component {
     return (
       <View style={styles.sponsorsContainer}>
         <Text style={styles.sponsorTitle}>{this.props.type}</Text>
-        <View style={styles.diamondSponsorsContainer}>
+        <View style={isDiamond ? styles.diamondSponsorsContainer : styles.normalSponsorsContainer}>
           {sponsors}
         </View>
       </View>
@@ -45,6 +46,7 @@ export default class ScheduleScreen extends React.Component {
     const diamond = [
       {id: 1, name: "Patrick", image: require("../images/speaker.png")},
       {id: 2, name: "Junior", image: require("../images/speaker.png")},
+      {id: 3, name: "Luca", image: require("../images/speaker.png")},
     ]
     return (
       <ScrollView>
@@ -76,8 +78,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10
   },
-  sponsorContainer: {
+  normalSponsorsContainer: {
     flex: 1,
+    flexGrow: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    flexWrap: 'wrap',
+  },
+  diamondSponsorContainer: {
+    flex: 1,
+    padding: 10,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  normalSponsorContainer: {
+    flex: 1,
+    padding: 10,
+    minWidth: '45%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
