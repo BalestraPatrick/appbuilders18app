@@ -26,9 +26,7 @@ const Tabs = TabNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      // <SafeAreaView style={styles.safeArea}>
         <Tabs/>
-      // </SafeAreaView>
     );
   }
 }

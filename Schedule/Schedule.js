@@ -3,13 +3,13 @@ import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-nativ
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-export default class Speakers extends React.Component {
+export default class Schedule extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Speakers',
+    tabBarLabel: 'Schedule',
     showIcon: true,
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../images/speaker.png')}
+        source={require('../images/schedule.png')}
         style={[styles.icon, {tintColor: tintColor}]}
       />
     ),
@@ -19,8 +19,8 @@ export default class Speakers extends React.Component {
     return (
       <SafeAreaView style={styles.safeArea}>
         <Button
-          onPress={() => this.props.navigation.goBack()}
-          title="Go back home"
+          onPress={() => this.props.navigation.navigate('Notifications')}
+          title="Schedule"
         />
       </SafeAreaView>
     );
