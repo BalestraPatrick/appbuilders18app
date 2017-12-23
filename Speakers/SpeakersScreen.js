@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image, AppRegistry, SectionList } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+const { createClient } = require('../Contentful/contentful.js');
 
 export default class SpeakersScreen extends React.Component {
   static navigationOptions = {
@@ -17,6 +18,13 @@ export default class SpeakersScreen extends React.Component {
   };
 
   render() {
+		client.getEntries({content_type: '2PqfXUJwE8qSYKuM0U6w8M'}).then((response)=>{
+			this.setState({dataSource: this.ds.cloneWithRows(response.items.map(function(product){
+				return product.fields.productName
+			}))})
+		}).catch(function(error){
+			console.log("ERRRORRRRR" + error)
+		});
     return (
       <View style={styles.container}>
         <SectionList
@@ -32,6 +40,11 @@ export default class SpeakersScreen extends React.Component {
     );
   }
 }
+
+const client = createClient({
+  accessToken: '0e3ec801b5af550c8a1257e8623b1c77ac9b3d8fcfc1b2b7494e3cb77878f92a',
+  space: 'wl1z0pal05vy'
+});
 
 const styles = StyleSheet.create({
   container: {

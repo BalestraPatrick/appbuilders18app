@@ -16,6 +16,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "contentful": "^5.0.5",
     "react": "16.0.0",
     "react-native": "0.50.3",
     "react-native-cli": "^2.0.1",
