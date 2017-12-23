@@ -10,14 +10,14 @@ class Sponsors extends React.Component {
   render() {
     const sponsors = this.props.sponsors.map((sponsor) => {
       return (
-        <View key={sponsor.id}>
+        <View key={sponsor.id} style={styles.sponsorContainer}>
           <Image source={sponsor.image}/>
           <Text>{sponsor.name}</Text>
         </View>
       )
     })
     return (
-      <View style={styles.sponsorContainer}>
+      <View style={styles.sponsorsContainer}>
         <Text style={styles.sponsorTitle}>{this.props.type}</Text>
         <View style={styles.diamondSponsorsContainer}>
           {sponsors}
@@ -43,7 +43,7 @@ export default class ScheduleScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const diamond = [
-      {id: 1, name: "SBB", image: require("../images/speaker.png")},
+      {id: 1, name: "Patrick", image: require("../images/speaker.png")},
       {id: 2, name: "Junior", image: require("../images/speaker.png")},
     ]
     return (
@@ -57,7 +57,7 @@ export default class ScheduleScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  sponsorContainer: {
+  sponsorsContainer: {
     backgroundColor: 'transparent',
     margin: 10,
   },
@@ -75,5 +75,11 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     borderRadius: 10
+  },
+  sponsorContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })
