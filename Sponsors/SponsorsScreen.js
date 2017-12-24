@@ -85,7 +85,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     backgroundColor: 'white',
-    borderRadius: 10
+    borderRadius: 10,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { height: 1, width: 0 },
   },
   normalSponsorsContainer: {
     flex: 1,
@@ -97,6 +101,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     flexWrap: 'wrap',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { height: 1, width: 0 },
   },
   diamondSponsorContainer: {
     flex: 1,
