@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, AppRegistry, SectionList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, AppRegistry, SectionList, ActivityIndicator } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 const { createClient } = require('../Contentful/contentful.js');
+import * as constants from '../constants.js';
 
 export default class SpeakersScreen extends React.Component {
   static navigationOptions = {
@@ -17,22 +18,67 @@ export default class SpeakersScreen extends React.Component {
     ),
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      sections: null
+    }
+  }
+
+  componentDidMount() {
+    client.getEntries()
+    .then((entries) => {
+      this.parseSpeakers(entries);
+    }).catch((error) => {
+      console.warn(`Error in retrieving entries ${error}`);
+    })
+  }
+
+  parseSpeakers(entries) {
+    // Sort by last name
+    const speakers = entries.items.sort((a, b) => {
+      return a.fields.lastName > b.fields.lastName
+    });
+    const initials = new Set(entries.items.map((speaker) => speaker.fields.lastName[0]).sort());
+    const sections = [];
+    // Create dictionar of speakers.
+    for (speaker of speakers) {
+      const initial = speaker.fields.lastName[0];
+      if (initials.has(initial)) {
+        // Create new dictionary for a new speaker with an unseen initial.
+        sections.push({
+          title: initial,
+          data: [speaker]
+        });
+        initials.delete(initial);
+      } else {
+        // Push new speakers with same last name initial.
+        sections.filter((element) => element.title == initial)[0].data.push(speaker);
+      }
+    }
+    sections.sort(element => element.title);
+    console.log(`sections: ${JSON.stringify(sections)}`);
+    this.setState({
+      isLoading: false,
+      sections: sections
+    });
+  }
+
   render() {
-		client.getEntries({content_type: '2PqfXUJwE8qSYKuM0U6w8M'}).then((response)=>{
-			this.setState({dataSource: this.ds.cloneWithRows(response.items.map(function(product){
-				return product.fields.productName
-			}))})
-		}).catch(function(error){
-			console.log("ERRRORRRRR" + error)
-		});
+    if (this.state.isLoading) {
+      return (
+        <View style={{flex: 1, paddingTop: 20}}>
+          <ActivityIndicator />
+        </View>
+      );
+    }
+
     return (
       <View style={styles.container}>
         <SectionList
-          sections={[
-            {title: 'D', data: ['Devin']},
-            {title: 'J', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
-          ]}
-          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+          sections={this.state.sections}
+          renderItem={({item}) => <Text style={styles.item}>{item.fields.lastName}</Text>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
           keyExtractor={(item, index) => index}
         />
@@ -42,8 +88,8 @@ export default class SpeakersScreen extends React.Component {
 }
 
 const client = createClient({
-  accessToken: '0e3ec801b5af550c8a1257e8623b1c77ac9b3d8fcfc1b2b7494e3cb77878f92a',
-  space: 'wl1z0pal05vy'
+  accessToken: constants.ACCESS_TOKEN,
+  space: constants.SPACE_ID
 });
 
 const styles = StyleSheet.create({
