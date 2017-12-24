@@ -68,6 +68,17 @@ export default class SpeakersScreen extends React.Component {
     });
   }
 
+  renderSpeaker(item) {
+
+    return (
+      <View>
+        <Image style={styles.speakerImage} source={{uri: `https:${item.fields.picture.fields.file.url}`}} />
+        <Text style={styles.speakerName}>{item.fields.firstName} {item.fields.lastName}</Text>
+        <Text style={styles.speakerInformation}>{item.fields.jobTitle} {item.fields.company}</Text>
+      </View>
+    )
+  }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -76,12 +87,12 @@ export default class SpeakersScreen extends React.Component {
         </View>
       );
     }
-
+    console.log(this.state.sections[0].data[0].fields.picture.fields.file.url);
     return (
       <View style={styles.container}>
         <SectionList
           sections={this.state.sections}
-          renderItem={({item}) => <Text style={styles.item}>{item.fields.firstName} {item.fields.lastName}</Text>}
+          renderItem={({item}) => this.renderSpeaker(item)}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
           keyExtractor={(item, index) => index}
         />
@@ -110,10 +121,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'rgba(247,247,247,1.0)',
   },
-  item: {
+  speakerImage: {
+    margin: 10,
+    width: 100,
+    height: 100,
+    borderRadius: 10
+  },
+  speakerName: {
     padding: 10,
     fontSize: 18,
-    height: 44,
+    fontWeight: 'bold'
+  },
+  speakerInformation: {
+    padding: 10,
+    fontSize: 18,
   },
   safeArea: {
     flex: 1,
