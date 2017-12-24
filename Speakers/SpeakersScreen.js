@@ -41,7 +41,7 @@ export default class SpeakersScreen extends React.Component {
       return a.fields.lastName > b.fields.lastName
     });
     const initials = new Set(entries.items.map((speaker) => speaker.fields.lastName[0]).sort());
-    const sections = [];
+    let sections = [];
     // Create dictionar of speakers.
     for (speaker of speakers) {
       const initial = speaker.fields.lastName[0];
@@ -57,8 +57,11 @@ export default class SpeakersScreen extends React.Component {
         sections.filter((element) => element.title == initial)[0].data.push(speaker);
       }
     }
-    sections.sort(element => element.title);
-    console.log(`sections: ${JSON.stringify(sections)}`);
+    // Sort dictionary and inner speakers in each section.
+    sections = sections.sort((a, b) => a.title.localeCompare(b.title));
+    for (section of sections) {
+      section.data.sort((a, b) => a.fields.lastName.localeCompare(b.fields.lastName));
+    }
     this.setState({
       isLoading: false,
       sections: sections
@@ -78,7 +81,7 @@ export default class SpeakersScreen extends React.Component {
       <View style={styles.container}>
         <SectionList
           sections={this.state.sections}
-          renderItem={({item}) => <Text style={styles.item}>{item.fields.lastName}</Text>}
+          renderItem={({item}) => <Text style={styles.item}>{item.fields.firstName} {item.fields.lastName}</Text>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
           keyExtractor={(item, index) => index}
         />
