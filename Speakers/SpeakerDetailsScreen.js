@@ -1,9 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView, WebView } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
-import { Timeline } from 'react-twitter-widgets'
 
 export default class SpeakerDetailsScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -11,6 +9,8 @@ export default class SpeakerDetailsScreen extends React.Component {
       title: `${navigation.state.params.fields.firstName} ${navigation.state.params.fields.lastName}`,
       tabBarLabel: 'Speakers',
       showIcon: true,
+      headerTintColor: '#e91e63',
+      headerTitleStyle: { color: 'black' },
       tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../images/speaker.png')}
@@ -21,20 +21,23 @@ export default class SpeakerDetailsScreen extends React.Component {
   };
 
   render() {
-    console.log(`item: ${JSON.stringify(this.props.navigation.state.params.fields.firstName, null, 2)}`);
     const { navigate } = this.props.navigation;
     return (
-      <SafeAreaView style={styles.safeArea}>
+      <ScrollView style={styles.viewContainer}>
         <Text>Best Talk</Text>
-      </SafeAreaView>
+        <WebView style={styles.webView} source={twitter}/>
+      </ScrollView>
     );
   }
 }
 
+const twitter = require('../twitter.html');
+
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-    alignItems: 'center'
+  viewContainer: {
+    backgroundColor: 'transparent',
+  },
+  webView: {
+    height: 400
   }
 })

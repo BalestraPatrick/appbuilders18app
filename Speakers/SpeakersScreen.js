@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SectionList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 const { createClient } = require('../Contentful/contentful.js');
 import * as constants from '../constants.js';
 
