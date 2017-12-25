@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, AppRegistry, SectionList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, AppRegistry, SectionList, ActivityIndicator } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 const { createClient } = require('../Contentful/contentful.js');
@@ -37,9 +37,7 @@ export default class SpeakersScreen extends React.Component {
 
   parseSpeakers(entries) {
     // Sort by last name
-    const speakers = entries.items.sort((a, b) => {
-      return a.fields.lastName > b.fields.lastName
-    });
+    const speakers = entries.items.sort((a, b) => a.fields.lastName > b.fields.lastName);
     const initials = new Set(entries.items.map((speaker) => speaker.fields.lastName[0]).sort());
     let sections = [];
     // Create dictionar of speakers.
@@ -69,12 +67,16 @@ export default class SpeakersScreen extends React.Component {
   }
 
   renderSpeaker(item) {
-
     return (
-      <View>
+      <View style={styles.speakerContainer}>
         <Image style={styles.speakerImage} source={{uri: `https:${item.fields.picture.fields.file.url}`}} />
-        <Text style={styles.speakerName}>{item.fields.firstName} {item.fields.lastName}</Text>
-        <Text style={styles.speakerInformation}>{item.fields.jobTitle} {item.fields.company}</Text>
+        <View style={styles.speakerTextContainer}>
+          <Text style={styles.speakerName}>{item.fields.firstName} {item.fields.lastName}</Text>
+          <Text style={styles.speakerInformation}>{item.fields.jobTitle} {item.fields.company}</Text>
+        </View>
+        <View style={styles.arrowContainer}>
+          <Image style={styles.arrow} source={require('../images/arrow.png')} />
+        </View>
       </View>
     )
   }
@@ -87,7 +89,6 @@ export default class SpeakersScreen extends React.Component {
         </View>
       );
     }
-    console.log(this.state.sections[0].data[0].fields.picture.fields.file.url);
     return (
       <View style={styles.container}>
         <SectionList
@@ -110,35 +111,64 @@ const styles = StyleSheet.create({
   container: {
    flex: 1,
    paddingTop: 0,
-   backgroundColor: 'white'
+   backgroundColor: 'transparent'
   },
   sectionHeader: {
+    marginTop: 0,
     paddingTop: 2,
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 2,
+    backgroundColor: 'rgba(247,247,247,1.0)',
+    height: 20,
     fontSize: 14,
     fontWeight: 'bold',
-    backgroundColor: 'rgba(247,247,247,1.0)',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { height: 1, width: 0 },
+  },
+  speakerTextContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    borderRadius: 10
   },
   speakerImage: {
     margin: 10,
-    width: 100,
-    height: 100,
+    width: 75,
+    height: 75,
     borderRadius: 10
   },
   speakerName: {
-    padding: 10,
+    marginTop: 10,
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    borderRadius: 10
   },
   speakerInformation: {
-    padding: 10,
+    paddingTop: 5,
     fontSize: 18,
   },
-  safeArea: {
+  speakerContainer: {
     flex: 1,
-    backgroundColor: '#ffffff',
-    alignItems: 'center'
+    flexDirection: 'row',
+    margin: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { height: 1, width: 0 },
+  },
+  arrowContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: 15,
+    paddingLeft: 5
+  },
+  arrow: {
+    height: 25,
+    paddingRight: 15,
   }
 })
