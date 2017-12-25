@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements';
 import ScheduleScreen from './Schedule/ScheduleScreen';
 import TalkScreen from './Schedule/TalkScreen';
 import SpeakersScreen from './Speakers/SpeakersScreen';
+import SpeakerDetailsScreen from './Speakers/SpeakerDetailsScreen';
 import SponsorsScreen from './Sponsors/SponsorsScreen';
 import InformationScreen from './Information/InformationScreen';
 
@@ -19,6 +20,7 @@ const Tabs = TabNavigator({
   Speakers: {
     screen: StackNavigator({
       Speakers: { screen: SpeakersScreen },
+      SpeakerDetails: { screen: SpeakerDetailsScreen },
     }),
   },
   Sponsors: {

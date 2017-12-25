@@ -23,6 +23,7 @@
     "react-native-elements": "^0.18.5",
     "react-native-safari-view": "^2.1.0",
     "react-native-vector-icons": "^4.4.3",
-    "react-navigation": "^1.0.0-beta.22"
+    "react-navigation": "^1.0.0-beta.22",
+    "react-twitter-widgets": "^1.7.1"
   }
 }

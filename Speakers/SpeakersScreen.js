@@ -66,14 +66,11 @@ export default class SpeakersScreen extends React.Component {
     });
   }
 
-  _onPress() {
-    // TODO: navigate to more details for this speaker
-  }
-
   renderSpeaker(item) {
     // TODO: refactor to SpeakerView component
+    const { navigate } = this.props.navigation;
     return (
-      <TouchableOpacity onPress={this._onPress}>
+      <TouchableOpacity onPress={() => navigate('SpeakerDetails', item)}>
         <View style={styles.speakerContainer}>
             <Image style={styles.speakerImage} source={{uri: `https:${item.fields.picture.fields.file.url}`}} />
             <View style={styles.speakerTextContainer}>
