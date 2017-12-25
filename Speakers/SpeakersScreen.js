@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, AppRegistry, SectionList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Image, SectionList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 const { createClient } = require('../Contentful/contentful.js');
@@ -66,18 +66,25 @@ export default class SpeakersScreen extends React.Component {
     });
   }
 
+  _onPress() {
+    // TODO: navigate to more details for this speaker
+  }
+
   renderSpeaker(item) {
+    // TODO: refactor to SpeakerView component
     return (
-      <View style={styles.speakerContainer}>
-        <Image style={styles.speakerImage} source={{uri: `https:${item.fields.picture.fields.file.url}`}} />
-        <View style={styles.speakerTextContainer}>
-          <Text style={styles.speakerName}>{item.fields.firstName} {item.fields.lastName}</Text>
-          <Text style={styles.speakerInformation}>{item.fields.jobTitle} {item.fields.company}</Text>
+      <TouchableOpacity onPress={this._onPress}>
+        <View style={styles.speakerContainer}>
+            <Image style={styles.speakerImage} source={{uri: `https:${item.fields.picture.fields.file.url}`}} />
+            <View style={styles.speakerTextContainer}>
+              <Text style={styles.speakerName}>{item.fields.firstName} {item.fields.lastName}</Text>
+              <Text style={styles.speakerInformation}>{item.fields.jobTitle} {item.fields.company}</Text>
+            </View>
+            <View style={styles.arrowContainer}>
+              <Image style={styles.arrow} source={require('../images/arrow.png')} />
+            </View>
         </View>
-        <View style={styles.arrowContainer}>
-          <Image style={styles.arrow} source={require('../images/arrow.png')} />
-        </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 
