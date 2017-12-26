@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, FlatList, RefreshControl } from 'react-native';
+import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, FlatList, RefreshControl, WebView } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
+import SegmentedControlTab from 'react-native-segmented-control-tab'
 const ContentfulClient = require('../Contentful/ContentfulClient');
 const client = new ContentfulClient();
 
@@ -22,9 +23,19 @@ export default class NewsScreen extends React.Component {
     super(props);
     this.state = {
       refreshing: false,
-      isLoading: false,
-      news: null
+      isLoading: true,
+      news: null,
+      selectedIndex: 0
     }
+  }
+
+  componentDidMount() {
+    client.getNews().then(news => {
+      this.setState({
+        isLoading: false,
+        news: news
+      });
+    });
   }
 
   _onRefresh() {
@@ -38,13 +49,16 @@ export default class NewsScreen extends React.Component {
     });
   }
 
-  componentDidMount() {
-    client.getNews().then(news => {
-      this.setState({
-        isLoading: false,
-        news: news
-      });
-    });
+  twitter(username) {
+    return `<!DOCTYPE HTML>
+    <html>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+      </head>
+      <body>
+        <a class="twitter-timeline" data-dnt="true" data-link-color="#e91e63" href="https://twitter.com/${username}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </body>
+    </html>`
   }
 
   renderTalk(item) {
@@ -61,6 +75,12 @@ export default class NewsScreen extends React.Component {
     )
   }
 
+  handleIndexChange(index) {
+    this.setState({
+      selectedIndex: index
+    });
+  }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -71,14 +91,30 @@ export default class NewsScreen extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <FlatList
-          refreshControl={
-            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh.bind(this)} />
-          }
-          data={this.state.news}
-          renderItem={({item}) => this.renderTalk(item)}
-          keyExtractor={(item, index) => index}
-        />
+        <View style={styles.segmentedControlContainer}>
+          <SegmentedControlTab
+            tabsContainerStyle={styles.tabsContainerStyle}
+            tabStyle={styles.tabStyle}
+            tabTextStyle={styles.tabTextStyle}
+            activeTabStyle={styles.activeTabStyle}
+            values={['Posts', 'Twitter']}
+            selectedIndex={this.state.selectedIndex}
+            onTabPress={this.handleIndexChange.bind(this)}
+          />
+        </View>
+        {this.state.selectedIndex == 0 ? (
+          <FlatList
+            refreshControl={
+              <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh.bind(this)} />
+            }
+            data={this.state.news}
+            renderItem={({item}) => this.renderTalk(item)}
+            keyExtractor={(item, index) => index}
+          />
+        ) : (
+          <WebView style={styles.webView} source={{html: this.twitter('AppBuilders_CH')}}/>
+        )
+      }
       </View>
     );
   }
@@ -135,7 +171,29 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: { height: 1, width: 0 },
   },
-  newsDate: {
-
+  tabsContainerStyle: {
+    margin: 10,
+    width: 200
+  },
+  tabStyle: {
+    backgroundColor: 'transparent',
+    borderColor: '#e91e63'
+  },
+  tabTextStyle: {
+    color: '#e91e63'
+  },
+  activeTabStyle: {
+    backgroundColor: '#e91e63'
+  },
+  segmentedControlContainer: {
+    alignItems: 'center'
+  },
+  webView: {
+    margin: 10,
+    borderRadius: 10,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { height: 1, width: 0 },
   }
 })
