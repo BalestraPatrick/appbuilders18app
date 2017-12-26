@@ -7,7 +7,7 @@ module.exports = class ContentfulClient {
   }
 
   getSpeakers() {
-    return client.getEntries()
+    return client.getEntries({content_type: 'speaker'})
     .then((entries) => {
       return this.parseSpeakers(entries);
     })
@@ -16,10 +16,19 @@ module.exports = class ContentfulClient {
     })
   }
 
+  getTalks() {
+    return client.getEntries({content_type: 'talk'})
+    .then((entries) => {
+      return this.parseTalks(entries);
+    })
+    .catch((error) => {
+      console.warn(`Error in retrieving talks: ${error}`);
+    })
+  }
+
   parseSpeakers(entries) {
-    // Sort by last name
-    const speakers = entries.items.sort((a, b) => a.fields.lastName > b.fields.lastName);
-    const initials = new Set(entries.items.map((speaker) => speaker.fields.lastName[0]).sort());
+    const speakers = entries.items;
+    const initials = new Set(speakers.map((speaker) => speaker.fields.lastName[0]).sort());
     let sections = [];
     // Create dictionar of speakers.
     for (speaker of speakers) {
@@ -40,6 +49,20 @@ module.exports = class ContentfulClient {
     sections = sections.sort((a, b) => a.title.localeCompare(b.title));
     for (section of sections) {
       section.data.sort((a, b) => a.fields.lastName.localeCompare(b.fields.lastName));
+    }
+    return new Promise((resolve, reject) => resolve(sections));
+  }
+
+  parseTalks(entries) {
+    const talks = entries.items;
+    let sections = [{title: '1st Day', data: []}, {title: '2nd Day', data: []}];
+    for (talk of talks) {
+      const talkDate = talk.fields.time;
+      if (talk.fields.isFirstDay) {
+        sections[0].data.push(talk);
+      } else {
+        sections[1].data.push(talk);
+      }
     }
     return new Promise((resolve, reject) => resolve(sections));
   }
