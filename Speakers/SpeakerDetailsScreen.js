@@ -21,20 +21,18 @@ export default class SpeakerDetailsScreen extends React.Component {
   };
 
   twitter(username) {
-    return
-    `<!DOCTYPE HTML>
+    return `<!DOCTYPE HTML>
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
       </head>
       <body>
-        <a class="twitter-timeline" data-dnt="true" data-link-color="#e91e63" href="https://twitter.com/${username}?ref_src=twsrc%5Etfw">Tweets by ${username}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <a class="twitter-timeline" data-dnt="true" data-link-color="#e91e63" href="https://twitter.com/${username}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </body>
     </html>`
   }
 
   render() {
-    console.log(this.twitter());
     const fields = this.props.navigation.state.params.fields;
     return (
       <ScrollView style={styles.viewContainer}>
@@ -47,7 +45,7 @@ export default class SpeakerDetailsScreen extends React.Component {
               </View>
           </View>
           <Text style={styles.speakerBiography}>{fields.biography}</Text>
-          <WebView style={styles.webView} html={this.twitter(fields.twitter)}/>
+          <WebView style={styles.webView} source={{html: this.twitter(fields.twitter)}}/>
         </View>
       </ScrollView>
     );
@@ -70,7 +68,8 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   webView: {
-    height: 400
+    height: 400,
+    shadowRadius: 10,
   },
   sectionHeader: {
     marginTop: 0,
