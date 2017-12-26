@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, FlatList, RefreshControl, WebView } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
-import SegmentedControlTab from 'react-native-segmented-control-tab'
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 const ContentfulClient = require('../Contentful/ContentfulClient');
 const client = new ContentfulClient();
 
@@ -49,6 +49,12 @@ export default class NewsScreen extends React.Component {
     });
   }
 
+  handleIndexChange(index) {
+    this.setState({
+      selectedIndex: index
+    });
+  }
+
   twitter(username) {
     return `<!DOCTYPE HTML>
     <html>
@@ -73,12 +79,6 @@ export default class NewsScreen extends React.Component {
           </View>
       </View>
     )
-  }
-
-  handleIndexChange(index) {
-    this.setState({
-      selectedIndex: index
-    });
   }
 
   render() {
