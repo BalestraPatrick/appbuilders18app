@@ -8,6 +8,7 @@ import TalkScreen from './Schedule/TalkScreen';
 import SpeakersScreen from './Speakers/SpeakersScreen';
 import SpeakerDetailsScreen from './Speakers/SpeakerDetailsScreen';
 import SponsorsScreen from './Sponsors/SponsorsScreen';
+import NewsScreen from './News/NewsScreen';
 import InformationScreen from './Information/InformationScreen';
 
 const Tabs = TabNavigator({
@@ -28,6 +29,11 @@ const Tabs = TabNavigator({
       Sponsors: { screen: SponsorsScreen },
     })
   },
+  News: {
+    screen: StackNavigator({
+      News: { screen: NewsScreen },
+    })
+  },
   Information: {
     screen: StackNavigator({
       Information: { screen: InformationScreen },
@@ -37,7 +43,7 @@ const Tabs = TabNavigator({
 {
   tabBarPosition: 'bottom',
   animationEnabled: true,
-  swipeEnabled: true,
+  swipeEnabled: false,
   tabBarOptions: {
     activeTintColor: '#e91e63',
   },
