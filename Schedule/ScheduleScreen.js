@@ -28,7 +28,6 @@ export default class ScheduleScreen extends React.Component {
 
   componentDidMount() {
     client.getTalks().then(talks => {
-      console.log(`GOT TALKS: ${JSON.stringify(talks, null, 2)}`);
       this.setState({
         isLoading: false,
         sections: talks

@@ -26,6 +26,21 @@ module.exports = class ContentfulClient {
     })
   }
 
+  getNews() {
+    return client.getEntries({content_type: 'news'})
+    .then((entries) => {
+      return this.parseNews(entries);
+    })
+    .catch((error) => {
+      console.warn(`Error in retrieving talks: ${error}`);
+    })
+  }
+
+  parseNews(entries) {
+    const speakers = entries.items;
+    return new Promise((resolve, reject) => resolve(speakers));
+  }
+
   parseSpeakers(entries) {
     const speakers = entries.items;
     const initials = new Set(speakers.map((speaker) => speaker.fields.lastName[0]).sort());
