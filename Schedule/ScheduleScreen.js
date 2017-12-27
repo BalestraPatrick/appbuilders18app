@@ -50,9 +50,8 @@ export default class ScheduleScreen extends React.Component {
 
   renderTalk(item) {
     const { navigate } = this.props.navigation;
-    console.log(`item: ${JSON.stringify(item, null, 2)}`);
     return (
-      <TouchableOpacity onPress={() => navigate('SpeakerDetails', item)}>
+      <TouchableOpacity onPress={() => navigate('Talk', item)}>
         <View style={styles.talkMainContainer}>
           <View style={styles.talkContainer}>
             <View style={styles.speakerContainer}>

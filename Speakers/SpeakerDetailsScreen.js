@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView, WebView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ScrollView, WebView } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
 
@@ -38,11 +38,11 @@ export default class SpeakerDetailsScreen extends React.Component {
       <ScrollView style={styles.viewContainer}>
         <View style={styles.informationContainer}>
           <View style={styles.speakerContainer}>
-              <Image style={styles.speakerImage} source={{uri: `https:${fields.picture.fields.file.url}`}} />
-              <View style={styles.speakerTextContainer}>
-                <Text style={styles.speakerName}>{fields.firstName} {fields.lastName}</Text>
-                <Text style={styles.speakerInformation}>{fields.jobTitle} {fields.company}</Text>
-              </View>
+            <Image style={styles.speakerImage} source={{uri: `https:${fields.picture.fields.file.url}`}} />
+            <View style={styles.speakerTextContainer}>
+              <Text style={styles.speakerName}>{fields.firstName} {fields.lastName}</Text>
+              <Text style={styles.speakerInformation}>{fields.jobTitle} {fields.company}</Text>
+            </View>
           </View>
           <Text style={styles.speakerBiography}>{fields.biography}</Text>
           <WebView style={styles.webView} source={{html: this.twitter(fields.twitter)}}/>
