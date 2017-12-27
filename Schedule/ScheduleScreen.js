@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, 
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import moment from 'moment';
 const ContentfulClient = require('../Contentful/ContentfulClient');
 const client = new ContentfulClient();
 
@@ -43,19 +44,29 @@ export default class ScheduleScreen extends React.Component {
     });
   }
 
+  formatDate(string) {
+    return moment(string).format('h:mm A');
+  }
+
   renderTalk(item) {
     const { navigate } = this.props.navigation;
+    console.log(`item: ${JSON.stringify(item, null, 2)}`);
     return (
       <TouchableOpacity onPress={() => navigate('SpeakerDetails', item)}>
-        <View style={styles.speakerContainer}>
-            <Image style={styles.speakerImage} source={{uri: `https:${item.fields.speaker.fields.picture.fields.file.url}`}} />
-            <View style={styles.speakerTextContainer}>
-              <Text style={styles.speakerName}>{item.fields.title}</Text>
-              <Text style={styles.speakerInformation}>{item.fields.content}</Text>
+        <View style={styles.talkMainContainer}>
+          <View style={styles.talkContainer}>
+            <View style={styles.speakerContainer}>
+                <Image style={styles.speakerImage} source={{uri: `https:${item.fields.speaker.fields.picture.fields.file.url}`}} />
+                <View style={styles.talkTextContainer}>
+                  <Text style={styles.talkTitle}>{item.fields.title}</Text>
+                  <Text style={styles.talkSpeaker}>{item.fields.speaker.fields.firstName} {item.fields.speaker.fields.lastName}</Text>
+                </View>
             </View>
-            <View style={styles.arrowContainer}>
-              <Image style={styles.arrow} source={require('../images/arrow.png')} />
-            </View>
+            <Text style={styles.talkInformation}>{this.formatDate(item.fields.time)} | {item.fields.room}</Text>
+          </View>
+          <View style={styles.arrowContainer}>
+            <Image style={styles.arrow} source={require('../images/arrow.png')} />
+          </View>
         </View>
       </TouchableOpacity>
     )
@@ -99,6 +110,17 @@ const styles = StyleSheet.create({
    paddingTop: 0,
    backgroundColor: 'transparent'
   },
+  talkMainContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    margin: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { height: 1, width: 0 },
+  },
   sectionHeader: {
     marginTop: 0,
     paddingTop: 2,
@@ -114,37 +136,39 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: { height: 1, width: 0 },
   },
-  speakerTextContainer: {
+  talkTextContainer: {
     flex: 1,
     flexDirection: 'column',
     borderRadius: 10
   },
   speakerImage: {
-    margin: 10,
+    marginRight: 10,
     width: 50,
     height: 50,
     borderRadius: 10
   },
-  speakerName: {
-    marginTop: 10,
+  talkTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    borderRadius: 10
+    borderRadius: 10,
+    fontSize: 18
   },
-  speakerInformation: {
+  talkSpeaker: {
     paddingTop: 5,
-    fontSize: 18,
+    fontSize: 16,
+  },
+  talkInformation: {
+    margin: 10,
+    marginTop: 0,
+  },
+  talkContainer: {
+    flex: 1,
+    flexDirection: 'column',
   },
   speakerContainer: {
     flex: 1,
     flexDirection: 'row',
     margin: 10,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    shadowColor: 'black',
-    shadowOffset: { height: 1, width: 0 },
   },
   arrowContainer: {
     display: 'flex',
