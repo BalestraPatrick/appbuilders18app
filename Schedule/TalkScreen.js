@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableHighlight } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
@@ -18,8 +18,20 @@ export default class TalkScreen extends React.Component {
           style={[styles.icon, {tintColor: tintColor}]}
         />
       ),
+      headerRight: (
+        <TouchableHighlight onPress={() => this.addToMyConference} style={{marginRight: 10}}>
+          <Image
+            source={require('../images/schedule.png')}
+            style={[styles.icon, {tintColor: '#e91e63'}]}
+          />
+        </TouchableHighlight>
+      ),
     }
   };
+
+  addToMyConference() {
+
+  }
 
   render() {
     const fields = this.props.navigation.state.params.fields;
