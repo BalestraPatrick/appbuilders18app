@@ -46,7 +46,8 @@ const Tabs = TabNavigator({
   swipeEnabled: false,
   tabBarOptions: {
     activeTintColor: '#e91e63',
-  },
+  }
+},
 });
 
 export default class App extends React.Component {
