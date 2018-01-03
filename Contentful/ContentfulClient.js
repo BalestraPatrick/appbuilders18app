@@ -1,15 +1,24 @@
 const { createClient } = require('../Contentful/contentful.js');
 import * as constants from '../constants.js';
+import firebase from 'react-native-firebase';
 
 module.exports = class ContentfulClient {
 
   constructor() {
+    this.ref = firebase.database().ref();
+
+    // this.ref.once('value').then(snapshot => {
+    //   console.log(JSON.stringify(snapshot.val()));
+    // });
+    // this.ref.then((object) => {
+    //   console.log(`OBJECT: ${object}`);
+    // })
+    // console.log(firebase.database().ref('/news'));
   }
 
   getSpeakers() {
-    return client.getEntries({content_type: 'speaker'})
-    .then((entries) => {
-      return this.parseSpeakers(entries);
+    return this.ref.child('speakers').once('value').then((snap) => {
+      return this.parseSpeakers(snap.val());
     })
     .catch((error) => {
       console.warn(`Error in retrieving speakers: ${error}`);
@@ -41,13 +50,12 @@ module.exports = class ContentfulClient {
     return new Promise((resolve, reject) => resolve(speakers));
   }
 
-  parseSpeakers(entries) {
-    const speakers = entries.items;
-    const initials = new Set(speakers.map((speaker) => speaker.fields.lastName[0]).sort());
+  parseSpeakers(speakers) {
+    const initials = new Set(speakers.map((speaker) => speaker.lastName[0]).sort());
     let sections = [];
     // Create dictionar of speakers.
     for (speaker of speakers) {
-      const initial = speaker.fields.lastName[0];
+      const initial = speaker.lastName[0];
       if (initials.has(initial)) {
         // Create new dictionary for a new speaker with an unseen initial.
         sections.push({
@@ -63,9 +71,9 @@ module.exports = class ContentfulClient {
     // Sort dictionary and inner speakers in each section.
     sections = sections.sort((a, b) => a.title.localeCompare(b.title));
     for (section of sections) {
-      section.data.sort((a, b) => a.fields.lastName.localeCompare(b.fields.lastName));
+      section.data.sort((a, b) => a.lastName.localeCompare(b.lastName));
     }
-    return new Promise((resolve, reject) => resolve(sections));
+    return sections;
   }
 
   parseTalks(entries) {

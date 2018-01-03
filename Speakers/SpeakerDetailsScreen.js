@@ -6,7 +6,7 @@ import { StackNavigator } from 'react-navigation';
 export default class SpeakerDetailsScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: `${navigation.state.params.fields.firstName} ${navigation.state.params.fields.lastName}`,
+      title: `${navigation.state.params.firstName} ${navigation.state.params.lastName}`,
       tabBarLabel: 'Speakers',
       showIcon: true,
       headerTintColor: '#e91e63',
@@ -33,19 +33,20 @@ export default class SpeakerDetailsScreen extends React.Component {
   }
 
   render() {
-    const fields = this.props.navigation.state.params.fields;
+    const item = this.props.navigation.state.params;
+    console.log(`item: ${JSON.stringify(this.props.navigation.state, null, 2)}`);
     return (
       <ScrollView style={styles.viewContainer}>
         <View style={styles.informationContainer}>
           <View style={styles.speakerContainer}>
-            <Image style={styles.speakerImage} source={{uri: `https:${fields.picture.fields.file.url}`}} />
+            <Image style={styles.speakerImage} source={{uri: item.picture}} />
             <View style={styles.speakerTextContainer}>
-              <Text style={styles.speakerName}>{fields.firstName} {fields.lastName}</Text>
-              <Text style={styles.speakerInformation}>{fields.jobTitle} {fields.company}</Text>
+              <Text style={styles.speakerName}>{item.firstName} {item.lastName}</Text>
+              <Text style={styles.speakerInformation}>{item.jobTitle} {item.company}</Text>
             </View>
           </View>
-          <Text style={styles.speakerBiography}>{fields.biography}</Text>
-          <WebView style={styles.webView} source={{html: this.twitter(fields.twitter)}}/>
+          <Text style={styles.speakerBiography}>{item.biography}</Text>
+          <WebView style={styles.webView} source={{html: this.twitter(item.twitter)}}/>
         </View>
       </ScrollView>
     );

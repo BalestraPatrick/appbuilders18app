@@ -27,6 +27,7 @@ export default class SpeakersScreen extends React.Component {
 
   componentDidMount() {
     client.getSpeakers().then((speakers) => {
+      console.log(`speakers: ${JSON.stringify(speakers, null, 2)}`);
       this.setState({
         isLoading: false,
         sections: speakers
@@ -39,10 +40,10 @@ export default class SpeakersScreen extends React.Component {
     return (
       <TouchableOpacity onPress={() => navigate('SpeakerDetails', item)}>
         <View style={styles.speakerContainer}>
-            <Image style={styles.speakerImage} source={{uri: `https:${item.fields.picture.fields.file.url}`}} />
+            <Image style={styles.speakerImage} source={{uri: item.picture}} />
             <View style={styles.speakerTextContainer}>
-              <Text style={styles.speakerName}>{item.fields.firstName} {item.fields.lastName}</Text>
-              <Text style={styles.speakerInformation}>{item.fields.jobTitle} {item.fields.company}</Text>
+              <Text style={styles.speakerName}>{item.firstName} {item.lastName}</Text>
+              <Text style={styles.speakerInformation}>{item.jobTitle} {item.company}</Text>
             </View>
             <View style={styles.arrowContainer}>
               <Image style={styles.arrow} source={require('../images/arrow.png')} />
