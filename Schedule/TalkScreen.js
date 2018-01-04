@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
@@ -19,12 +19,12 @@ export default class TalkScreen extends React.Component {
         />
       ),
       headerRight: (
-        <TouchableHighlight onPress={() => this.addToMyConference} style={{marginRight: 10}}>
+        <TouchableOpacity onPress={() => this.addToMyConference} style={{marginRight: 10}}>
           <Image
-            source={require('../images/schedule.png')}
+            source={require('../images/like.png')}
             style={[styles.icon, {tintColor: '#e91e63'}]}
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
       ),
     }
   };
