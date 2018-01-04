@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import moment from 'moment';
-const ContentfulClient = require('../Contentful/ContentfulClient');
-const client = new ContentfulClient();
+const ApiClient = require('../api/ApiClient');
+const client = new ApiClient();
 
 export default class ScheduleScreen extends React.Component {
   static navigationOptions = {
@@ -17,6 +17,9 @@ export default class ScheduleScreen extends React.Component {
         source={require('../images/schedule.png')}
         style={[styles.icon, {tintColor: tintColor}]}
       />
+    ),
+    headerRight: (
+      <Button title="Now" color="#e91e63" onPress={this.scrollToNow}></Button>
     ),
   };
 
@@ -38,6 +41,10 @@ export default class ScheduleScreen extends React.Component {
     });
   }
 
+  scrollToNow() {
+
+  }
+
   handleIndexChange(index) {
     this.setState({
       selectedIndex: index
@@ -48,20 +55,20 @@ export default class ScheduleScreen extends React.Component {
     return moment(string).format('h:mm A');
   }
 
-  renderTalk(item) {
+  renderTalk(talk) {
     const { navigate } = this.props.navigation;
     return (
-      <TouchableOpacity onPress={() => navigate('Talk', item)}>
+      <TouchableOpacity onPress={() => navigate('Talk', talk)}>
         <View style={styles.talkMainContainer}>
           <View style={styles.talkContainer}>
             <View style={styles.speakerContainer}>
-                <Image style={styles.speakerImage} source={{uri: `https:${item.fields.speaker.fields.picture.fields.file.url}`}} />
+                <Image style={styles.speakerImage} source={{uri: talk.speaker.picture}} />
                 <View style={styles.talkTextContainer}>
-                  <Text style={styles.talkTitle}>{item.fields.title}</Text>
-                  <Text style={styles.talkSpeaker}>{item.fields.speaker.fields.firstName} {item.fields.speaker.fields.lastName}</Text>
+                  <Text style={styles.talkTitle}>{talk.title}</Text>
+                  <Text style={styles.talkSpeaker}>{talk.speaker.firstName} {talk.speaker.lastName}</Text>
                 </View>
             </View>
-            <Text style={styles.talkInformation}>{this.formatDate(item.fields.time)} | {item.fields.room}</Text>
+            <Text style={styles.talkInformation}>{talk.time} | {talk.room}</Text>
           </View>
           <View style={styles.arrowContainer}>
             <Image style={styles.arrow} source={require('../images/arrow.png')} />

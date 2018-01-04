@@ -7,7 +7,7 @@ import { StackNavigator } from 'react-navigation';
 export default class TalkScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: `${navigation.state.params.fields.title}`,
+      title: `${navigation.state.params.title}`,
       tabBarLabel: 'Schedule',
       showIcon: true,
       headerTintColor: '#e91e63',
@@ -34,19 +34,19 @@ export default class TalkScreen extends React.Component {
   }
 
   render() {
-    const fields = this.props.navigation.state.params.fields;
+    const talk = this.props.navigation.state.params;
     return (
       <ScrollView style={styles.viewContainer}>
         <View style={styles.informationContainer}>
           <View style={styles.speakerContainer}>
-            <Image style={styles.speakerImage} source={{uri: `https:${fields.speaker.fields.picture.fields.file.url}`}} />
+            <Image style={styles.speakerImage} source={{uri: talk.speaker.picture}} />
             <View style={styles.speakerTextContainer}>
-              <Text style={styles.speakerName}>{fields.speaker.fields.firstName} {fields.speaker.fields.lastName}</Text>
-              <Text style={styles.speakerInformation}>{fields.speaker.fields.jobTitle} {fields.speaker.fields.company}</Text>
+              <Text style={styles.speakerName}>{talk.speaker.firstName} {talk.speaker.lastName}</Text>
+              <Text style={styles.speakerInformation}>{talk.speaker.jobTitle} {talk.speaker.company}</Text>
             </View>
           </View>
-          <Text style={styles.talkTitle}>{fields.title}</Text>
-          <Text style={styles.speakerBiography}>{fields.description}</Text>
+          <Text style={styles.talkTitle}>{talk.title}</Text>
+          <Text style={styles.speakerBiography}>{talk.description}</Text>
         </View>
       </ScrollView>
     );

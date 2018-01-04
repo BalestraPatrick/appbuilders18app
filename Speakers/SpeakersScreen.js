@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SectionList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-const ContentfulClient = require('../Contentful/ContentfulClient');
-const client = new ContentfulClient();
+const ApiClient = require('../api/ApiClient');
+const client = new ApiClient();
 
 export default class SpeakersScreen extends React.Component {
   static navigationOptions = {
@@ -26,8 +26,7 @@ export default class SpeakersScreen extends React.Component {
   }
 
   componentDidMount() {
-    client.getSpeakers().then((speakers) => {
-      console.log(`speakers: ${JSON.stringify(speakers, null, 2)}`);
+    client.getSpeakers().then(speakers => {
       this.setState({
         isLoading: false,
         sections: speakers

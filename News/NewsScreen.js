@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, 
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-const ContentfulClient = require('../Contentful/ContentfulClient');
-const client = new ContentfulClient();
+const ApiClient = require('../api/ApiClient');
+const client = new ApiClient();
 
 export default class NewsScreen extends React.Component {
   static navigationOptions = {
@@ -31,6 +31,7 @@ export default class NewsScreen extends React.Component {
 
   componentDidMount() {
     client.getNews().then(news => {
+      console.dir(news);
       this.setState({
         isLoading: false,
         news: news
@@ -42,9 +43,10 @@ export default class NewsScreen extends React.Component {
     this.setState({
       refreshing: true
     });
-    client.getNews().then(() => {
+    client.getNews().then(news => {
       this.setState({
-        refreshing: false
+        refreshing: false,
+        news: news
       });
     });
   }
@@ -67,15 +69,15 @@ export default class NewsScreen extends React.Component {
     </html>`
   }
 
-  renderTalk(item) {
+  renderTalk(news) {
     return (
       <View style={styles.newsContainer}>
           <View style={styles.newsInformation}>
-            <Text style={styles.title}>{item.fields.title}</Text>
-            <Text style={styles.newsDate}>16 Apr 10:18</Text>
+            <Text style={styles.title}>{news.title}</Text>
+            <Text style={styles.newsDate}>{news.date}}</Text>
           </View>
           <View style={styles.arrowContainer}>
-            <Text style={styles.content}>{item.fields.content}</Text>
+            <Text style={styles.content}>{news.content}</Text>
           </View>
       </View>
     )

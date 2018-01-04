@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "contentful": "^5.0.5",
+    "firebase-admin": "^5.6.0",
     "moment": "^2.20.1",
     "react": "16.0.0",
     "react-native": "0.50.3",

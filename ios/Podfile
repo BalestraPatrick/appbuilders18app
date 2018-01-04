@@ -6,6 +6,7 @@ target 'AppBuilders' do
   # use_frameworks!
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
 
   target 'AppBuildersTests' do
     inherit! :search_paths

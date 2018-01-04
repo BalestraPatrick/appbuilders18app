@@ -53,5 +53,7 @@ buck-out/
 */fastlane/screenshots
 
 constants.js
+data.json
+service-key.json
 ios/GoogleService-Info.plist
 android/app/google-services.json

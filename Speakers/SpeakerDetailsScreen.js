@@ -34,7 +34,6 @@ export default class SpeakerDetailsScreen extends React.Component {
 
   render() {
     const item = this.props.navigation.state.params;
-    console.log(`item: ${JSON.stringify(this.props.navigation.state, null, 2)}`);
     return (
       <ScrollView style={styles.viewContainer}>
         <View style={styles.informationContainer}>
