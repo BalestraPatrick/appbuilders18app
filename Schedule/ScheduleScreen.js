@@ -33,7 +33,7 @@ export default class ScheduleScreen extends React.Component {
   }
 
   componentDidMount() {
-    client.getTalks().then(talks => {
+    client.getTalks('day').then(talks => {
       this.setState({
         isLoading: false,
         sections: talks
@@ -47,7 +47,21 @@ export default class ScheduleScreen extends React.Component {
 
   handleIndexChange(index) {
     this.setState({
-      selectedIndex: index
+      selectedIndex: index,
+      isLoading: true
+    });
+    // Reload datasource.
+    let groupedBy;
+    if (index == 0) {
+      groupedBy = 'day';
+    } else if (index == 1) {
+      groupedBy = 'room';
+    }
+    client.getTalks(groupedBy).then(talks => {
+      this.setState({
+        isLoading: false,
+        sections: talks
+      });
     });
   }
 
@@ -79,13 +93,6 @@ export default class ScheduleScreen extends React.Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return (
-        <View style={{flex: 1, paddingTop: 20}}>
-          <ActivityIndicator />
-        </View>
-      );
-    }
     return (
       <View style={styles.container}>
         <View style={styles.segmentedControlContainer}>
@@ -99,12 +106,16 @@ export default class ScheduleScreen extends React.Component {
             onTabPress={this.handleIndexChange.bind(this)}
           />
         </View>
-        <SectionList
-          sections={this.state.sections}
-          renderItem={({item}) => this.renderTalk(item)}
-          renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-          keyExtractor={(item, index) => index}
-        />
+        {this.state.isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <SectionList
+            sections={this.state.sections}
+            renderItem={({item}) => this.renderTalk(item)}
+            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+            keyExtractor={(item, index) => index}
+          />
+        )}
       </View>
     );
   }

@@ -18,12 +18,12 @@ module.exports = class ApiClient {
     });
   }
 
-  getTalks() {
+  getTalks(groupedBy) {
     return this.getSpeakers().then(result => {
       return this.firestore.collection('talks').get();
     })
     .then(snap => {
-      return this.parseTalks(snap.docs.map(doc => doc.data()));
+      return this.parseTalks(snap.docs.map(doc => doc.data()), groupedBy);
     })
     .catch(error => {
       console.warn(`Error in retrieving talks: ${error}`);
@@ -68,16 +68,31 @@ module.exports = class ApiClient {
     return sections;
   }
 
-  parseTalks(talks) {
-    // TODO: parse sections titles dynamically
-    let sections = [{title: 'Monday 16th', data: []}, {title: 'Tuesday 17th', data: []}];
+  parseTalks(talks, groupedBy) {
+    let sections = [];
+    let keys;
+    if (groupedBy == 'day') {
+      keys = new Set(talks.map((talk) => talk.day).sort());
+    } else if (groupedBy == 'room') {
+      keys = new Set(talks.map((talk) => talk.room).sort());
+    } else {
+      console.error("Unrecognized `groupedBy` key.");
+    }
+    for (key of keys) {
+      sections.push({title: key, data: []});
+    }
+
+    let keysArray = sections.map(object => object.title);
     for (talk of talks) {
       talk.speaker = this.speakers.filter(speaker => speaker.speakerId == talk.speaker)[0];
-      if (talk.day == 'Monday 16th') {
-        sections[0].data.push(talk);
-      } else {
-        sections[1].data.push(talk);
+
+      let index;
+      if (groupedBy == 'day') {
+        index = keysArray.indexOf(talk.day);
+      } else if (groupedBy == 'room') {
+        index = keysArray.indexOf(talk.room);
       }
+      sections[index].data.push(talk);
     }
     return new Promise((resolve, reject) => resolve(sections));
   }

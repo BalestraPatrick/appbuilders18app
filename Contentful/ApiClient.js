@@ -3,7 +3,6 @@ import firebase from 'react-native-firebase';
 module.exports = class ApiClient {
 
   constructor() {
-    // firebase.database().goOffline();
     this.firestore = firebase.firestore();
   }
 
@@ -84,8 +83,3 @@ module.exports = class ApiClient {
     return new Promise((resolve, reject) => resolve(sections));
   }
 }
-
-// const client = createClient({
-//   accessToken: constants.ACCESS_TOKEN,
-//   space: constants.SPACE_ID
-// });
