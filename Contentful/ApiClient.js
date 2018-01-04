@@ -9,7 +9,6 @@ module.exports = class ApiClient {
 
   getSpeakers() {
     return this.firestore.collection('speakers').get().then(snap => {
-      console.dir(snap.docs);
       return this.parseSpeakers(snap.docs.map(doc => doc.data()));
     })
     .catch(error => {

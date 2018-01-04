@@ -19,7 +19,7 @@ export default class ScheduleScreen extends React.Component {
       />
     ),
     headerRight: (
-      <Button title="Now" color="#e91e63" onPress={this.scrollToNow}></Button>
+      <Button title="Now" color="#e91e63" onPress={() => this.scrollToNow}></Button>
     ),
   };
 

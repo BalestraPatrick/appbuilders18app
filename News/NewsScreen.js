@@ -31,7 +31,6 @@ export default class NewsScreen extends React.Component {
 
   componentDidMount() {
     client.getNews().then(news => {
-      console.dir(news);
       this.setState({
         isLoading: false,
         news: news
@@ -74,7 +73,7 @@ export default class NewsScreen extends React.Component {
       <View style={styles.newsContainer}>
           <View style={styles.newsInformation}>
             <Text style={styles.title}>{news.title}</Text>
-            <Text style={styles.newsDate}>{news.date}}</Text>
+            <Text style={styles.newsDate}>{news.date}</Text>
           </View>
           <View style={styles.arrowContainer}>
             <Text style={styles.content}>{news.content}</Text>

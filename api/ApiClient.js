@@ -70,8 +70,6 @@ module.exports = class ApiClient {
 
   parseTalks(talks) {
     // TODO: parse sections titles dynamically
-    console.log(`SPEAKERS`);
-    console.dir(this.speakers);
     let sections = [{title: 'Monday 16th', data: []}, {title: 'Tuesday 17th', data: []}];
     for (talk of talks) {
       talk.speaker = this.speakers.filter(speaker => speaker.speakerId == talk.speaker)[0];
@@ -80,7 +78,6 @@ module.exports = class ApiClient {
       } else {
         sections[1].data.push(talk);
       }
-      console.dir(talk);
     }
     return new Promise((resolve, reject) => resolve(sections));
   }
