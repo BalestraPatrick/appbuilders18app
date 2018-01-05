@@ -25,7 +25,7 @@ export default class SpeakersScreen extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     client.getSpeakers().then(speakers => {
       this.setState({
         isLoading: false,

@@ -32,7 +32,7 @@ export default class ScheduleScreen extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     client.getTalks('day').then(talks => {
       this.setState({
         isLoading: false,

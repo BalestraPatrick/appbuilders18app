@@ -29,7 +29,7 @@ export default class NewsScreen extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     client.getNews().then(news => {
       this.setState({
         isLoading: false,
