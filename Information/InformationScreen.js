@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, SectionList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, SectionList, TouchableOpacity, Alert } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
+import Mailer from 'react-native-mail';
 
 export default class InformationScreen extends React.Component {
   static navigationOptions = {
@@ -29,7 +30,29 @@ export default class InformationScreen extends React.Component {
   }
 
   processPress(item) {
+    this.sendSupportEmail();
+    console.log(item);
+  }
 
+  sendSupportEmail() {
+    Mailer.mail({
+      subject: 'need help',
+      recipients: ['support@example.com'],
+      ccRecipients: ['supportCC@example.com'],
+      bccRecipients: ['supportBCC@example.com'],
+      body: '<b>A Bold Body</b>',
+      isHTML: true,
+    }, (error, event) => {
+      Alert.alert(
+        error,
+        event,
+        [
+          {text: 'OK', onPress: () => console.log('OK: Email Error Response')},
+          {text: 'Cancel', onPress: () => console.log('CANCEL: Email Error Response')}
+        ],
+        { cancelable: true }
+      )
+    });
   }
 
   renderRow(item) {

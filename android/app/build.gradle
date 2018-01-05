@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-mail')
     compile(project(':react-native-firebase')) {
         transitive = false
     }

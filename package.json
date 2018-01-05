@@ -23,6 +23,7 @@
     "react-native-cli": "^2.0.1",
     "react-native-elements": "^0.18.5",
     "react-native-firebase": "^3.2.0",
+    "react-native-mail": "^3.0.5",
     "react-native-safari-view": "^2.1.0",
     "react-native-segmented-control-tab": "^3.2.1",
     "react-native-vector-icons": "^4.4.3",

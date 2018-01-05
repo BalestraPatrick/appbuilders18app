@@ -8,6 +8,8 @@ target 'AppBuilders' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
 
+  pod 'react-native-mail', :path => '../node_modules/react-native-mail'
+
   target 'AppBuildersTests' do
     inherit! :search_paths
     # Pods for testing

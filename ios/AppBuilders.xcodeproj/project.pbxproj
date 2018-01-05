@@ -55,6 +55,7 @@
 		AE3C15441FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
 		AE3C15451FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
 		AE3C15461FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
+		AE7D4A651FFFC2D100BB13DB /* libRNMail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7D4A621FFFC2C500BB13DB /* libRNMail.a */; };
 		B334767B4F1D4E46B2D57EC2 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB35A13BAB88457381D44DEB /* Entypo.ttf */; };
 		CD524E17C157D3ED67127E0F /* libPods-AppBuildersTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9E03CBEACC425395AF350B /* libPods-AppBuildersTests.a */; };
 		D6B0846F0B214D15AA39EF22 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 749133C5FF344A2D91F48CDA /* MaterialIcons.ttf */; };
@@ -266,6 +267,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
 		};
+		AE7D4A611FFFC2C500BB13DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE7D4A5C1FFFC2C500BB13DB /* RNMail.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 46FEDE7F1AFF192F00D3261C;
+			remoteInfo = RNMail;
+		};
+		AE7D4A631FFFC2C500BB13DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE7D4A5C1FFFC2C500BB13DB /* RNMail.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 46FEDE8A1AFF192F00D3261C;
+			remoteInfo = RNMailTests;
+		};
 		AE8B020B1FEF11C800167B0F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -343,20 +358,6 @@
 			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
 			remoteInfo = "privatedata-tvOS";
 		};
-		AEBC85C11FF42ED3004F45EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 373EC1C4986A48EAB099C51C /* RNDeviceInfo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
-			remoteInfo = RNDeviceInfo;
-		};
-		AEBC85C31FF42ED3004F45EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 373EC1C4986A48EAB099C51C /* RNDeviceInfo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
-			remoteInfo = "RNDeviceInfo-tvOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -389,7 +390,6 @@
 		2968629633A94DD5BBA8AADE /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* AppBuilders-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AppBuilders-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* AppBuilders-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppBuilders-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		373EC1C4986A48EAB099C51C /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		3E558B04521940D49CD5F5EB /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		40B9CD90EC3C4570A5AF3C3D /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		4299CD76EF7ADBE5C68F51C4 /* Pods-AppBuilders-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppBuilders-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppBuilders-tvOS/Pods-AppBuilders-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -410,6 +410,7 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AE35F44D1FFFB77E00E6D597 /* launch-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launch-icon.png"; path = "AppBuilders/Images.xcassets/AppIcon.appiconset/launch-icon.png"; sourceTree = "<group>"; };
 		AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AE7D4A5C1FFFC2C500BB13DB /* RNMail.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNMail.xcodeproj; path = "../node_modules/react-native-mail/RNMail.xcodeproj"; sourceTree = "<group>"; };
 		B039F6D38BB444AFB2217E55 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		B9D5DDC77E65D655B0374A0E /* libPods-AppBuilders-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppBuilders-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1DB747B5109F1870C47281 /* Pods-AppBuildersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppBuildersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppBuildersTests/Pods-AppBuildersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -435,6 +436,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE7D4A651FFFC2D100BB13DB /* libRNMail.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -628,6 +630,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AE7D4A5C1FFFC2C500BB13DB /* RNMail.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -642,7 +645,6 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				837EBCD83B4F4472BC15E17C /* SafariViewManager.xcodeproj */,
 				71A46B5CE6B549A19A59E6FB /* RNVectorIcons.xcodeproj */,
-				373EC1C4986A48EAB099C51C /* RNDeviceInfo.xcodeproj */,
 				59B6C3F649B244B0BD4C6A16 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
@@ -737,6 +739,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AE7D4A5D1FFFC2C500BB13DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE7D4A621FFFC2C500BB13DB /* libRNMail.a */,
+				AE7D4A641FFFC2C500BB13DB /* RNMailTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AE8B02051FEF11C700167B0F /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,15 +772,6 @@
 			isa = PBXGroup;
 			children = (
 				AE8B02271FEF11CA00167B0F /* libRNVectorIcons.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		AEBC85BD1FF42ED3004F45EA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AEBC85C21FF42ED3004F45EA /* libRNDeviceInfo.a */,
-				AEBC85C41FF42ED3004F45EA /* libRNDeviceInfo-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -950,12 +952,12 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = AEBC85BD1FF42ED3004F45EA /* Products */;
-					ProjectRef = 373EC1C4986A48EAB099C51C /* RNDeviceInfo.xcodeproj */;
-				},
-				{
 					ProductGroup = AE3C153D1FF6BE3F008501B4 /* Products */;
 					ProjectRef = 59B6C3F649B244B0BD4C6A16 /* RNFirebase.xcodeproj */;
+				},
+				{
+					ProductGroup = AE7D4A5D1FFFC2C500BB13DB /* Products */;
+					ProjectRef = AE7D4A5C1FFFC2C500BB13DB /* RNMail.xcodeproj */;
 				},
 				{
 					ProductGroup = AE8B02231FEF11C900167B0F /* Products */;
@@ -1166,6 +1168,20 @@
 			remoteRef = AE3C15401FF6BE3F008501B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		AE7D4A621FFFC2C500BB13DB /* libRNMail.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNMail.a;
+			remoteRef = AE7D4A611FFFC2C500BB13DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AE7D4A641FFFC2C500BB13DB /* RNMailTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RNMailTests.xctest;
+			remoteRef = AE7D4A631FFFC2C500BB13DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		AE8B020C1FEF11C800167B0F /* libRCTBlob-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1241,20 +1257,6 @@
 			fileType = archive.ar;
 			path = "libprivatedata-tvOS.a";
 			remoteRef = AEBC85B91FF42ED3004F45EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AEBC85C21FF42ED3004F45EA /* libRNDeviceInfo.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNDeviceInfo.a;
-			remoteRef = AEBC85C11FF42ED3004F45EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AEBC85C41FF42ED3004F45EA /* libRNDeviceInfo-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRNDeviceInfo-tvOS.a";
-			remoteRef = AEBC85C31FF42ED3004F45EA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

@@ -4121,6 +4121,10 @@ react-native-firebase@^3.2.0:
     postinstall-build "^5.0.1"
     prop-types "^15.6.0"
 
+react-native-mail@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-mail/-/react-native-mail-3.0.5.tgz#e497cb192a52102458f5e2a554dfc65d3fb635cb"
+
 react-native-safari-view@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-native-safari-view/-/react-native-safari-view-2.1.0.tgz#1e0cd12c62bce79bc1759c7e281646b08b61c959"
