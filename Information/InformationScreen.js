@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, SectionList, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, SectionList, TouchableOpacity, Linking } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
@@ -23,35 +23,47 @@ export default class InformationScreen extends React.Component {
       sections: [
         {
           title: "My Title",
-          data: [{title: "Contact via Email"}, {title: "Contact via Twitter"}]
+          data: [
+            {
+              title: "Contact via Email"
+            },
+            {
+              title: "Contact via Twitter"
+            }
+          ]
         }
       ]
     });
   }
 
   processPress(item) {
-    this.sendSupportEmail();
-    console.log(item);
+    if (item.title == this.state.sections[0].data[0].title) {
+      this.sendSupportEmail();
+    } else if (item.title == this.state.sections[0].data[1].title) {
+      this.openTwitterSupport();
+    }
+  }
+
+  openTwitterSupport() {
+    const url = 'https://twitter.com/appbuilders_ch';
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('Can\'t handle url: ' + url);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
   }
 
   sendSupportEmail() {
     Mailer.mail({
-      subject: 'need help',
-      recipients: ['support@example.com'],
-      ccRecipients: ['supportCC@example.com'],
-      bccRecipients: ['supportBCC@example.com'],
-      body: '<b>A Bold Body</b>',
+      subject: 'App Builders 2018',
+      recipients: ['info@swissmobidevs.org'],
+      ccRecipients: [],
+      bccRecipients: [],
+      body: '',
       isHTML: true,
     }, (error, event) => {
-      Alert.alert(
-        error,
-        event,
-        [
-          {text: 'OK', onPress: () => console.log('OK: Email Error Response')},
-          {text: 'Cancel', onPress: () => console.log('CANCEL: Email Error Response')}
-        ],
-        { cancelable: true }
-      )
     });
   }
 
