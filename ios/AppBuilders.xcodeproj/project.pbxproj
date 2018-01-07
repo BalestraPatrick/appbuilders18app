@@ -56,6 +56,8 @@
 		AE3C15451FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
 		AE3C15461FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
 		AE7D4A651FFFC2D100BB13DB /* libRNMail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7D4A621FFFC2C500BB13DB /* libRNMail.a */; };
+		AEFE495D2002B04800DDCF96 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFE49552002B03B00DDCF96 /* libRNDeviceInfo.a */; };
+		AEFE495E2002B05200DDCF96 /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFE49572002B03B00DDCF96 /* libRNDeviceInfo-tvOS.a */; };
 		B334767B4F1D4E46B2D57EC2 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB35A13BAB88457381D44DEB /* Entypo.ttf */; };
 		CD524E17C157D3ED67127E0F /* libPods-AppBuildersTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9E03CBEACC425395AF350B /* libPods-AppBuildersTests.a */; };
 		D6B0846F0B214D15AA39EF22 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 749133C5FF344A2D91F48CDA /* MaterialIcons.ttf */; };
@@ -358,6 +360,20 @@
 			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
 			remoteInfo = "privatedata-tvOS";
 		};
+		AEFE49542002B03B00DDCF96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEFE492C2002B03B00DDCF96 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
+		AEFE49562002B03B00DDCF96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEFE492C2002B03B00DDCF96 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
+			remoteInfo = "RNDeviceInfo-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -411,6 +427,7 @@
 		AE35F44D1FFFB77E00E6D597 /* launch-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launch-icon.png"; path = "AppBuilders/Images.xcassets/AppIcon.appiconset/launch-icon.png"; sourceTree = "<group>"; };
 		AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE7D4A5C1FFFC2C500BB13DB /* RNMail.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNMail.xcodeproj; path = "../node_modules/react-native-mail/RNMail.xcodeproj"; sourceTree = "<group>"; };
+		AEFE492C2002B03B00DDCF96 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		B039F6D38BB444AFB2217E55 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		B9D5DDC77E65D655B0374A0E /* libPods-AppBuilders-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppBuilders-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1DB747B5109F1870C47281 /* Pods-AppBuildersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppBuildersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppBuildersTests/Pods-AppBuildersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -436,6 +453,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEFE495D2002B04800DDCF96 /* libRNDeviceInfo.a in Frameworks */,
 				AE7D4A651FFFC2D100BB13DB /* libRNMail.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -461,6 +479,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEFE495E2002B05200DDCF96 /* libRNDeviceInfo-tvOS.a in Frameworks */,
 				2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */,
 				2D02E4C21E0B4AEC006451C7 /* libRCTAnimation.a in Frameworks */,
 				2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */,
@@ -630,6 +649,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AEFE492C2002B03B00DDCF96 /* RNDeviceInfo.xcodeproj */,
 				AE7D4A5C1FFFC2C500BB13DB /* RNMail.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -772,6 +792,15 @@
 			isa = PBXGroup;
 			children = (
 				AE8B02271FEF11CA00167B0F /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEFE492D2002B03B00DDCF96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEFE49552002B03B00DDCF96 /* libRNDeviceInfo.a */,
+				AEFE49572002B03B00DDCF96 /* libRNDeviceInfo-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -950,6 +979,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = AEFE492D2002B03B00DDCF96 /* Products */;
+					ProjectRef = AEFE492C2002B03B00DDCF96 /* RNDeviceInfo.xcodeproj */;
 				},
 				{
 					ProductGroup = AE3C153D1FF6BE3F008501B4 /* Products */;
@@ -1257,6 +1290,20 @@
 			fileType = archive.ar;
 			path = "libprivatedata-tvOS.a";
 			remoteRef = AEBC85B91FF42ED3004F45EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AEFE49552002B03B00DDCF96 /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = AEFE49542002B03B00DDCF96 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AEFE49572002B03B00DDCF96 /* libRNDeviceInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNDeviceInfo-tvOS.a";
+			remoteRef = AEFE49562002B03B00DDCF96 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

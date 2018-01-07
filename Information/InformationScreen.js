@@ -4,6 +4,7 @@ import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 import Mailer from 'react-native-mail';
+import DeviceInfo from 'react-native-device-info';
 
 export default class InformationScreen extends React.Component {
   static navigationOptions = {
@@ -22,13 +23,25 @@ export default class InformationScreen extends React.Component {
     this.setState({
       sections: [
         {
-          title: "My Title",
+          title: "",
           data: [
+            {
+              title: "Venue Location"
+            },
+            {
+              title: "Organizers"
+            },
             {
               title: "Contact via Email"
             },
             {
               title: "Contact via Twitter"
+            },
+            {
+              title: "Check out the code on GitHub"
+            },
+            {
+              title: "Libraries Included"
             }
           ]
         }
@@ -48,7 +61,7 @@ export default class InformationScreen extends React.Component {
     const url = 'https://twitter.com/appbuilders_ch';
     Linking.canOpenURL(url).then(supported => {
       if (!supported) {
-        console.log('Can\'t handle url: ' + url);
+        console.log(`Can't handle url: ${url}`);
       } else {
         return Linking.openURL(url);
       }
@@ -89,7 +102,8 @@ export default class InformationScreen extends React.Component {
       <SectionList
         sections={this.state.sections}
         renderItem={({item}) => this.renderRow(item)}
-        renderSectionHeader={({section}) => <Text style={styles.sectionHeader}></Text>}
+        renderSectionHeader={({section}) => <View style={styles.sectionHeader}></View>}
+        renderSectionFooter={({section}) => <Text style={styles.sectionFooter}>Version {DeviceInfo.getVersion()}</Text>}
         keyExtractor={(item, index) => index}
       />
     );
@@ -116,18 +130,11 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     marginTop: 10,
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 2,
     backgroundColor: 'transparent',
     height: 20,
-    fontSize: 14,
-    fontWeight: 'bold',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    shadowColor: 'black',
-    shadowOffset: { height: 1, width: 0 },
+  },
+  sectionFooter: {
+    textAlign: 'center'
   },
   talkTextContainer: {
     flex: 1,

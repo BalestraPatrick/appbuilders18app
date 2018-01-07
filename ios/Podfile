@@ -10,6 +10,8 @@ target 'AppBuilders' do
 
   pod 'react-native-mail', :path => '../node_modules/react-native-mail'
 
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
   target 'AppBuildersTests' do
     inherit! :search_paths
     # Pods for testing
