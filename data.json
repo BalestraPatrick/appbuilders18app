@@ -1,0 +1,303 @@
+{
+	"speakers": [
+		{
+			"firstName": "Elif",
+			"lastName": "Boncuk",
+			"jobTitle": "Senior Software Specialist",
+			"company": "Garanti Technology (BBVA)",
+			"biography": "Elif Boncuk has been working on mobile technologies especially on Android (since Eclair) and also IOS as a full-stack developer since the team formation in her current company. She is a Senior Software Specialist at Garanti Technology.\nHer passionate about Android is making apps more performant.\nElif is engaged with Google Developer Group and Women Techmakers Istanbul as organizer. She loves to speak at tech events and also organize and attend to them. She blogs in her native language at her blog(elifboncuk.com) about everything but mostly tech and also at Medium in English and only tech.\nIn addition, she loves to travel and she is a professional photographer but her favourite photography object is Android sculpture. You can find her taking photos with Androids at any time.",
+			"picture": "https://appbuilders.ch/images/speakers/elif.jpg",
+			"twitter": "elifbon_",
+			"speakerId": 0
+		},
+		{
+			"firstName": "Alexsander",
+			"lastName": "Akers",
+			"jobTitle": "Software Engineer",
+			"company": "Microsoft To-Do",
+			"biography": "Alex is a software engineer at Microsoft Berlin, where he works on To-Do for both iOS and macOS. His previous mobile experience includes Branch in New York City and Facebook in London on Rooms and React Native.",
+			"picture": "https://appbuilders.ch/images/speakers/alex.jpg",
+			"twitter": "a2",
+			"speakerId": 1
+		},
+		{
+			"firstName": "John",
+			"lastName": "Sundell",
+			"jobTitle": "iOS Freelancer",
+			"company": "Creator of Swift by Sundell",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/john.jpg",
+			"twitter": "johnsundell",
+			"speakerId": 2
+		},
+		{
+			"firstName": "Graham",
+			"lastName": "Lee",
+			"jobTitle": "Head of Architecture",
+			"company": "Wealth Wizards",
+			"biography": "Graham heads up software architecture and data strategy at Wealth Wizards, a financial technology company in Leamington Spa, England. He has spent a long time in the software industry and even occasionally enjoys it.",
+			"picture": "https://appbuilders.ch/images/speakers/graham.jpg",
+			"twitter": "iwasleeg",
+			"speakerId": 3
+		},
+		{
+			"firstName": "Ana",
+			"lastName": "Baotić",
+			"jobTitle": "Project Manager",
+			"company": "Asseco SEE",
+			"biography": "Ana is a software engineer with over 5 years experience in Android.\nDuring college she focused on various e-learning projects and plagiarism detection. After getting her Masters degree in CS, she started developing for Android, working on various projects in the telecommunication, medical and travel industry. After switching to banking and security, in 2016 she took the role of Technical Manager of Mobile banking.\nIn addition to coding, she loves organising workshops and working directly with clients, helping to close the gap between the technical and practical in mobile.",
+			"picture": "https://appbuilders.ch/images/speakers/ana.jpg",
+			"twitter": "abaotic",
+			"speakerId": 4
+		},
+		{
+			"firstName": "Phillip",
+			"lastName": "Shoemaker",
+			"jobTitle": "Advisor and Investor",
+			"company": "",
+			"biography": "Advisor and Investor",
+			"picture": "https://appbuilders.ch/images/speakers/phillip.jpg",
+			"twitter": "",
+			"speakerId": 5
+		},
+		{
+			"firstName": "Fernando",
+			"lastName": "Cejas",
+			"jobTitle": "Developers Advocate",
+			"company": "IBM",
+			"biography": "Fernando Cejas is a Software Engineer focused on Mobile Platforms. He has worked for several companies in a wide variety of projects in J2ME, C-Sharp, Java, Php, Ruby, Scala and Kotlin in different contexts: Social networks, NFC/RFID Hardware Solutions, E-Commerce and Music Platforms. \nHe has been involved on Android since its appearance and currently as part of his job he advocates developers by exploring new technologies, speaking at conferences and sharing knowledge.",
+			"picture": "https://appbuilders.ch/images/speakers/fernando.jpg",
+			"twitter": "fernando_cejas",
+			"speakerId": 6
+		},
+		{
+			"firstName": "Krzysztof",
+			"lastName": "Zabłocki",
+			"jobTitle": "Lead iOS developer",
+			"company": "The New York Times",
+			"biography": "Krzysztof is an iOS developer, known for creating Objective-C Playgrounds, Apple’s Essential Apps like Foldify and 3D Game Engines. Passionate about writing quality code and helping other do the same. He blogs on merowing.info and open sources tools/libraries on github.com/krzysztofzablocki",
+			"picture": "https://appbuilders.ch/images/speakers/krzysztof.jpg",
+			"twitter": "merowing_",
+			"speakerId": 7
+		},
+		{
+			"firstName": "Carola",
+			"lastName": "Nitz",
+			"jobTitle": "iOS developer",
+			"company": "The New York Times",
+			"biography": "Caro is an iOS Developer with 5 years of experience working on various iOS Apps. \nShe spent the last years working on big complex projects like VLC for iOS, where she was able to gather knowledge on how to navigate matured projects with legacy code.\nThis enabled her to hone and expand her debugging and architecture skills.",
+			"picture": "https://appbuilders.ch/images/speakers/caro.jpg",
+			"twitter": "_Caro_N",
+			"speakerId": 8
+		},
+		{
+			"firstName": "Dave",
+			"lastName": "DeLong",
+			"jobTitle": "Senior iOS Engineer",
+			"company": "Snap",
+			"biography": "A seven-year veteran of Apple, Dave DeLong is an accomplished iOS engineer with a passion for teaching, and hacking the Objective-C runtime. During his time at Apple, he worked on the UIKit framework, Developer Evangelism, and Apple Maps. He now works at Snap, Inc. on the Snapchat app.\nDave, his family, and his large collection of bowties live near Salt Lake City, UT, where he’s an active member of the local developer community. He can often be found on Twitter teaching developers about all the ways that calendrical calculations can go wrong.",
+			"picture": "https://appbuilders.ch/images/speakers/dave.jpg",
+			"twitter": "davedelong",
+			"speakerId": 9
+		},
+		{
+			"firstName": "Danny",
+			"lastName": "Preussler",
+			"jobTitle": "Lead Android Engineer",
+			"company": "Viacom",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/danny.jpg",
+			"twitter": "PreusslerBerlin",
+			"speakerId": 10
+		},
+		{
+			"firstName": "Daniel",
+			"lastName": "Steinberg",
+			"jobTitle": "iOS Developer",
+			"company": "Viacom",
+			"biography": "Daniel is the author of more than a dozen books including the best selling book [A Swift Kickstart](http://editorscut.com/Book/SwiftKickstart/bookPage.html). He has written apps for the iPhone and the iPad since the SDKs first appeared and has written programs for the Mac all the way back to System 7. Daniel presents iPhone, Cocoa, and Swift training and consults through his company [Dim Sum Thinking](https://www.dimsumthinking.com/). When he's not coding or talking about coding for the Mac, the iPhone, and the iPad he's probably cooking or hanging out with friends.",
+			"picture": "https://appbuilders.ch/images/speakers/daniel.jpg",
+			"twitter": "dimsumthinking",
+			"speakerId": 11
+		},
+		{
+			"firstName": "Wilfried",
+			"lastName": "Mbouenda",
+			"jobTitle": "Senior Android Engineer",
+			"company": "Viacom",
+			"biography": "Wilfried is an African Android developer who like to learn and share Software development knowledge.\nWhen he isn't coding, he enjoys reading, writing, doing sports and seing TV shows.\nHis mantra is \"Work hard, play hard, rest hard\"",
+			"picture": "https://appbuilders.ch/images/speakers/wilfried.jpg",
+			"twitter": "ewilly1",
+			"speakerId": 12
+		},
+		{
+			"firstName": "Matthias",
+			"lastName": "Tretter",
+			"jobTitle": "Lead Developer",
+			"company": "IdeasOnCanvas",
+			"biography": "Matthias is the Lead Developer at IdeasOnCanvas, where he works on MindNode for iOS, MacOS and watchOS. He is passionate about a lot of things, but front and foremost technology, psychology and especially the intersection of both. Therefore he is equally interested in technical aspects of a product, as well as its user experience.",
+			"picture": "https://appbuilders.ch/images/speakers/matthias.jpg",
+			"twitter": "myell0w",
+			"speakerId": 13
+		},
+		{
+			"firstName": "Andrea",
+			"lastName": "Falcone",
+			"jobTitle": "Software Engineer",
+			"company": "Google",
+			"biography": "Andrea Falcone is a Senior Software Engineer at Google, in the Developer Products Group working on Firebase. She has been with the Crashlytics team since 2013 and has built many pieces of the tooling, including Android Studio Plugin, Crashlytics Android SDK, Gradle plugin, Beta by Crashlytics and fastlane.",
+			"picture": "https://appbuilders.ch/images/speakers/andrea.jpg",
+			"twitter": "asfalcone",
+			"speakerId": 14
+		},
+		{
+			"firstName": "Roy",
+			"lastName": "Marmelstein",
+			"jobTitle": "iOS Engineer",
+			"company": "Spotify",
+			"biography": "iOS at Spotify. Creator of PhoneNumberKit, Zip and Interpolate. http://www.github.com/marmelroy",
+			"picture": "https://appbuilders.ch/images/speakers/roy.jpg",
+			"twitter": "marmelroy",
+			"speakerId": 15
+		},
+		{
+			"firstName": "Mario",
+			"lastName": "Bodemann",
+			"jobTitle": "Android and Java",
+			"company": "Contentful",
+			"biography": "Hey, I am coorganizing the Google Developer Group Co-Organiser @Berlindroid, currently working as a Android and Java Developer @Contentful. Before, I was a Software Engineer @HERE and @Wooga. Being a Research Associate @HHIFraunhofer in my early years, I discovered my passion for Virtual Reality and Augmented Reality, which survives as a side project ever since.",
+			"picture": "https://appbuilders.ch/images/speakers/mario.jpg",
+			"twitter": "MarioBodemann",
+			"speakerId": 16
+		},
+		{
+			"firstName": "Adrian",
+			"lastName": "Kosmaczewski",
+			"jobTitle": "Writer, Software Developer and Trainer",
+			"company": "AKOSMA training",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/adrian.jpg",
+			"twitter": "akosma",
+			"speakerId": 17
+		},
+		{
+			"firstName": "Vikram",
+			"lastName": "Kriplaney",
+			"jobTitle": "Mobile Tech Lead",
+			"company": "local.ch & search.ch",
+			"biography": "Vikram has been a mobile developer since when WAP was still cool and Symbian and J2ME were still fashionable. He founded mobile at local.ch in 2007, where he went on to develop massively successful mobile web, iOS and Android apps. Over the years, he's helped build one of the most awesome mobile engineering teams in Switzerland.\nHe's very Spanish, very Indian and increasingly Swiss – having grown up between Gran Canaria and Mumbai, he calls Zurich home.\nVikram is also a co-author of the venerable Mobile Developer's Guide To The Galaxy.",
+			"picture": "https://appbuilders.ch/images/speakers/vikram.jpg",
+			"twitter": "krips",
+			"speakerId": 18
+		},
+		{
+			"firstName": "Harlan",
+			"lastName": "Haskins",
+			"jobTitle": "Swift Compiler Contributor",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/harlan.jpg",
+			"twitter": "harlanhaskins",
+			"speakerId": 19
+		},
+		{
+			"firstName": "Robert",
+			"lastName": "Widmann",
+			"jobTitle": "Swift Compiler Contributor",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/robert.jpg",
+			"twitter": "codafi_",
+			"speakerId": 20
+		},
+		{
+			"firstName": "Sasa",
+			"lastName": "Sekulic",
+			"jobTitle": "Android Team Lead",
+			"company": "",
+			"biography": "Android team leader (worked on apps with millions of downloads) with more than 15 years of experience in various development and management positions. Developed social impact and media apps with millions of users and winners of Google Awards in 2017, 2016 and 2015. Speaker at various conferences (Droidcon, CodeMobile UK). Co-author of an upcoming book on reactive programming, \"Grokking Rx\".",
+			"picture": "https://appbuilders.ch/images/speakers/sasa.jpg",
+			"twitter": "sasa_sekulic",
+			"speakerId": 21
+		},
+		{
+			"firstName": "Steve",
+			"lastName": "Scott",
+			"jobTitle": "Developer, Podcaster and Conference Organiser",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/scotty.jpg",
+			"twitter": "macdevnet",
+			"speakerId": 22
+		},
+		{
+			"firstName": "Peter",
+			"lastName": "Steinberger",
+			"jobTitle": "Founder and CEO",
+			"company": "PSPDFKit",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/peter.jpg",
+			"twitter": "steipete",
+			"speakerId": 23
+		},
+		{
+			"firstName": "Antonio",
+			"lastName": "Carzaniga",
+			"jobTitle": "Dean and Professor at USI",
+			"company": "",
+			"biography": "Antonio Carzaniga is a professor and a founding member (since 2004) of the Faculty of Informatics at the University of Lugano, Switzerland. From 2001 to 2007 he was an assistant research professor in the Department of Computer Science at the University of Colorado at Boulder. Antonio Carzaniga received the Laurea degree in electronics engineering and the Ph.D. degree in computer science from Politecnico di Milano, Italy.  Antonio Carzaniga's primary research interests are in the areas of distributed systems and software engineering, specifically in content-based networking, information-centric networking, distributed publish/subscribe systems, middleware, software adaptability and automatic fault tolerance, and testing. He also conducted research in software configuration management and code mobility.",
+			"picture": "https://appbuilders.ch/images/speakers/carzaniga.jpg",
+			"twitter": null,
+			"speakerId": 24
+		}
+	],
+	"talks": [
+		{
+			"description": "Description of best talk ever",
+			"title": "Best talk ever",
+			"time": "10:00",
+			"speaker": 1,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "Description of best talk ever 2",
+			"title": "Best talk ever 2",
+			"time": "10:50",
+			"speaker": 2,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "Description of best talk ever 2.1",
+			"title": "Best talk ever 2.1",
+			"time": "10:50",
+			"speaker": 3,
+			"room": "Secondary",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "Description of best talk ever 3",
+			"title": "Best talk ever 3",
+			"time": "9:00",
+			"speaker": 4,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "Description of best talk ever 3.2",
+			"title": "Best talk ever 3.3",
+			"time": "9:00",
+			"speaker": 5,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		}
+	],
+	"news": [
+		{
+			"title": "Welcome to App Builders 2018!",
+			"content": "Only a few months left until the third edition of App Builders is going to take place in Lugano, Switzerland.",
+			"date": "1st January 2018"
+		}
+	]
+}
