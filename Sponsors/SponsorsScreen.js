@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
@@ -12,10 +12,9 @@ class Sponsors extends React.Component {
     const sponsors = this.props.sponsors.map((sponsor) => {
       return (
         <View key={sponsor.id} style={isDiamond ? styles.diamondSponsorContainer : styles.normalSponsorContainer}>
-          <TouchableOpacity onPress={this._onPress}>
-            <Image source={sponsor.image} />
+          <TouchableOpacity onPress={() => {this._onPress(sponsor)}}>
+            <Image style={styles.image} source={sponsor.image} />
           </TouchableOpacity>
-          <Text>{sponsor.name}</Text>
         </View>
       )
     })
@@ -29,10 +28,12 @@ class Sponsors extends React.Component {
     )
   }
 
-  _onPress() {
+  _onPress(sponsor) {
+    console.log(sponsor);
+    // TODO: find solution on Android
     SafariView.isAvailable()
     .then(SafariView.show({
-      url: 'https://www.google.com'
+      url: sponsor.url
     }))
   }
 }
@@ -53,15 +54,20 @@ export default class ScheduleScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const diamond = [
-      {id: 1, name: "Patrick", image: require("../images/speaker.png")},
-      {id: 2, name: "Junior", image: require("../images/speaker.png")},
-      {id: 3, name: "Luca", image: require("../images/speaker.png")},
+      
+    ]
+    const platinum = [
+      { id: 1, name: "Cryms", image: require("../images/sponsors/cryms.jpg"), url: "http://www.cryms.ch/" },
+      { id: 2, name: "Dreipol", image: require("../images/sponsors/dreipol.jpg"), url: "http://www.dreipol.ch/" },
+    ]
+    const gold = [
+      { id: 1, name: "Fondazione Agire", image: require("../images/sponsors/agire.jpg"), url: "http://www.agire.ch/" },
     ]
     return (
       <ScrollView>
         <Sponsors type={"💎 Diamond"} sponsors={diamond} />
-        <Sponsors type={"🥈 Platinum"} sponsors={diamond} />
-        <Sponsors type={"🏅 Gold"} sponsors={diamond} />
+        <Sponsors type={"🥈 Platinum"} sponsors={platinum} />
+        <Sponsors type={"🏅 Gold"} sponsors={gold} />
       </ScrollView>
     );
   }
@@ -76,6 +82,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 10,
     fontSize: 20
+  },
+  image: {
+    width: Dimensions.get('window').width / 2.2,
+    resizeMode: 'contain'
   },
   diamondSponsorsContainer: {
     flex: 1,
@@ -117,8 +127,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     minWidth: '45%',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    flexWrap: 'wrap'
   }
 })
