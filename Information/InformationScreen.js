@@ -26,22 +26,28 @@ export default class InformationScreen extends React.Component {
           title: "",
           data: [
             {
-              title: "Venue Location"
+              title: "Venue Location",
+              action: this.showVenueLocation
             },
             {
-              title: "Organizers"
+              title: "Organizers",
+              action: this.showOrganizers
             },
             {
-              title: "Contact via Email"
+              title: "Contact via Email",
+              action: this.showSupportEmail
             },
             {
-              title: "Contact via Twitter"
+              title: "Contact via Twitter",
+              action: this.showTwitterSupport
             },
             {
-              title: "Check out the code on GitHub"
+              title: "Contribute on GitHub",
+              action: this.showContributeGitHub
             },
             {
-              title: "Libraries Included"
+              title: "Libraries Included",
+              action: this.showAcknowledgements
             }
           ]
         }
@@ -49,26 +55,16 @@ export default class InformationScreen extends React.Component {
     });
   }
 
-  processPress(item) {
-    if (item.title == this.state.sections[0].data[0].title) {
-      this.sendSupportEmail();
-    } else if (item.title == this.state.sections[0].data[1].title) {
-      this.openTwitterSupport();
-    }
+  showVenueLocation() {
+
   }
 
-  openTwitterSupport() {
-    const url = 'https://twitter.com/appbuilders_ch';
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) {
-        console.log(`Can't handle url: ${url}`);
-      } else {
-        return Linking.openURL(url);
-      }
-    }).catch(err => console.error('An error occurred', err));
+  showOrganizers() {
+
   }
 
-  sendSupportEmail() {
+  showSupportEmail() {
+    // TODO: Test on Android
     Mailer.mail({
       subject: 'App Builders 2018',
       recipients: ['info@swissmobidevs.org'],
@@ -80,10 +76,30 @@ export default class InformationScreen extends React.Component {
     });
   }
 
+  showTwitterSupport() {
+    const url = 'https://twitter.com/appbuilders_ch';
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log(`Can't handle url: ${url}`);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
+
+  showContributeGitHub() {
+
+  }
+
+  showAcknowledgements() {
+    
+  }
+
   renderRow(item) {
     const { navigate } = this.props.navigation;
+    console.log(item);
     return (
-      <TouchableOpacity onPress={() => this.processPress(item)}>
+      <TouchableOpacity onPress={() => item.action()}>
         <View style={styles.infoMainContainer}>
           <View style={styles.infoContainer}>
             <Text style={styles.infoTitle}>{item.title}</Text>
