@@ -8,19 +8,23 @@ const ApiClient = require('../api/ApiClient');
 const client = new ApiClient();
 
 export default class ScheduleScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Schedule',
-    tabBarLabel: 'Schedule',
-    showIcon: true,
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={require('../images/schedule.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-    headerRight: (
-      <Button title="Now" color="#e91e63" onPress={() => this.scrollToNow}></Button>
-    ),
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+
+    return {
+      title: 'Schedule',
+      tabBarLabel: 'Schedule',
+      showIcon: true,
+      tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={require('../images/schedule.png')}
+          style={[styles.icon, {tintColor: tintColor}]}
+        />
+      ),
+      headerRight: (
+        <Button title="Now" color="#e91e63" onPress={() => params.scrollToNow()}></Button>
+      ),
+    };
   };
 
   constructor(props) {
@@ -33,6 +37,8 @@ export default class ScheduleScreen extends React.Component {
   }
 
   componentWillMount() {
+    this.props.navigation.setParams({ scrollToNow: this._scrollToNow });
+
     client.getTalks('day').then(talks => {
       this.setState({
         isLoading: false,
@@ -41,8 +47,8 @@ export default class ScheduleScreen extends React.Component {
     });
   }
 
-  scrollToNow() {
-
+  _scrollToNow = () => {
+    // TODO: scroll to now
   }
 
   handleIndexChange(index) {

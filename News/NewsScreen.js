@@ -1,22 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, FlatList, RefreshControl, WebView } from 'react-native';
+import { StyleSheet, Text, View, SectionList, Button, Image, ActivityIndicator, FlatList, RefreshControl, WebView, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
+import ActionSheet from 'react-native-actionsheet';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import SafariView from 'react-native-safari-view';
 const ApiClient = require('../api/ApiClient');
 const client = new ApiClient();
 
 export default class NewsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'News',
-    tabBarLabel: 'News',
-    showIcon: true,
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={require('../images/news.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+    return {
+      title: 'News',
+      tabBarLabel: 'News',
+      showIcon: true,
+      tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={require('../images/news.png')}
+          style={[styles.icon, {tintColor: tintColor}]}
+        />
+      ),
+      headerRight: (
+        <TouchableOpacity onPress={() => params.showMore()}>
+          <Image style={{marginRight: 10}} source={require('../images/more.png')} />
+        </TouchableOpacity>
+      ),
+    };
   };
 
   constructor(props) {
@@ -30,12 +40,19 @@ export default class NewsScreen extends React.Component {
   }
 
   componentWillMount() {
+    this.props.navigation.setParams({ showMore: this._showMore });
+    this.handlePress = this.handlePress.bind(this);
     client.getNews().then(news => {
       this.setState({
         isLoading: false,
         news: news
       });
     });
+  }
+
+  _showMore = () => {
+    console.log("gergre");
+    this.ActionSheet.show();
   }
 
   _onRefresh() {
@@ -75,11 +92,20 @@ export default class NewsScreen extends React.Component {
             <Text style={styles.title}>{news.title}</Text>
             <Text style={styles.newsDate}>{news.date}</Text>
           </View>
+          <View style={styles.dividerLine}/>
           <View style={styles.arrowContainer}>
             <Text style={styles.content}>{news.content}</Text>
           </View>
       </View>
     )
+  }
+
+  handlePress(i) {
+    // TODO: find solution on Android and/or use Twitter default app
+    let url = i == 0 ? 'https://twitter.com/AppBuilders_CH' : 'https://twitter.com/hashtag/appbuilders18';
+    SafariView.isAvailable().then(SafariView.show({
+      url: url
+    }));
   }
 
   render() {
@@ -116,6 +142,12 @@ export default class NewsScreen extends React.Component {
           <WebView style={styles.webView} source={{html: this.twitter('AppBuilders_CH')}}/>
         )
       }
+      <ActionSheet
+        ref={o => this.ActionSheet = o}
+        options={['Cancel', '@AppBuilders_CH', '#appbuilders18 tweets']}
+        cancelButtonIndex={0}
+        onPress={this.handlePress}
+      />
       </View>
     );
   }
@@ -142,6 +174,9 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: { height: 1, width: 0 },
   },
+  moreContainer: {
+    marginLeft: 10
+  },
   loadingContainer: {
     flex: 1,
     paddingTop: 20
@@ -150,15 +185,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18
   },
-  speakerTextContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    borderRadius: 10
+  dividerLine: {
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+    marginTop: 5,
+    marginBottom: 5
   },
   newsInformation: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
   },
   newsContainer: {
     flex: 1,
@@ -171,6 +208,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowColor: 'black',
     shadowOffset: { height: 1, width: 0 },
+  },
+  newsDate: {
+    fontStyle: 'italic'
   },
   tabsContainerStyle: {
     margin: 10,
