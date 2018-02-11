@@ -64,12 +64,13 @@ export default class InformationScreen extends React.Component {
     navigate('VenueLocation');
   }
 
-  showOrganizers() {
-
+  showOrganizers = () =>  {
+    const { navigate } = this.props.navigation;
+    navigate('Organizers');
   }
 
   showCodeOfConduct() {
-
+    // TODO: 
   }
 
   showSupportEmail() {
@@ -97,11 +98,18 @@ export default class InformationScreen extends React.Component {
   }
 
   showContributeGitHub() {
-
+    const url = 'https://github.com/BalestraPatrick/appbuilders18app';
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log(`Can't handle url: ${url}`);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
   }
 
   showAcknowledgements() {
-
+    // TODO:
   }
 
   renderRow(item) {

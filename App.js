@@ -11,6 +11,7 @@ import SponsorsScreen from './Sponsors/SponsorsScreen';
 import NewsScreen from './News/NewsScreen';
 import InformationScreen from './Information/InformationScreen';
 import VenueLocationScreen from './Information/VenueLocationScreen';
+import OrganizersScreen from './Information/OrganizersScreen';
 
 const Tabs = TabNavigator({
   Schedule: {
@@ -39,6 +40,7 @@ const Tabs = TabNavigator({
     screen: StackNavigator({
       Information: { screen: InformationScreen },
       VenueLocation: { screen: VenueLocationScreen },
+      Organizers: { screen: OrganizersScreen },
     })
   }
 },
