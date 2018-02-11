@@ -12,6 +12,8 @@ target 'AppBuilders' do
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'AppBuildersTests' do
     inherit! :search_paths
     # Pods for testing

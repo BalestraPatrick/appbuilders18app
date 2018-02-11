@@ -26,6 +26,7 @@
     "react-native-elements": "^0.19.0",
     "react-native-firebase": "^3.2.0",
     "react-native-mail": "^3.0.5",
+    "react-native-maps": "^0.20.0",
     "react-native-safari-view": "^2.1.0",
     "react-native-segmented-control-tab": "^3.2.1",
     "react-native-vector-icons": "^4.5.0",

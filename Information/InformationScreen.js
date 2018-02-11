@@ -34,6 +34,10 @@ export default class InformationScreen extends React.Component {
               action: this.showOrganizers
             },
             {
+              title: "Code of Conduct",
+              action: this.showCodeOfConduct
+            },
+            {
               title: "Contact via Email",
               action: this.showSupportEmail
             },
@@ -55,11 +59,16 @@ export default class InformationScreen extends React.Component {
     });
   }
 
-  showVenueLocation() {
-
+  showVenueLocation = () => {
+    const { navigate } = this.props.navigation;
+    navigate('VenueLocation');
   }
 
   showOrganizers() {
+
+  }
+
+  showCodeOfConduct() {
 
   }
 
@@ -92,12 +101,10 @@ export default class InformationScreen extends React.Component {
   }
 
   showAcknowledgements() {
-    
+
   }
 
   renderRow(item) {
-    const { navigate } = this.props.navigation;
-    console.log(item);
     return (
       <TouchableOpacity onPress={() => item.action()}>
         <View style={styles.infoMainContainer}>
