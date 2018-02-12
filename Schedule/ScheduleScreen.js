@@ -62,6 +62,8 @@ export default class ScheduleScreen extends React.Component {
       groupedBy = 'day';
     } else if (index == 1) {
       groupedBy = 'room';
+    } else if (index == 2) {
+      groupedBy = 'custom';
     }
     client.getTalks(groupedBy).then(talks => {
       this.setState({

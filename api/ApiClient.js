@@ -1,4 +1,6 @@
 import firebase from 'react-native-firebase';
+const MyConferenceStorage = require('./MyConferenceStorage');
+const conferenceStorage = new MyConferenceStorage();
 
 module.exports = class ApiClient {
 
@@ -69,12 +71,17 @@ module.exports = class ApiClient {
   }
 
   parseTalks(talks, groupedBy) {
+    console.log("ciaoooooo");
     let sections = [];
     let keys;
+    // Generate keys of two sections.
     if (groupedBy == 'day') {
       keys = new Set(talks.map((talk) => talk.day).sort());
     } else if (groupedBy == 'room') {
       keys = new Set(talks.map((talk) => talk.room).sort());
+      console.dir(keys);
+    } else if (groupedBy == 'custom') {
+      keys = new Set(talks.map((talk) => talk.day).sort());
     } else {
       console.error("Unrecognized `groupedBy` key.");
     }
@@ -91,9 +98,19 @@ module.exports = class ApiClient {
         index = keysArray.indexOf(talk.day);
       } else if (groupedBy == 'room') {
         index = keysArray.indexOf(talk.room);
+      } else if (groupedBy == 'custom') {
+        // TODO: modify here
+        const talks = getTalks();
+        index = keysArray.indexOf(talk.room);
       }
       sections[index].data.push(talk);
     }
+    console.log(`sections: ${JSON.stringify(sections)}`);
     return new Promise((resolve, reject) => resolve(sections));
+  }
+
+  getSavedTalks = async () => {
+    const talks = await conferenceStorage.getTalks();
+    return talks;
   }
 }

@@ -50,7 +50,7 @@ export default class InformationScreen extends React.Component {
               action: this.showContributeGitHub
             },
             {
-              title: "Libraries Included",
+              title: "Acknowledgements",
               action: this.showAcknowledgements
             }
           ]
@@ -70,23 +70,38 @@ export default class InformationScreen extends React.Component {
   }
 
   showCodeOfConduct() {
-    // TODO: 
+    // TODO: Test on Android
+    const url = 'http://confcodeofconduct.com';
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log(`Can't handle url: ${url}`);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
   }
 
   showSupportEmail() {
     // TODO: Test on Android
+    const emailAddress = 'info@swissmobidevs.org';
     Mailer.mail({
       subject: 'App Builders 2018',
-      recipients: ['info@swissmobidevs.org'],
+      recipients: [emailAddress],
       ccRecipients: [],
       bccRecipients: [],
       body: '',
       isHTML: true,
     }, (error, event) => {
+      Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+          return Linking.openURL(`mailto:${emailAddress}`);
+        }
+      })
     });
   }
 
   showTwitterSupport() {
+    // TODO: Test on Android
     const url = 'https://twitter.com/appbuilders_ch';
     Linking.canOpenURL(url).then(supported => {
       if (!supported) {
@@ -98,6 +113,7 @@ export default class InformationScreen extends React.Component {
   }
 
   showContributeGitHub() {
+    // TODO: Test on Android
     const url = 'https://github.com/BalestraPatrick/appbuilders18app';
     Linking.canOpenURL(url).then(supported => {
       if (!supported) {
