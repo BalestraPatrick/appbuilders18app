@@ -243,6 +243,39 @@
 			"isStory": false
 		},
 		{
+			"firstName": "Gautier",
+			"lastName": "Mechling",
+			"jobTitle": "Android Craftsman",
+			"company": "",
+			"biography": "Gautier is an Android Developer by day, and a Google Developer Expert for IoT.",
+			"picture": "https://appbuilders.ch/images/speakers/gautier.jpg",
+			"twitter": "Nilhcem",
+			"speakerId": 22,
+			"isStory": false
+		},
+		{
+			"firstName": "Jonathan",
+			"lastName": "Rothwell",
+			"jobTitle": "Software Engineer",
+			"company": "Zuhlke Engineering",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/jonathan.jpg",
+			"twitter": "JoroDev",
+			"speakerId": 23,
+			"isStory": false
+		},
+		{
+			"firstName": "Pascal",
+			"lastName": "How",
+			"jobTitle": "Android Developer",
+			"company": "MyDrive Solutions",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/pascal.jpg",
+			"twitter": null,
+			"speakerId": 24,
+			"isStory": false
+		},
+		{
 			"firstName": "Steve",
 			"lastName": "Scott",
 			"jobTitle": "Developer, Podcaster and Conference Organiser",
@@ -250,7 +283,7 @@
 			"biography": "",
 			"picture": "https://appbuilders.ch/images/speakers/scotty.jpg",
 			"twitter": "macdevnet",
-			"speakerId": 22,
+			"speakerId": 25,
 			"isStory": true
 		},
 		{
@@ -261,7 +294,7 @@
 			"biography": "",
 			"picture": "https://appbuilders.ch/images/speakers/peter.jpg",
 			"twitter": "steipete",
-			"speakerId": 23,
+			"speakerId": 26,
 			"isStory": true
 		},
 		{
@@ -272,8 +305,30 @@
 			"biography": "Antonio Carzaniga is a professor and a founding member (since 2004) of the Faculty of Informatics at the University of Lugano, Switzerland. From 2001 to 2007 he was an assistant research professor in the Department of Computer Science at the University of Colorado at Boulder. Antonio Carzaniga received the Laurea degree in electronics engineering and the Ph.D. degree in computer science from Politecnico di Milano, Italy.  Antonio Carzaniga's primary research interests are in the areas of distributed systems and software engineering, specifically in content-based networking, information-centric networking, distributed publish/subscribe systems, middleware, software adaptability and automatic fault tolerance, and testing. He also conducted research in software configuration management and code mobility.",
 			"picture": "https://appbuilders.ch/images/speakers/carzaniga.jpg",
 			"twitter": null,
-			"speakerId": 24,
+			"speakerId": 27,
 			"isStory": true
+		},
+		{
+			"firstName": "David",
+			"lastName": "Hart",
+			"jobTitle": "Lead iOS Developer",
+			"company": "Atipik",
+			"biography": "David Hart is the Lead iOS Developer at Atipik, a web & mobile development shop in Geneva. After beginning his career in the games industry, David reconverted to mobile development in 2009. Since then, he been crafting apps for iOS with a deep care for user experience and design. More recently, he’s shown a strong interest in Swift through participation in the Swift Evolution process and contributions to the Swift Package Manager.",
+			"picture": "https://appbuilders.ch/images/speakers/david.jpg",
+			"twitter": null,
+			"speakerId": 28,
+			"isStory": false
+		},
+		{
+			"firstName": "George",
+			"lastName": "Karavias",
+			"jobTitle": "Mobile Architect",
+			"company": "Cognizant",
+			"biography": "George Karavias has been riding the mobile revolution wave from the get go and has had a blast creating over 25 mobile applications in the process. Currently he is obsessing over Machine Learning and Mixed Reality.",
+			"picture": "https://appbuilders.ch/images/speakers/george.jpg",
+			"twitter": null,
+			"speakerId": 29,
+			"isStory": false
 		}
 	],
 	"talks": [
