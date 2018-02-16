@@ -51,7 +51,6 @@ export default class NewsScreen extends React.Component {
   }
 
   _showMore = () => {
-    console.log("gergre");
     this.ActionSheet.show();
   }
 
@@ -102,7 +101,12 @@ export default class NewsScreen extends React.Component {
 
   handlePress(i) {
     // TODO: find solution on Android and/or use Twitter default app
-    let url = i == 0 ? 'https://twitter.com/AppBuilders_CH' : 'https://twitter.com/hashtag/appbuilders18';
+    if (i == 0) return;
+    if (i == 1) {
+      url = 'https://twitter.com/AppBuilders_CH';
+    } else if (i == 2) {
+      url = 'https://twitter.com/hashtag/appbuilders18';
+    }
     SafariView.isAvailable().then(SafariView.show({
       url: url
     }));
