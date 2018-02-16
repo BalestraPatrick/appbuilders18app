@@ -3,8 +3,9 @@ import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, As
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
-const MyConferenceStorage = require('../api/MyConferenceStorage');
-const conferenceStorage = new MyConferenceStorage();
+const ApiClient = require('../api/ApiClient');
+const client = new ApiClient();
+
 
 export default class TalkScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -31,31 +32,44 @@ export default class TalkScreen extends React.Component {
       ),
     }
   };
+
+  
   
   componentWillMount() {
     this.loadInitialState();
   }
 
-  loadInitialState = async () => {
-    const talkId = this.props.navigation.state.params.speaker.speakerId;
-    const talks = await conferenceStorage.getTalks();
-    const { setParams } = this.props.navigation;
-    if (talks.indexOf(talkId) != -1) {
-      this.props.navigation.setParams({ addToMyConference: this._addToMyConference, likeButton: require('../images/liked.png')});  
-    } else {
-      this.props.navigation.setParams({ addToMyConference: this._addToMyConference, likeButton: require('../images/like.png')});  
-    }
+  loadInitialState() {
+    client.getLikes().then(speakerIds => {
+      const talkId = this.props.navigation.state.params.speaker.speakerId;
+      this.setState({ 
+        speakerIds: speakerIds,
+        speakerId: talkId
+      });
+      console.dir(this);
+      const { setParams } = this.props.navigation;
+      if (speakerIds.indexOf(talkId) != -1) {
+        this.props.navigation.setParams({ addToMyConference: this.addToMyConference, likeButton: require('../images/liked.png')});  
+      } else {
+        this.props.navigation.setParams({ addToMyConference: this.addToMyConference, likeButton: require('../images/like.png')});
+      }
+    });
   }
 
-  _addToMyConference = async () => {
+  addToMyConference = () => {
     const talkId = this.props.navigation.state.params.speaker.speakerId;
-    const talks = await conferenceStorage.swapTalk(talkId);
     const { setParams } = this.props.navigation;
-    if (talks.indexOf(talkId) != -1) {
+    
+    if (this.state.speakerIds.indexOf(talkId) == -1) {
+      // Add new talk.
+      this.state.speakerIds.push(talkId);
       setParams({ likeButton: require('../images/liked.png')});
     } else {
+      // Remove talk.
+      this.state.speakerIds = this.state.speakerIds.filter(speakerId => speakerId != talkId);
       setParams({ likeButton: require('../images/like.png')});
     }
+    client.setLikes(this.state.speakerIds);
   }
 
   render() {

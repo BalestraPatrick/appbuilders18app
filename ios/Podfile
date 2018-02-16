@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '8.0'
+platform :ios, '10.0'
 
 target 'AppBuilders' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -7,18 +7,47 @@ target 'AppBuilders' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
 
   pod 'react-native-mail', :path => '../node_modules/react-native-mail'
-
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'RCTText',
+    'RCTImage',
+    'RCTAnimation',
+    'RCTActionSheet',
+    'RCTLinkingIOS',
+    'RCTSettings',
+    'RCTVibration',
+    'RCTNetwork',
+    'RCTWebSocket',
+    'DevSupport',
+    'BatchedBridge',
+    'RCTGeolocation',
+  ]
 
   target 'AppBuildersTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+      if target.name == 'react-native-google-maps'
+          target.build_configurations.each do |config|
+              config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
+          end
+      end
+      
+      if target.name == "React"
+          target.remove_from_project
+      end
+  end
 end
 
 target 'AppBuilders-tvOS' do

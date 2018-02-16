@@ -1,0 +1,23 @@
+{
+  "name": "react-native-mail",
+  "version": "3.0.5",
+  "homepage": "https://github.com/chirag04/react-native-mail",
+  "summary": "A wrapper on top of MFMailComposeViewController from iOS and Mail Intent on android",
+  "license": "MIT",
+  "authors": {
+    "Chirag Jain": "jain_chirag04@yahoo.com"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "git": "https://github.com/chirag04/react-native-mail",
+    "tag": "3.0.5"
+  },
+  "source_files": "RNMail/*.{h,m}",
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}

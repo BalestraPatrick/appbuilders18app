@@ -1,6 +1,4 @@
 import firebase from 'react-native-firebase';
-const MyConferenceStorage = require('./MyConferenceStorage');
-const conferenceStorage = new MyConferenceStorage();
 
 module.exports = class ApiClient {
 
@@ -8,6 +6,9 @@ module.exports = class ApiClient {
     // firebase.database().goOffline();
     this.firestore = firebase.firestore();
     this.speakers = [];
+    firebase.auth().signInAnonymously().then(() => {
+      console.log(`current user: ${firebase.auth().currentUser.uid}`);
+    });
   }
 
   getSpeakers() {
@@ -18,6 +19,20 @@ module.exports = class ApiClient {
       console.warn(`Error in retrieving speakers: ${error}`);
       return error;
     });
+  }
+
+  getLikes() {
+    return this.firestore.doc(`likes/${firebase.auth().currentUser.uid}`).get().then(snap => {
+      return this.parseLikes(snap);
+    })
+    .catch(error => {
+      console.warn(`Error in retrieving likes: ${error}`);
+      return error;
+    });
+  }
+
+  setLikes(speakerIds) {
+    this.firestore.doc(`likes/${firebase.auth().currentUser.uid}`).set({speakerIds: speakerIds});
   }
 
   getTalks(groupedBy) {
@@ -41,6 +56,13 @@ module.exports = class ApiClient {
       console.warn(`Error in retrieving news: ${error}`);
       return error;
     });
+  }
+
+  // Parsing Functions
+
+  parseLikes(likes) {
+    const speakerIds = likes.data().speakerIds;
+    return speakerIds;
   }
 
   parseSpeakers(speakers) {
@@ -71,7 +93,6 @@ module.exports = class ApiClient {
   }
 
   parseTalks(talks, groupedBy) {
-    console.log("ciaoooooo");
     let sections = [];
     let keys;
     // Generate keys of two sections.
@@ -92,7 +113,6 @@ module.exports = class ApiClient {
     let keysArray = sections.map(object => object.title);
     for (talk of talks) {
       talk.speaker = this.speakers.filter(speaker => speaker.speakerId == talk.speaker)[0];
-
       let index;
       if (groupedBy == 'day') {
         index = keysArray.indexOf(talk.day);
@@ -100,17 +120,15 @@ module.exports = class ApiClient {
         index = keysArray.indexOf(talk.room);
       } else if (groupedBy == 'custom') {
         // TODO: modify here
-        const talks = getTalks();
+        this.getSavedTalks().then(talks => {
+          console.log(`retrieved talks: ${JSON.stringify(savedTalks)}`);
+        });
+        
         index = keysArray.indexOf(talk.room);
       }
       sections[index].data.push(talk);
     }
-    console.log(`sections: ${JSON.stringify(sections)}`);
+    // console.log(`sections: ${JSON.stringify(sections)}`);
     return new Promise((resolve, reject) => resolve(sections));
-  }
-
-  getSavedTalks = async () => {
-    const talks = await conferenceStorage.getTalks();
-    return talks;
   }
 }
