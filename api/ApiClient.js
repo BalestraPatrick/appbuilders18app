@@ -6,8 +6,11 @@ module.exports = class ApiClient {
     // firebase.database().goOffline();
     this.firestore = firebase.firestore();
     this.speakers = [];
+    this.likes = [];
     firebase.auth().signInAnonymously().then(() => {
       console.log(`current user: ${firebase.auth().currentUser.uid}`);
+      this.getSpeakers();
+      this.getLikes();
     });
   }
 
@@ -33,6 +36,7 @@ module.exports = class ApiClient {
 
   setLikes(speakerIds) {
     this.firestore.doc(`likes/${firebase.auth().currentUser.uid}`).set({speakerIds: speakerIds});
+    this.likes = speakerIds;
   }
 
   getTalks(groupedBy) {
@@ -61,14 +65,15 @@ module.exports = class ApiClient {
   // Parsing Functions
 
   parseLikes(likes) {
-    const speakerIds = likes.data().speakerIds;
+    const speakerIds = likes.data().speakerIds.sort();
+    this.likes = speakerIds;
     return speakerIds;
   }
 
   parseSpeakers(speakers) {
     const initials = new Set(speakers.map((speaker) => speaker.lastName[0]).sort());
     let sections = [];
-    // Create dictionar of speakers.
+    // Create dictionary of speakers.
     for (speaker of speakers) {
       const initial = speaker.lastName[0];
       if (initials.has(initial)) {
@@ -100,7 +105,6 @@ module.exports = class ApiClient {
       keys = new Set(talks.map((talk) => talk.day).sort());
     } else if (groupedBy == 'room') {
       keys = new Set(talks.map((talk) => talk.room).sort());
-      console.dir(keys);
     } else if (groupedBy == 'custom') {
       keys = new Set(talks.map((talk) => talk.day).sort());
     } else {
@@ -116,19 +120,18 @@ module.exports = class ApiClient {
       let index;
       if (groupedBy == 'day') {
         index = keysArray.indexOf(talk.day);
+        sections[index].data.push(talk);
       } else if (groupedBy == 'room') {
         index = keysArray.indexOf(talk.room);
+        sections[index].data.push(talk);
       } else if (groupedBy == 'custom') {
-        // TODO: modify here
-        this.getSavedTalks().then(talks => {
-          console.log(`retrieved talks: ${JSON.stringify(savedTalks)}`);
-        });
-        
-        index = keysArray.indexOf(talk.room);
+        // Check if this talk is inside the liked talks array.
+        if (this.likes.indexOf(talk.speaker.speakerId) != -1) {
+          index = keysArray.indexOf(talk.day);
+          sections[index].data.push(talk);
+        }
       }
-      sections[index].data.push(talk);
     }
-    // console.log(`sections: ${JSON.stringify(sections)}`);
     return new Promise((resolve, reject) => resolve(sections));
   }
 }

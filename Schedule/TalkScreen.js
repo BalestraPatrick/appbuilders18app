@@ -4,14 +4,12 @@ import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 const ApiClient = require('../api/ApiClient');
-const client = new ApiClient();
-
 
 export default class TalkScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     const params = navigation.state.params || {};
     return {
-      title: `${navigation.state.params.title}`,
+      title: `${navigation.state.params.talk.title}`,
       tabBarLabel: 'Schedule',
       showIcon: true,
       headerTintColor: '#e91e63',
@@ -32,16 +30,16 @@ export default class TalkScreen extends React.Component {
       ),
     }
   };
-
-  
   
   componentWillMount() {
     this.loadInitialState();
   }
 
   loadInitialState() {
-    client.getLikes().then(speakerIds => {
-      const talkId = this.props.navigation.state.params.speaker.speakerId;
+    const params = this.props.navigation.state.params;
+    console.dir(params);
+    params.client.getLikes().then(speakerIds => {
+      const talkId = params.talk.speaker.speakerId;
       this.setState({ 
         speakerIds: speakerIds,
         speakerId: talkId
@@ -57,7 +55,8 @@ export default class TalkScreen extends React.Component {
   }
 
   addToMyConference = () => {
-    const talkId = this.props.navigation.state.params.speaker.speakerId;
+    const params = this.props.navigation.state.params;
+    const talkId = params.talk.speaker.speakerId;
     const { setParams } = this.props.navigation;
     
     if (this.state.speakerIds.indexOf(talkId) == -1) {
@@ -69,11 +68,12 @@ export default class TalkScreen extends React.Component {
       this.state.speakerIds = this.state.speakerIds.filter(speakerId => speakerId != talkId);
       setParams({ likeButton: require('../images/like.png')});
     }
-    client.setLikes(this.state.speakerIds);
+    params.client.setLikes(this.state.speakerIds);
+    params.reloadDataSource();
   }
 
   render() {
-    const talk = this.props.navigation.state.params;
+    const talk = this.props.navigation.state.params.talk;
     return (
       <ScrollView style={styles.viewContainer}>
         <View style={styles.informationContainer}>

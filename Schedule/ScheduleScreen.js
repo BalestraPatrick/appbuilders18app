@@ -10,7 +10,6 @@ const client = new ApiClient();
 export default class ScheduleScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
-
     return {
       title: 'Schedule',
       tabBarLabel: 'Schedule',
@@ -38,7 +37,6 @@ export default class ScheduleScreen extends React.Component {
 
   componentWillMount() {
     this.props.navigation.setParams({ scrollToNow: this._scrollToNow });
-
     client.getTalks('day').then(talks => {
       this.setState({
         isLoading: false,
@@ -47,16 +45,9 @@ export default class ScheduleScreen extends React.Component {
     });
   }
 
-  _scrollToNow = () => {
-    // TODO: scroll to now
-  }
-
-  handleIndexChange(index) {
-    this.setState({
-      selectedIndex: index,
-      isLoading: true
-    });
+  reloadDataSource = () => {
     // Reload datasource.
+    const index = this.state.selectedIndex;
     let groupedBy;
     if (index == 0) {
       groupedBy = 'day';
@@ -73,6 +64,17 @@ export default class ScheduleScreen extends React.Component {
     });
   }
 
+  _scrollToNow = () => {
+    // TODO: scroll to now
+  }
+
+  handleIndexChange(index) {
+    this.setState({
+      selectedIndex: index,
+      isLoading: true
+    }, () => this.reloadDataSource());
+  }
+
   formatDate(string) {
     return moment(string).format('h:mm A');
   }
@@ -80,7 +82,7 @@ export default class ScheduleScreen extends React.Component {
   renderTalk(talk) {
     const { navigate } = this.props.navigation;
     return (
-      <TouchableOpacity onPress={() => navigate('Talk', talk)}>
+      <TouchableOpacity onPress={() => navigate('Talk', {talk: talk, client: client, reloadDataSource: this.reloadDataSource})}>
         <View style={styles.talkMainContainer}>
           <View style={styles.talkContainer}>
             <View style={styles.speakerContainer}>
