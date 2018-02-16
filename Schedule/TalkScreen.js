@@ -37,14 +37,12 @@ export default class TalkScreen extends React.Component {
 
   loadInitialState() {
     const params = this.props.navigation.state.params;
-    console.dir(params);
     params.client.getLikes().then(speakerIds => {
       const talkId = params.talk.speaker.speakerId;
       this.setState({ 
         speakerIds: speakerIds,
         speakerId: talkId
       });
-      console.dir(this);
       const { setParams } = this.props.navigation;
       if (speakerIds.indexOf(talkId) != -1) {
         this.props.navigation.setParams({ addToMyConference: this.addToMyConference, likeButton: require('../images/liked.png')});  

@@ -55,7 +55,7 @@
 		AE3C15441FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
 		AE3C15451FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
 		AE3C15461FF6BE53008501B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */; };
-		AEFE495D2002B04800DDCF96 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFE49552002B03B00DDCF96 /* libRNDeviceInfo.a */; };
+		AECEA521203701BD004D4D83 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AECEA522203701BD004D4D83 /* libRNDeviceInfo.a */; };
 		AEFE495E2002B05200DDCF96 /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFE49572002B03B00DDCF96 /* libRNDeviceInfo-tvOS.a */; };
 		B334767B4F1D4E46B2D57EC2 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB35A13BAB88457381D44DEB /* Entypo.ttf */; };
 		CD524E17C157D3ED67127E0F /* libPods-AppBuildersTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9E03CBEACC425395AF350B /* libPods-AppBuildersTests.a */; };
@@ -419,6 +419,7 @@
 		AE35F44D1FFFB77E00E6D597 /* launch-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launch-icon.png"; path = "AppBuilders/Images.xcassets/AppIcon.appiconset/launch-icon.png"; sourceTree = "<group>"; };
 		AE3C15421FF6BE52008501B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE9665BA20363B3600260366 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
+		AECEA522203701BD004D4D83 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEFE492C2002B03B00DDCF96 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		B039F6D38BB444AFB2217E55 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		B9D5DDC77E65D655B0374A0E /* libPods-AppBuilders-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppBuilders-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -445,7 +446,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEFE495D2002B04800DDCF96 /* libRNDeviceInfo.a in Frameworks */,
+				AECEA521203701BD004D4D83 /* libRNDeviceInfo.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -620,6 +621,7 @@
 		7390B19CF8D37E04F22B3403 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AECEA522203701BD004D4D83 /* libRNDeviceInfo.a */,
 				5DF1969A327AD71658B7DE16 /* libPods-AppBuilders.a */,
 				B9D5DDC77E65D655B0374A0E /* libPods-AppBuilders-tvOS.a */,
 				23F90FA5E18CB6F6BA9BCAE3 /* libPods-AppBuilders-tvOSTests.a */,

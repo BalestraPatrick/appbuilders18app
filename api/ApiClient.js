@@ -65,7 +65,13 @@ module.exports = class ApiClient {
   // Parsing Functions
 
   parseLikes(likes) {
-    const speakerIds = likes.data().speakerIds.sort();
+    const data = likes.data();
+    let speakerIds;
+    if (data !== undefined) {
+      speakerIds = likes.data().speakerIds.sort();
+    } else {
+      speakerIds = [];
+    }
     this.likes = speakerIds;
     return speakerIds;
   }
