@@ -21,7 +21,8 @@ export default class ScheduleScreen extends React.Component {
         />
       ),
       headerRight: (
-        <Button title="Now" color="#e91e63" onPress={() => params.scrollToNow()}></Button>
+        params.button
+        
       ),
     };
   };
@@ -36,7 +37,7 @@ export default class ScheduleScreen extends React.Component {
   }
 
   componentWillMount() {
-    this.props.navigation.setParams({ scrollToNow: this._scrollToNow });
+    this.props.navigation.setParams({ scrollToNow: this._scrollToNow, button: (<Button title="Now" color="#e91e63" onPress={() => this.scrollToNow()}></Button>) });
     client.getTalks('day').then(talks => {
       this.setState({
         isLoading: false,
@@ -51,10 +52,13 @@ export default class ScheduleScreen extends React.Component {
     let groupedBy;
     if (index == 0) {
       groupedBy = 'day';
+      this.props.navigation.setParams({ button: (<Button title="Now" color="#e91e63" onPress={() => this.scrollToNow()}></Button>) });
     } else if (index == 1) {
       groupedBy = 'room';
+      this.props.navigation.setParams({ button: null});
     } else if (index == 2) {
       groupedBy = 'custom';
+      this.props.navigation.setParams({ button: (<Button title="Now" color="#e91e63" onPress={() => this.scrollToNow()}></Button>) });
     }
     client.getTalks(groupedBy).then(talks => {
       this.setState({
@@ -64,8 +68,38 @@ export default class ScheduleScreen extends React.Component {
     });
   }
 
-  _scrollToNow = () => {
-    // TODO: scroll to now
+  scrollToNow = () => {
+    moment.locale('en');
+    const today = moment();
+    const time = today.format("HH:mm");
+    const day = today.format('D') // 16th 
+    const month = today.format('M') // 4 == April
+    const year = today.format('YYYY') // 2018
+    
+    let index;
+    // It's Monday 16th April.
+    if (day == 16 && month == 4 && year == 2018) {
+      index = 0;
+    } else if (day == 17 && month == 4 && year == 2018) {
+      // It's Tuesday 17th April.
+      index = 1;
+    } else {
+      // Not App Builders today, just return.
+      return;
+    }
+    // Find closest talk to current time.
+    let row = 0;
+    for (talk of this.state.sections[index].data) {
+      if (time.localeCompare(talk.time) == 1) {
+        row++;
+      }
+    }
+    this.talksSectionListRef.scrollToLocation({
+      animated: true,
+      sectionIndex: index,
+      itemIndex: row,
+      viewOffset: 20
+    });
   }
 
   handleIndexChange(index) {
@@ -135,6 +169,7 @@ export default class ScheduleScreen extends React.Component {
           <ActivityIndicator />
         ) : (
           <SectionList
+            ref={ref => { this.talksSectionListRef = ref; }}
             sections={this.state.sections}
             renderItem={({item}) => this.renderTalk(item)}
             renderSectionHeader={({section}) => (
