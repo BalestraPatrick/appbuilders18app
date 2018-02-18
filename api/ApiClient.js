@@ -3,7 +3,6 @@ import firebase from 'react-native-firebase';
 module.exports = class ApiClient {
 
   constructor() {
-    // firebase.database().goOffline();
     this.firestore = firebase.firestore();
     this.speakers = [];
     this.likes = [];

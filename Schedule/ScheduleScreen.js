@@ -81,25 +81,40 @@ export default class ScheduleScreen extends React.Component {
 
   renderTalk(talk) {
     const { navigate } = this.props.navigation;
-    return (
-      <TouchableOpacity onPress={() => navigate('Talk', {talk: talk, client: client, reloadDataSource: this.reloadDataSource})}>
-        <View style={styles.talkMainContainer}>
-          <View style={styles.talkContainer}>
-            <View style={styles.speakerContainer}>
+    if (talk.speaker) {
+      return (
+        <TouchableOpacity onPress={() => navigate('Talk', {talk: talk, client: client, reloadDataSource: this.reloadDataSource})}>
+          <View style={styles.talkMainContainer}>
+            <View style={styles.talkContainer}>
+              <View style={styles.speakerContainer}>
                 <Image style={styles.speakerImage} source={{uri: talk.speaker.picture}} />
                 <View style={styles.talkTextContainer}>
                   <Text style={styles.talkTitle}>{talk.title}</Text>
                   <Text style={styles.talkSpeaker}>{talk.speaker.firstName} {talk.speaker.lastName}</Text>
                 </View>
+              </View>
+              <Text style={styles.talkInformation}>{talk.time} | {talk.room}</Text>
+            </View>
+            <View style={styles.arrowContainer}>
+              <Image style={styles.arrow} source={require('../images/arrow.png')} />
+            </View>
+          </View>
+        </TouchableOpacity>
+      )
+    } else {
+      return (
+        <View style={styles.talkMainContainer}>
+          <View style={styles.talkContainer}>
+            <View style={styles.speakerContainer}>
+              <View style={styles.talkTextContainer}>
+                <Text style={styles.talkTitle}>{talk.title}</Text>
+              </View>
             </View>
             <Text style={styles.talkInformation}>{talk.time} | {talk.room}</Text>
           </View>
-          <View style={styles.arrowContainer}>
-            <Image style={styles.arrow} source={require('../images/arrow.png')} />
-          </View>
         </View>
-      </TouchableOpacity>
-    )
+      )
+    }
   }
 
   render() {
