@@ -145,6 +145,10 @@ module.exports = class ApiClient {
         return a.time.localeCompare(b.time);
       });
     }
+
+    if (sections.length == 2 && sections[0].data.length == 0 && sections[1].data.length == 0) {
+      sections = [{title: key, data: []}];
+    }
     return new Promise((resolve, reject) => resolve(sections));
   }
 }

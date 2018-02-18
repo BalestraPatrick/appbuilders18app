@@ -173,7 +173,7 @@ export default class ScheduleScreen extends React.Component {
             sections={this.state.sections}
             renderItem={({item}) => this.renderTalk(item)}
             renderSectionHeader={({section}) => (
-              [section.data.length > 0 ? (
+              [this.state.sections.length > 1 ? (
                 <Text key="1" style={styles.sectionHeader}>{section.title}</Text>
               ) : (
                 <Text key="2" style={styles.emptyHeaderText}>Plan your conference by ❤️ the talks you wish to attend.</Text>
