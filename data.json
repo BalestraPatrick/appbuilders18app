@@ -329,48 +329,228 @@
 			"twitter": null,
 			"speakerId": 29,
 			"isStory": false
+		},
+		{
+			"firstName": "Meghan",
+			"lastName": "Kane",
+			"jobTitle": "iOS Developer",
+			"company": "Novoda",
+			"biography": "GeoMeghan is an iOS developer at Novoda in their Berlin office. She is the co-creator and instructor of a Udacity course on Core ML. She takes a lifelong learning approach and is continuously researching new topics, both in software development and in the broader scientific community. Recently, she worked with physicists from CERN & Fermilab on a paper about software development in high energy physics that was published in December 2017. When not coding, she can usually be found at a coffee shop studying quantum computing 🤓, cycling 🚴🏼‍♀️ , playing board games 🎲, or excessively using emoji 🙃. In her former life, she lived in the US and studied Mathematics & CS at MIT.",
+			"picture": "https://appbuilders.ch/images/speakers/meghan.jpg",
+			"twitter": "meghafon",
+			"speakerId": 30,
+			"isStory": false
+		},
+		{
+			"firstName": "Matteo",
+			"lastName": "Bonifazi",
+			"jobTitle": "Google Developer Expert",
+			"company": "",
+			"biography": "Developed apps, for more than five billions downloads, and physical devices, for almost one billions unit sold. Mobile developer mainly focused on Android application development and keen to face new challenges. Trying to share my experience and what I’ve learnt about mobile using communities, where I am an active member, and the Google Developer Expert program (joined in April 2015).",
+			"picture": "https://appbuilders.ch/images/speakers/matteo.jpg",
+			"twitter": "mbonifazi",
+			"speakerId": 31,
+			"isStory": false
+		},
+		{
+			"firstName": "Elaine Dias",
+			"lastName": "Batista",
+			"jobTitle": "Team Leader & Software Engineer",
+			"company": "SFEIR",
+			"biography": "Elaine has been working on the mobile development world for the past 5 years as an Android and occasionally iOS developer. She's passionate about mobile development and UI/UX but has become more and more interested about new kinds of computing such as Voice Assistants and IoT. She's a Google Developer Expert for the Google Assistant.",
+			"picture": "https://appbuilders.ch/images/speakers/elaine.jpg",
+			"twitter": "elainedbatista",
+			"speakerId": 32,
+			"isStory": false
+		},
+		{
+			"firstName": "Jade",
+			"lastName": "Chabaro",
+			"jobTitle": "Tech Lead & Scrum Master",
+			"company": "Freelance",
+			"biography": "Technical leader and Scrum Master on mobile and IoT projects (Android Wear), I have a background as a mobile developer. I am passionate by mobile innovation and user experience. I help clients to express there needs and transform their ideas into reality. Since a year, I am interested in voice interface, with the help of the Google Assistant platform.",
+			"picture": "https://appbuilders.ch/images/speakers/jade.jpg",
+			"twitter": "elainedbatista",
+			"speakerId": 33,
+			"isStory": false
 		}
 	],
 	"talks": [
 		{
-			"description": "Description of best talk ever",
-			"title": "Best talk ever",
-			"time": "10:00",
-			"speaker": 1,
+			"description": "",
+			"title": "🎫 Registration",
+			"time": "11:20",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "09:30",
+			"speaker": 5,
 			"room": "Main",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "Description of best talk ever 2",
-			"title": "Best talk ever 2",
-			"time": "10:50",
+			"description": "TBD",
+			"title": "TBD",
+			"time": "10:10",
+			"speaker": 26,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "10:40",
+			"speaker": 9,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "10:40",
+			"speaker": 0,
+			"room": "Secondary",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "",
+			"title": "☕️ Coffee Break",
+			"time": "11:20",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "11:40",
 			"speaker": 2,
 			"room": "Main",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "Description of best talk ever 2.1",
-			"title": "Best talk ever 2.1",
-			"time": "10:50",
-			"speaker": 3,
+			"description": "TBD",
+			"title": "TBD",
+			"time": "11:40",
+			"speaker": 14,
 			"room": "Secondary",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "Description of best talk ever 3",
-			"title": "Best talk ever 3",
-			"time": "9:00",
-			"speaker": 4,
+			"description": "TBD",
+			"title": "TBD",
+			"time": "12:20",
+			"speaker": 7,
 			"room": "Main",
-			"day": "Tuesday 17th"
+			"day": "Monday 16th"
 		},
 		{
-			"description": "Description of best talk ever 3.2",
-			"title": "Best talk ever 3.3",
-			"time": "9:00",
-			"speaker": 5,
+			"description": "TBD",
+			"title": "TBD",
+			"time": "12:20",
+			"speaker": 21,
 			"room": "Secondary",
-			"day": "Tuesday 17th"
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "🍝 Lunch Break",
+			"time": "13:00",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "14:30",
+			"speaker": 3,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "14:30",
+			"speaker": 10,
+			"room": "Secondary",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "15:10",
+			"speaker": 19,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "14:30",
+			"speaker": 31,
+			"room": "Secondary",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "15:50",
+			"speaker": 27,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "",
+			"title": "☕️ Coffee Break",
+			"time": "16:20",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "17:00",
+			"speaker": 18,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "17:00",
+			"speaker": 4,
+			"room": "Secondary",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "17:40",
+			"speaker": 8,
+			"room": "Main",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "17:40",
+			"speaker": 24,
+			"room": "Secondary",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "🎉 End",
+			"time": "18:10",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
 		}
 	],
 	"news": [
