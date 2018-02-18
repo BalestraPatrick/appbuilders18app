@@ -551,6 +551,174 @@
 			"speaker": null,
 			"room": "Entrance Hall",
 			"day": "Monday 16th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "09:30",
+			"speaker": null,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "10:10",
+			"speaker": null,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "10:40",
+			"speaker": 28,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "10:40",
+			"speaker": 16,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "",
+			"title": "☕️ Coffee Break",
+			"time": "11:20",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "11:40",
+			"speaker": 11,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "11:40",
+			"speaker": 12,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "12:20",
+			"speaker": 13,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "12:20",
+			"speaker": 32,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "🍝 Lunch Break",
+			"time": "13:00",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "14:30",
+			"speaker": 30,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "14:30",
+			"speaker": 6,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "15:10",
+			"speaker": 1,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "15:10",
+			"speaker": null,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "15:50",
+			"speaker": 15,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "15:50",
+			"speaker": 23,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "",
+			"title": "☕️ Coffee Break",
+			"time": "16:30",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "17:00",
+			"speaker": 29,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "17:00",
+			"speaker": 22,
+			"room": "Secondary",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "TBD",
+			"title": "TBD",
+			"time": "17:40",
+			"speaker": 17,
+			"room": "Main",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "",
+			"title": "🏆 Closing Cerieony",
+			"time": "18:10",
+			"speaker": null,
+			"room": "Main",
+			"day": "Tuesday 17th"
 		}
 	],
 	"news": [
