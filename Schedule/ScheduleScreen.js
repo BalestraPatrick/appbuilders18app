@@ -137,7 +137,12 @@ export default class ScheduleScreen extends React.Component {
           <SectionList
             sections={this.state.sections}
             renderItem={({item}) => this.renderTalk(item)}
-            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+            renderSectionHeader={({section}) => (
+              [section.data.length > 0 ? (
+                <Text key="1" style={styles.sectionHeader}>{section.title}</Text>
+              ) : (
+                <Text key="2" style={styles.emptyHeaderText}>Plan your conference by ❤️ the talks you wish to attend.</Text>
+            )])}
             keyExtractor={(item, index) => index}
           />
         )}
@@ -177,6 +182,13 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowColor: 'black',
     shadowOffset: { height: 1, width: 0 },
+  },
+  emptyHeaderText: {
+    margin: 20,
+    marginTop: 100,
+    fontSize: 20,
+    lineHeight: 30,
+    textAlign: 'center'
   },
   talkTextContainer: {
     flex: 1,

@@ -7,7 +7,6 @@ module.exports = class ApiClient {
     this.speakers = [];
     this.likes = [];
     firebase.auth().signInAnonymously().then(() => {
-      console.log(`current user: ${firebase.auth().currentUser.uid}`);
       this.getSpeakers();
       this.getLikes();
     });
@@ -121,7 +120,10 @@ module.exports = class ApiClient {
 
     let keysArray = sections.map(object => object.title);
     for (talk of talks) {
-      talk.speaker = this.speakers.filter(speaker => speaker.speakerId == talk.speaker)[0];
+      // Check that this talk has a speaker id and we can substitute with a real speaker object, otherwise skip it.
+      if (talk.speaker !== undefined) {
+        talk.speaker = this.speakers.filter(speaker => speaker.speakerId == talk.speaker)[0];
+      }
       let index;
       if (groupedBy == 'day') {
         index = keysArray.indexOf(talk.day);
@@ -130,12 +132,18 @@ module.exports = class ApiClient {
         index = keysArray.indexOf(talk.room);
         sections[index].data.push(talk);
       } else if (groupedBy == 'custom') {
-        // Check if this talk is inside the liked talks array.
-        if (this.likes.indexOf(talk.speaker.speakerId) != -1) {
+        // Check that it's an event with a speaker and if this talk is inside the liked talks array.
+        if (talk.speaker !== undefined && this.likes.indexOf(talk.speaker.speakerId) != -1) {
           index = keysArray.indexOf(talk.day);
           sections[index].data.push(talk);
         }
       }
+    }
+    // Sort sections based on time.
+    for (section of sections) {
+      section.data.sort((a, b) => {
+        return a.time.localeCompare(b.time);
+      });
     }
     return new Promise((resolve, reject) => resolve(sections));
   }
