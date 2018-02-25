@@ -8,6 +8,7 @@ target 'AppBuilders' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
+  pod 'Firebase/Messaging'
 
   pod 'react-native-mail', :path => '../node_modules/react-native-mail'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'

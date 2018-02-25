@@ -115,10 +115,11 @@ NS_SWIFT_NAME(Firestore)
  * and collections. Unlike other firestore access, data accessed with the transaction will not
  * reflect local changes that have not been committed. For this reason, it is required that all
  * reads are performed before any writes. Transactions must be performed while online. Otherwise,
- * reads will fail, and the final commit will fail.
+ * reads will fail, the final commit will fail, and the completion block will return an error.
  *
  * @param updateBlock The block to execute within the transaction context.
- * @param completion The block to call with the result or error of the transaction.
+ * @param completion The block to call with the result or error of the transaction. This
+ *     block will run even if the client is offline, unless the process is killed.
  */
 - (void)runTransactionWithBlock:(id _Nullable (^)(FIRTransaction *, NSError **))updateBlock
                      completion:(void (^)(id _Nullable result, NSError *_Nullable error))completion;
@@ -135,8 +136,26 @@ NS_SWIFT_NAME(Firestore)
 #pragma mark - Logging
 
 /** Enables or disables logging from the Firestore client. */
-+ (void)enableLogging:(BOOL)logging
-    DEPRECATED_MSG_ATTRIBUTE("Use FIRSetLoggerLevel(FIRLoggerLevelDebug) to enable logging");
++ (void)enableLogging:(BOOL)logging DEPRECATED_MSG_ATTRIBUTE(
+                          "Use FirebaseConfiguration.shared.setLoggerLevel(.debug) to enable "
+                          "logging.");
+
+#pragma mark - Network
+
+/**
+ * Re-enables usage of the network by this Firestore instance after a prior call to
+ * `disableNetworkWithCompletion`. Completion block, if provided, will be called once network uasge
+ * has been enabled.
+ */
+- (void)enableNetworkWithCompletion:(nullable void (^)(NSError *_Nullable error))completion;
+
+/**
+ * Disables usage of the network by this Firestore instance. It can be re-enabled by via
+ * `enableNetworkWithCompletion`. While the network is disabled, any snapshot listeners or get calls
+ * will return results from cache and any write operations will be queued until the network is
+ * restored. The completion block, if provided, will be called once network usage has been disabled.
+ */
+- (void)disableNetworkWithCompletion:(nullable void (^)(NSError *_Nullable error))completion;
 
 @end
 

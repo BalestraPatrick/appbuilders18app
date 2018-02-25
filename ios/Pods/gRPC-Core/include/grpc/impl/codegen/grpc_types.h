@@ -22,7 +22,6 @@
 #include <grpc/impl/codegen/port_platform.h>
 
 #include <grpc/impl/codegen/compression_types.h>
-#include <grpc/impl/codegen/exec_ctx_fwd.h>
 #include <grpc/impl/codegen/gpr_types.h>
 #include <grpc/impl/codegen/slice.h>
 #include <grpc/impl/codegen/status.h>
@@ -85,7 +84,7 @@ typedef enum {
 
 typedef struct grpc_arg_pointer_vtable {
   void* (*copy)(void* p);
-  void (*destroy)(grpc_exec_ctx* exec_ctx, void* p);
+  void (*destroy)(void* p);
   int (*cmp)(void* p, void* q);
 } grpc_arg_pointer_vtable;
 

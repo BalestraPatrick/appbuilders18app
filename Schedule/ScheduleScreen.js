@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
   },
   tabsContainerStyle: {
     margin: 10,
-    width: 325
+    width: 300
   },
   tabStyle: {
     backgroundColor: 'transparent',
