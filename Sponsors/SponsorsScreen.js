@@ -28,13 +28,24 @@ class Sponsors extends React.Component {
     )
   }
 
-  _onPress(sponsor) {
-    console.log(sponsor);
-    // TODO: find solution on Android
+  openLink(url) {
     SafariView.isAvailable()
     .then(SafariView.show({
-      url: sponsor.url
-    }))
+      url: url
+		}))
+		.catch((err) => {
+			Linking.canOpenURL(url).then(supported => {
+				if (!supported) {
+					console.log(`Can't handle url: ${url}`);
+				} else {
+					return Linking.openURL(url);
+				}
+			}).catch(err => console.error('An error occurred', err));
+    });
+  }
+
+  _onPress(sponsor) {
+    this.openLink(sponsor.url);
   }
 }
 
@@ -59,9 +70,11 @@ export default class ScheduleScreen extends React.Component {
     const platinum = [
       { id: 1, name: "Cryms", image: require("../images/sponsors/cryms.jpg"), url: "http://www.cryms.ch/" },
       { id: 2, name: "Dreipol", image: require("../images/sponsors/dreipol.jpg"), url: "http://www.dreipol.ch/" },
+      { id: 3, name: "Ubique", image: require("../images/sponsors/ubique.jpg"), url: "https://www.ubique.ch" },
     ]
     const gold = [
       { id: 1, name: "Fondazione Agire", image: require("../images/sponsors/agire.jpg"), url: "http://www.agire.ch/" },
+      { id: 2, name: "White Peaks", image: require("../images/sponsors/whitepeaks.jpg"), url: "http://www.whitepeaksmobile.ch" },
     ]
     return (
       <ScrollView>
