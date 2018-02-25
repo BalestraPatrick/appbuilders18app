@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, SectionList, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, SectionList, Image, TouchableOpacity, Linking } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
+import SafariView from 'react-native-safari-view';
 
 export default class VenueInformationScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -57,8 +58,21 @@ export default class VenueInformationScreen extends React.Component {
     }
   }
 
-  openTwitter() {
-	// TODO: Open Twitter account
+  openTwitter(item) {
+		const url = `https://twitter.com/${item.twitter}`;
+		SafariView.isAvailable()
+    .then(SafariView.show({
+      url: url
+		}))
+		.catch((err) => {
+			Linking.canOpenURL(url).then(supported => {
+				if (!supported) {
+					console.log(`Can't handle url: ${url}`);
+				} else {
+					return Linking.openURL(url);
+				}
+			}).catch(err => console.error('An error occurred', err));
+		});
   }
 
   renderSpeaker(item) {
@@ -79,7 +93,7 @@ export default class VenueInformationScreen extends React.Component {
 
   render() {
     return (
-	<View style={styles.container}>
+			<View style={styles.container}>
         <SectionList
           sections={this.state.sections}
           renderItem={({item}) => this.renderSpeaker(item)}

@@ -92,11 +92,14 @@ export default class InformationScreen extends React.Component {
       body: '',
       isHTML: true,
     }, (error, event) => {
-      Linking.canOpenURL(url).then(supported => {
-        if (supported) {
-          return Linking.openURL(`mailto:${emailAddress}`);
-        }
-      })
+      if (error !== undefined) {
+        const url = `mailto:${emailAddress}`;
+        Linking.canOpenURL(url).then(supported => {
+          if (supported) {
+            return Linking.openURL(url);
+          }
+        });
+      }
     });
   }
 
