@@ -84,7 +84,7 @@ export default class NewsScreen extends React.Component {
     </html>`
   }
 
-  renderTalk(news) {
+  renderNews(news) {
     return (
       <View style={styles.newsContainer}>
           <View style={styles.newsInformation}>
@@ -139,7 +139,7 @@ export default class NewsScreen extends React.Component {
               <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh.bind(this)} />
             }
             data={this.state.news}
-            renderItem={({item}) => this.renderTalk(item)}
+            renderItem={({item}) => this.renderNews(item)}
             keyExtractor={(item, index) => index}
           />
         ) : (

@@ -271,8 +271,9 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   tabsContainerStyle: {
-    margin: 10,
-    width: 300
+    marginTop: 10,
+    marginBottom: 10,
+    width: 320
   },
   tabStyle: {
     backgroundColor: 'transparent',
