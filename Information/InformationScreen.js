@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 import Mailer from 'react-native-mail';
 import DeviceInfo from 'react-native-device-info';
+import SafariView from 'react-native-safari-view';
 
 export default class InformationScreen extends React.Component {
   static navigationOptions = {
@@ -69,16 +70,25 @@ export default class InformationScreen extends React.Component {
     navigate('Organizers');
   }
 
-  showCodeOfConduct() {
-    // TODO: Test on Android
+  openLink(url) {
+    SafariView.isAvailable()
+    .then(SafariView.show({
+      url: url
+		}))
+		.catch((err) => {
+			Linking.canOpenURL(url).then(supported => {
+				if (!supported) {
+					console.log(`Can't handle url: ${url}`);
+				} else {
+					return Linking.openURL(url);
+				}
+			}).catch(err => console.error('An error occurred', err));
+    });
+  }
+
+  showCodeOfConduct = () => {
     const url = 'http://confcodeofconduct.com';
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) {
-        console.log(`Can't handle url: ${url}`);
-      } else {
-        return Linking.openURL(url);
-      }
-    }).catch(err => console.error('An error occurred', err));
+    this.openLink(url);
   }
 
   showSupportEmail() {
@@ -103,31 +113,17 @@ export default class InformationScreen extends React.Component {
     });
   }
 
-  showTwitterSupport() {
-    // TODO: Test on Android
+  showTwitterSupport = () => {
     const url = 'https://twitter.com/appbuilders_ch';
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) {
-        console.log(`Can't handle url: ${url}`);
-      } else {
-        return Linking.openURL(url);
-      }
-    }).catch(err => console.error('An error occurred', err));
+    this.openLink(url);
   }
 
-  showContributeGitHub() {
-    // TODO: Test on Android
+  showContributeGitHub = () => {
     const url = 'https://github.com/BalestraPatrick/appbuilders18app';
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) {
-        console.log(`Can't handle url: ${url}`);
-      } else {
-        return Linking.openURL(url);
-      }
-    }).catch(err => console.error('An error occurred', err));
+    this.openLink(url);
   }
 
-  showAcknowledgements() {
+  showAcknowledgements = () => {
     // TODO:
   }
 
