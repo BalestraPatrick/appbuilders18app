@@ -39,6 +39,10 @@ export default class InformationScreen extends React.Component {
               action: this.showCodeOfConduct
             },
             {
+              title: "Join the Slack Group",
+              action: this.showSlack
+            },
+            {
               title: "Contact via Email",
               action: this.showSupportEmail
             },
@@ -68,6 +72,11 @@ export default class InformationScreen extends React.Component {
   showOrganizers = () =>  {
     const { navigate } = this.props.navigation;
     navigate('Organizers');
+  }
+
+  showSlack = () => {
+    const url = 'https://app-builders-slack.herokuapp.com';
+    this.openLink(url);
   }
 
   openLink(url) {
@@ -124,7 +133,8 @@ export default class InformationScreen extends React.Component {
   }
 
   showAcknowledgements = () => {
-    // TODO:
+    const { navigate } = this.props.navigation;
+    navigate('Acknowledgements');
   }
 
   renderRow(item) {

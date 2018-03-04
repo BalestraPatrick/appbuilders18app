@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Image, ScrollView, WebView } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
+import openMap from 'react-native-open-maps';
 import MapView, { AnimatedRegion, Marker } from 'react-native-maps';
 
 export default class VenueInformationScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
     return {
       title: 'Venue Location',
       tabBarLabel: 'Information',
@@ -19,7 +21,7 @@ export default class VenueInformationScreen extends React.Component {
         />
       ),
       headerRight: (
-        <Button title="Open In" color="#e91e63" onPress={() => this.showMapsOptions}></Button>
+        <Button title="Open Maps" color="#e91e63" onPress={() => params.openExternalMap()}></Button>
       ),
     }
   };
@@ -28,16 +30,20 @@ export default class VenueInformationScreen extends React.Component {
     super(props);
     this.state = {
       coordinate: new AnimatedRegion({
-        latitude: 46.005085,
-        longitude: 8.956363,
+        latitude: 46.005063,
+        longitude: 8.956442,
         latitudeDelta: 0.02,
         longitudeDelta: 0.02
       }),
     }
   }
 
-  showMapsOptions() {
-    // TODO: Show action sheet to open iOS Maps or Google Maps via URL scheme
+  componentWillMount() {
+    this.props.navigation.setParams({ openExternalMap: this._openExternalMap });
+  }
+
+  _openExternalMap = () => {
+    openMap({ latitude: 46.005063, longitude: 8.956442 });
   }
 
   render() {
@@ -46,15 +52,15 @@ export default class VenueInformationScreen extends React.Component {
       <ScrollView style={styles.viewContainer}>
         <View style={styles.informationContainer}>
           <View style={styles.speakerContainer}>
-            <Image style={styles.speakerImage} source={require('../images/venue.jpg')} />
             <Text style={styles.speakerName}>Palazzo dei Congressi Lugano</Text>
             <Text style={styles.speakerInformation}>Piazza Indipendenza 4</Text>
             <Text style={styles.speakerInformation}>6900 Lugano, Switzerland</Text>
+            <Image style={styles.speakerImage} source={require('../images/venue.jpg')} />
             <MapView
               style={styles.map}
               initialRegion={{
-              latitude: 46.005085,
-              longitude: 8.956363,
+              latitude: 46.005063,
+              longitude: 8.956442,
               latitudeDelta: 0.005,
               longitudeDelta: 0.005
               }}>
