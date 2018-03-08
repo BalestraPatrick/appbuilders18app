@@ -8,7 +8,7 @@
 			"biography": "Elif Boncuk has been working on mobile technologies especially on Android (since Eclair) and also IOS as a full-stack developer since the team formation in her current company. She is a Senior Software Specialist at Garanti Technology.\nHer passionate about Android is making apps more performant.\nElif is engaged with Google Developer Group and Women Techmakers Istanbul as organizer. She loves to speak at tech events and also organize and attend to them. She blogs in her native language at her blog(elifboncuk.com) about everything but mostly tech and also at Medium in English and only tech.\nIn addition, she loves to travel and she is a professional photographer but her favourite photography object is Android sculpture. You can find her taking photos with Androids at any time.",
 			"picture": "https://appbuilders.ch/images/speakers/elif.jpg",
 			"twitter": "elifbon_",
-			"speakerId": 0,
+			"speakerId": 50,
 			"isStory": false
 		},
 		{
@@ -420,10 +420,10 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "It'll be talked about how and why to build an Android Instant App. With Android Instant Apps, activities of your app can you can be launched without prior installation of the app.",
+			"title": "Building an Instant App",
 			"time": "10:40",
-			"speaker": 0,
+			"speaker": 50,
 			"room": "Secondary",
 			"day": "Monday 16th"
 		},
@@ -436,16 +436,16 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "One of the best things about being a developer these days is the awesome communities that are built up around the technologies we work with. Whether you’re an iOS or Android developer, there’s always blogs to read, open source to use and conferences to attend. But getting started contributing to the community yourself, and sharing parts of your own work, is not always easy (in fact, it can be quite scary!). In this talk, John will talk about his experiences (and share lots of tips!) of starting a blog, a podcast, working on open source and sharing work in other ways.",
+			"title": "Sharing",
 			"time": "11:40",
 			"speaker": 2,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "Testing an app on your perfect Pixel 2, under perfect network conditions works great, but you're getting reports of strange behavior from the wild and weird crashes that you can't reproduce. This talk will walk through some of the more complex options on the Developer Options screen in the Android OS and discuss how a developer can use them to debug problems in their application. Topics covered include: showing surface updates to help you find layout loops in your app, showing layout bounds to get your views pixel perfect, and aggressively killing processes and activities to ensure that your app performs well under stress. We'll cover these options and more as we dive deep into debugging apps with tools included on the device.",
+			"title": "Exploring Android Developer Options",
 			"time": "11:40",
 			"speaker": 14,
 			"room": "Secondary",
@@ -468,7 +468,7 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
+			"description": "",
 			"title": "🍝 Lunch Break",
 			"time": "13:00",
 			"speaker": null,
@@ -484,8 +484,8 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "Dependency Injection via frameworks like Dagger were present in most modern Android projects.\nBut then Kotlin happened. And since then a bunch of new libraries like Koin or Kodein appeared. Developers are even writing articles how to do DI without any framework.\nSome argue that those don’t even offer real dependency injection. Let’s look at that argument and compare the approaches.\nSo, is there something wrong with Dagger & co. in Kotlin? Are they obsolete? What are the alternatives? Let’s dive in.",
+			"title": "To Inject or not inject - Dependency injection in a Kotlin world",
 			"time": "14:30",
 			"speaker": 10,
 			"room": "Secondary",
@@ -532,24 +532,24 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "You can never really know just how secure your app is until you've done your best trying to break it.\nIn a world where building apps is similar to playing with Legos, the sturdiness and stability of our creations is mostly tested by others. Unfortunately, this places our users at risk of exposing their data into potentially harmful hands.\nLet's dive together and explore a series of practical, hands-on examples on how to explore an app, dismantle it and alter it in a way it wasn't intended to be.",
+			"title": "Break you app before someone else does",
 			"time": "17:00",
 			"speaker": 4,
 			"room": "Secondary",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "We as developers are spending 50% of our time either fixing bugs or making code work.\nIn this talk we’re going over breakpoints, commands, arguments and tools that will help you be more efficient and faster when debugging your Apps.",
+			"title": "Advanced Debugging Technics your senior hasn’t told you about",
 			"time": "17:40",
 			"speaker": 8,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "Ever since Google has announced full Kotlin support for writing Android apps at I/O 2017, the language has taken the world by storm and many companies have started adopting it as their language of choice for Android development. One of the new exciting features introduced by Kotlin to Android are extension functions. In this talk, you will get an overview on how to create and use extension functions in your Kotlin code as well as how it interops with existing Java code. You will then be taken on a tour across common areas of Android where extension functions work wonders in making your code more concise and less prone to bugs. Transitioning from Java to Kotlin can be tricky so we will go through some of the best practices when doing the migration. By the end of the session, you will have a better understanding on what Kotlin and extension functions can do for you as well as some of the pitfalls that need to be kept in mind.",
+			"title": "Kotlin Extension Functions and Beyond",
 			"time": "17:40",
 			"speaker": 24,
 			"room": "Secondary",
@@ -588,8 +588,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "🏴‍☠️ ARrrrg! 🏴‍☠️ This was my first reaction reading through the code of the sample provided by Google for it's new ARCore. After the first shock, I took a close look on how the app works, and what ARCore could do for my use case: Having my virtual collection of toy figures always with me ❤️. 🤖🤴 In this talk, I will talk about Augmented Reality, walk through the current demo app for ARCore on Android and purpose a different way of writing the app, extending it to be able to read different models at different times ... Expect a bit of Computer💻 Graphics🖼️ terminology🔬, source code watching🔭, Pirates🏴‍☠️, and more lame jokes😆.",
+			"title": "ARrrrg! The Google AR Android Demo Application deciphered",
 			"time": "10:40",
 			"speaker": 16,
 			"room": "Secondary",
@@ -612,8 +612,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "Flutter is a Framework developed and used by Google using Dart and a C++ engine to create Mobile Applications writing code only once. With Flutter you can write code only once and release it in the appstore and in the playstore. With Flutter you prototype, develop and release faster. This Talk will teach us the importance of Flutter, its most important features and finally how it works. The talk will end with an example of a simple application developed in Flutter.",
+			"title": "Want a faster mobile development? Flutter is the way!",
 			"time": "11:40",
 			"speaker": 12,
 			"room": "Secondary",
@@ -636,7 +636,7 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
+			"description": "",
 			"title": "🍝 Lunch Break",
 			"time": "13:00",
 			"speaker": null,
@@ -684,8 +684,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "In a post-truth world, software doesn’t have to be malicious to be dangerous. For example, in 2016, Facebook replaced its (human) news editors with an algorithm. Within days, conspiracy theories were at the top of the trending feeds, presented as 'news.'\n\nIn this talk, we'll discuss the ethical considerations of building software in a world that looks more like an unfolding episode of 'Black Mirror' with every passing week. No software exists in a vacuum. As developers, we have to understand the social implications of our software to help us make ethical decisions about what we get involved in, and how we build software in general. And we have to be brave and speak up when we think something could go wrong. And, if someone else speaks up, we must be willing to listen.\n\nIn short: we must be humble, we must be watchful, and we must ensure the decisions we make mean we can sleep at night.",
+			"title": "So You Can Sleep At Night - ethics in software engineering",
 			"time": "15:50",
 			"speaker": 23,
 			"room": "Secondary",
