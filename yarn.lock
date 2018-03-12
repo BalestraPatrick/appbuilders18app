@@ -4449,9 +4449,9 @@ react-devtools@^3.1.0:
     react-devtools-core "^3.1.0"
     update-notifier "^2.1.0"
 
-react-native-about-libraries@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-about-libraries/-/react-native-about-libraries-0.0.2.tgz#671a0c7f0acc2fef80808bbc9262c4aaf77d51f0"
+react-native-about-libraries@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-about-libraries/-/react-native-about-libraries-0.0.3.tgz#025b1f489e71d684f841a953b3c30259fbcb2f32"
 
 react-native-actionsheet@^2.3.0:
   version "2.3.0"
