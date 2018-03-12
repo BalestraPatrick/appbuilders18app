@@ -834,6 +834,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				958691C820D3AB8288E8DB1D /* [CP] Embed Pods Frameworks */,
 				A46C70714C34AC4FFBB205F5 /* [CP] Copy Pods Resources */,
+				AEA5413F20526ECD00BC5353 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1489,6 +1490,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppBuildersTests/Pods-AppBuildersTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AEA5413F20526ECD00BC5353 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 		BC87F211A1FC5C4AF11E1F29 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

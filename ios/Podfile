@@ -9,6 +9,9 @@ target 'AppBuilders' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
+  
+  pod 'Fabric', '~> 1.7.2'
+  pod 'Crashlytics', '~> 3.9.3'
 
   pod 'react-native-mail', :path => '../node_modules/react-native-mail'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
