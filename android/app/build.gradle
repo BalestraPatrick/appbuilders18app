@@ -137,16 +137,30 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-device-info')
-    compile(project(':react-native-firebase')) {
-        transitive = false
+    compile project(':react-native-mail')
+    compile(project(':react-native-maps')){
+        exclude group: 'com.google.android.gms'
+    }
+    compile(project(':react-native-device-info')) {
+        exclude group: 'com.google.android.gms'
+    }
+    compile ('com.google.android.gms:play-services-base:11.6.0') {
+        force = true
+    }
+    compile ('com.google.android.gms:play-services-maps:11.6.0') {
+        force = true
+    }
+    compile ('com.google.android.gms:play-services-gcm:11.6.0') { 
+        force = true 
     }
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-
-    compile "com.google.android.gms:play-services-base:11.6.0"
+    compile(project(':react-native-firebase')) {
+        transitive = false
+    }
+    compile "com.google.firebase:firebase-auth:11.6.0"
     compile "com.google.firebase:firebase-core:11.6.0"
     compile "com.google.firebase:firebase-analytics:11.6.0"
     compile "com.google.firebase:firebase-firestore:11.6.0"
