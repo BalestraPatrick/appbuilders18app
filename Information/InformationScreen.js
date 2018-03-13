@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 import Mailer from 'react-native-mail';
 import DeviceInfo from 'react-native-device-info';
-import SafariView from 'react-native-safari-view';
+import { handleExternalUrl } from '../components/Browser';
 
 export default class InformationScreen extends React.Component {
   static navigationOptions = {
@@ -80,19 +80,7 @@ export default class InformationScreen extends React.Component {
   }
 
   openLink(url) {
-    SafariView.isAvailable()
-    .then(SafariView.show({
-      url: url
-		}))
-		.catch((err) => {
-			Linking.canOpenURL(url).then(supported => {
-				if (!supported) {
-					console.log(`Can't handle url: ${url}`);
-				} else {
-					return Linking.openURL(url);
-				}
-			}).catch(err => console.error('An error occurred', err));
-    });
+    handleExternalUrl(url);
   }
 
   showCodeOfConduct = () => {

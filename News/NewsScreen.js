@@ -4,7 +4,7 @@ import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
 import ActionSheet from 'react-native-actionsheet';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import SafariView from 'react-native-safari-view';
+import { handleExternalUrl } from '../components/Browser';
 const ApiClient = require('../api/ApiClient');
 const client = new ApiClient();
 
@@ -107,9 +107,7 @@ export default class NewsScreen extends React.Component {
     } else if (i == 2) {
       url = 'https://twitter.com/hashtag/appbuilders18';
     }
-    SafariView.isAvailable().then(SafariView.show({
-      url: url
-    }));
+    handleExternalUrl(url);
   }
 
   render() {

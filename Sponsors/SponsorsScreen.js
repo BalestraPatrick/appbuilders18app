@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView, Toucha
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
-import SafariView from 'react-native-safari-view';
+import { handleExternalUrl } from '../components/Browser';
 
 class Sponsors extends React.Component {
 
@@ -29,19 +29,7 @@ class Sponsors extends React.Component {
   }
 
   openLink(url) {
-    SafariView.isAvailable()
-    .then(SafariView.show({
-      url: url
-		}))
-		.catch((err) => {
-			Linking.canOpenURL(url).then(supported => {
-				if (!supported) {
-					console.log(`Can't handle url: ${url}`);
-				} else {
-					return Linking.openURL(url);
-				}
-			}).catch(err => console.error('An error occurred', err));
-    });
+    handleExternalUrl(url);
   }
 
   _onPress(sponsor) {
