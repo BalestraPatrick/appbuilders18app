@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SectionList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-const ApiClient = require('../api/ApiClient');
+import ApiClient from '../api/ApiClient';
 const client = new ApiClient();
 
 export default class SpeakersScreen extends React.Component {

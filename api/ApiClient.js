@@ -1,6 +1,6 @@
 import firebase from 'react-native-firebase';
 
-module.exports = class ApiClient {
+export default class ApiClient {
 
   constructor() {
     this.firestore = firebase.firestore();
