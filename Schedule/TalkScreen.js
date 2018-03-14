@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, As
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
-import ApiClient from '../api/ApiClient';
 
 export default class TalkScreen extends React.Component {
   static navigationOptions = ({navigation}) => {

@@ -38,16 +38,15 @@ export default class ApiClient {
   }
 
   getTalks(groupedBy) {
-    return this.getSpeakers().then(result => {
-      return this.firestore.collection('talks').get();
-    })
-    .then(snap => {
-      return this.parseTalks(snap.docs.map(doc => doc.data()), groupedBy);
-    })
-    .catch(error => {
-      console.warn(`Error in retrieving talks: ${error}`);
-      return error;
-    });
+    return this.getSpeakers()
+      .then(result => this.firestore.collection('talks').get()) 
+      .then(snap => 
+        this.parseTalks(snap.docs.map(doc => doc.data()), groupedBy)
+      )
+      .catch(error => {
+        console.warn(`Error in retrieving talks: ${error}`);
+        return error;
+      });
   }
 
   getNews() {

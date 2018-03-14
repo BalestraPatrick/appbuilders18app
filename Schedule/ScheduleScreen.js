@@ -27,13 +27,12 @@ export default class ScheduleScreen extends Component {
       title: 'Schedule',
       tabBarLabel: 'Schedule',
       showIcon: true,
-      tabBarIcon: ({ tintColor }) => (
+      headerRight: params.button,
+      tabBarIcon: ({ tintColor }) => 
         <Image
           source={require('../images/schedule.png')}
           style={[styles.icon, { tintColor }]}
         />
-      ),
-      headerRight: params.button,
     };
   };
 
@@ -45,38 +44,29 @@ export default class ScheduleScreen extends Component {
 
   componentWillMount = () => {
     this.props.navigation.setParams({ 
-      scrollToNow: this._scrollToNow, 
       button: <NowButton onPress={this.scrollToNow} />
     });
-    client.getTalks('day').then(talks => {
-      this.setState({
-        isLoading: false,
-        sections: talks
-      });
-    });
+    this.reloadDataSource(
+      this.deriveAggregationFromIndex(this.state.selectedIndex)
+    );
   }
 
-  reloadDataSource = () => {
-    // Reload datasource.
-    const index = this.state.selectedIndex;
-    let groupedBy;
-    if (index == 0) {
-      groupedBy = 'day';
-      this.props.navigation.setParams({ button: <NowButton onPress={this.scrollToNow} /> });
-    } else if (index == 1) {
-      groupedBy = 'room';
-      this.props.navigation.setParams({ button: null });
-    } else if (index == 2) {
-      groupedBy = 'custom';
-      this.props.navigation.setParams({ button: <NowButton onPress={this.scrollToNow} /> });
-    }
+  reloadDataSource = groupedBy => 
     client.getTalks(groupedBy).then(talks => {
       this.setState({
         isLoading: false,
         sections: talks
       });
     });
-  }
+
+  // given a conference day and a time, finds closest talk to time
+  findClosestTalk = (conferenceDay, time) => {
+    const sum = (a, b) => a + b;
+
+    return this.state.sections[conferenceDay].data
+      .filter(talk => time.localeCompare(talk.time) == 1)
+      .reduce(sum, 0);
+  }  
 
   scrollToNow = () => {
     moment.locale('en');
@@ -85,46 +75,48 @@ export default class ScheduleScreen extends Component {
     const day = today.format('D') // 16th 
     const month = today.format('M') // 4 == April
     const year = today.format('YYYY') // 2018
-    
-    let index;
+
+    let conferenceDaySectionIndex;
+
     // It's Monday 16th April.
     if (day == 16 && month == 4 && year == 2018) {
-      index = 0;
+      conferenceDaySectionIndex = 0;
     } else if (day == 17 && month == 4 && year == 2018) {
       // It's Tuesday 17th April.
-      index = 1;
+      conferenceDaySectionIndex = 1;
     } else {
       // Not App Builders today, just return.
       return;
     }
-    // Find closest talk to current time.
-    let row = 0;
-    for (talk of this.state.sections[index].data) {
-      if (time.localeCompare(talk.time) == 1) {
-        row++;
-      }
-    }
+    
+    let talkIndex = this.findClosestTalk(conferenceDaySectionIndex, time);
+
     this.talksSectionListRef.scrollToLocation({
       animated: true,
-      sectionIndex: index,
-      itemIndex: row,
+      sectionIndex: conferenceDaySectionIndex,
+      itemIndex: talkIndex,
       viewOffset: 20
     });
   }
 
-  handleIndexChange = (index) => {
+  deriveAggregationFromIndex = index => [ 'day', 'room', 'custom' ][index];
+
+  handleIndexChange = index => {
+    const nowButton = <NowButton onPress={this.scrollToNow} />;
+    
+    let groupedBy = this.deriveAggregationFromIndex(index);
+    let button = groupedBy === 'day' || groupedBy === 'custom' ? nowButton : null;
+    this.props.navigation.setParams({ button });
+
     this.setState({
       selectedIndex: index,
       isLoading: true
-    }, () => this.reloadDataSource());
+    }, () => this.reloadDataSource(groupedBy));
   }
 
-  formatDate(string) {
-    return moment(string).format('h:mm A');
-  }
+  formatDate = dateString => moment(string).format('h:mm A');
 
-  render() {
-
+  render = () => {
     const { navigation } = this.props;
 
     return (
@@ -145,16 +137,25 @@ export default class ScheduleScreen extends Component {
           : <SectionList
               ref={ref => { this.talksSectionListRef = ref; }}
               sections={this.state.sections}
-              renderItem={({item}) => <TalkListItem talk={item} navigation={navigation} client={client} />}
-              renderSectionHeader={({section}) => (
-                [this.state.sections.length > 1 ? (
-                  <Text key="1" style={styles.sectionHeader}>{section.title}</Text>
-                ) : (
-                  <Text key="2" style={styles.emptyHeaderText}>
-                    Plan your conference by ❤️ the talks you wish to attend.
-                  </Text>
-              )])}
-              keyExtractor={(item, index) => index}
+              renderItem={({item}) => 
+                <TalkListItem 
+                  talk={item} 
+                  navigation={navigation} 
+                  client={client}
+                  onNavigate={() => this.reloadDataSource(
+                    this.deriveAggregationFromIndex(this.state.selectedIndex)
+                  )} 
+                />
+              }
+              renderSectionHeader={({section}) => 
+                [this.state.sections.length > 1 
+                  ? <Text key="1" style={styles.sectionHeader}>{section.title}</Text> 
+                  : <Text key="2" style={styles.emptyHeaderText}>
+                      Plan your conference by ❤️ the talks you wish to attend.
+                    </Text>
+                ]
+              }
+              keyExtractor={(item, index) => `${index}`}
             />}
       </View>
     );

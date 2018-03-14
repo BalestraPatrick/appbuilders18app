@@ -61,7 +61,7 @@ export default class NewsScreen extends React.Component {
     client.getNews().then(news => {
       this.setState({
         refreshing: false,
-        news: news
+        news
       });
     });
   }
@@ -73,13 +73,15 @@ export default class NewsScreen extends React.Component {
   }
 
   twitter(username) {
-    return `<!DOCTYPE HTML>
+    return 
+    `<!DOCTYPE HTML>
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
       </head>
       <body>
-        <a class="twitter-timeline" data-dnt="true" data-link-color="#e91e63" href="https://twitter.com/${username}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <a class="twitter-timeline" data-dnt="true" data-link-color="#e91e63" href="https://twitter.com/${username}?ref_src=twsrc%5Etfw"></a> 
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </body>
     </html>`
   }
@@ -140,7 +142,7 @@ export default class NewsScreen extends React.Component {
             }
             data={this.state.news}
             renderItem={({item}) => this.renderNews(item)}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => `${index}`}
           />
         ) : (
           <WebView style={styles.webView} source={{html: this.twitter('AppBuilders_CH')}}/>

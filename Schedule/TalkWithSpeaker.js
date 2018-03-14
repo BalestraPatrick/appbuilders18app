@@ -5,12 +5,11 @@ import { styles } from './styles';
 export class TalkWithSpeaker extends Component {
 
     navigateToTalk = talk => {
-      const { navigation, client } = this.props;
+      const { navigation, client, onNavigate } = this.props;
       return navigation.navigate('Talk', {
         talk,
         client,
-        // todo: figure out this property
-        reloadDataSource: this.reloadDataSource
+        reloadDataSource: onNavigate
       }); 
     }
   
