@@ -13,9 +13,7 @@ target 'AppBuilders' do
   pod 'Fabric', '~> 1.7.2'
   pod 'Crashlytics', '~> 3.9.3'
 
-  pod 'react-native-mail', :path => '../node_modules/react-native-mail'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'Core',
