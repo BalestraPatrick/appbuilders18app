@@ -1,11 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, AsyncStorage } from 'react-native';
-import { TabNavigator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
-import { StackNavigator } from 'react-navigation';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 
-export default class TalkScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
+export default class TalkScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
       title: `${navigation.state.params.talk.title}`,
@@ -20,7 +17,7 @@ export default class TalkScreen extends React.Component {
         />
       ),
       headerRight: (
-        <TouchableOpacity onPress={() => params.addToMyConference()} style={{marginRight: 10}}>
+        <TouchableOpacity onPress={params.addToMyConference} style={{marginRight: 10}}>
           <Image
             source={params.likeButton || require('../images/like.png')}
             style={[styles.icon, {tintColor: '#e91e63'}]}
@@ -30,47 +27,45 @@ export default class TalkScreen extends React.Component {
     }
   };
   
-  componentWillMount() {
-    this.loadInitialState();
-  }
-
-  loadInitialState() {
-    const params = this.props.navigation.state.params;
+  componentWillMount = () => {
+    const { navigation } = this.props;
+    const { params } = navigation.state;
+    
     params.client.getLikes().then(speakerIds => {
-      const talkId = params.talk.speaker.speakerId;
-      this.setState({ 
-        speakerIds: speakerIds,
-        speakerId: talkId
+      const { speakerId } = params.talk.speaker;
+      this.setState({ speakerIds, speakerId });
+      
+      navigation.setParams({
+        addToMyConference: this.addToMyConference, 
+        likeButton: speakerIds.indexOf(speakerId) !== -1 
+          ? require('../images/liked.png')
+          : require('../images/like.png')
       });
-      const { setParams } = this.props.navigation;
-      if (speakerIds.indexOf(talkId) != -1) {
-        this.props.navigation.setParams({ addToMyConference: this.addToMyConference, likeButton: require('../images/liked.png')});  
-      } else {
-        this.props.navigation.setParams({ addToMyConference: this.addToMyConference, likeButton: require('../images/like.png')});
-      }
     });
   }
 
   addToMyConference = () => {
-    const params = this.props.navigation.state.params;
-    const talkId = params.talk.speaker.speakerId;
-    const { setParams } = this.props.navigation;
+    const { navigation } = this.props;
+    const { params } = navigation.state;
+    const { speakerId } = params.talk.speaker;
     
-    if (this.state.speakerIds.indexOf(talkId) == -1) {
-      // Add new talk.
-      this.state.speakerIds.push(talkId);
-      setParams({ likeButton: require('../images/liked.png')});
+    if (this.state.speakerIds.indexOf(speakerId) === -1) {
+      this.state.speakerIds.push(speakerId);
+      navigation.setParams({ 
+        likeButton: require('../images/liked.png')
+      });
     } else {
-      // Remove talk.
-      this.state.speakerIds = this.state.speakerIds.filter(speakerId => speakerId != talkId);
-      setParams({ likeButton: require('../images/like.png')});
+      this.state.speakerIds = this.state.speakerIds.filter(id => id !== speakerId);
+      navigation.setParams({ 
+        likeButton: require('../images/like.png')
+      });
     }
     params.client.setLikes(this.state.speakerIds);
     params.reloadDataSource();
   }
 
   render() {
-    const talk = this.props.navigation.state.params.talk;
+    const { talk } = this.props.navigation.state.params;
     return (
       <ScrollView style={styles.viewContainer}>
         <View style={styles.informationContainer}>
