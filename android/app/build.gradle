@@ -137,6 +137,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-mail')
     compile(project(':react-native-maps')){
         exclude group: 'com.google.android.gms'
     }

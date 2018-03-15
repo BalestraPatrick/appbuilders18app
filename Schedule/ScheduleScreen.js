@@ -3,7 +3,6 @@ import { View, Text, SectionList, Button, Image, ActivityIndicator } from 'react
 import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-// import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 
 import { TalkListItem } from './TalkListItem';
 import { styles } from './styles';
