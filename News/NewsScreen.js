@@ -6,6 +6,7 @@ import ActionSheet from 'react-native-actionsheet';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import SafariView from 'react-native-safari-view';
 import ApiClient from '../api/ApiClient';
+import { handleExternalUrl } from '../components/Browser';
 const client = new ApiClient();
 
 export default class NewsScreen extends React.Component {
@@ -109,9 +110,7 @@ export default class NewsScreen extends React.Component {
     } else if (i == 2) {
       url = 'https://twitter.com/hashtag/appbuilders18';
     }
-    SafariView.isAvailable().then(SafariView.show({
-      url: url
-    }));
+    handleExternalUrl(url);
   }
 
   render() {

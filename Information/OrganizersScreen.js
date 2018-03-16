@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, SectionList, Image, TouchableOpacity, Linking } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
-import SafariView from 'react-native-safari-view';
+import { handleExternalUrl } from '../components/Browser';
 
 export default class VenueInformationScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -60,19 +60,7 @@ export default class VenueInformationScreen extends React.Component {
 
   openTwitter(item) {
 		const url = `https://twitter.com/${item.twitter}`;
-		SafariView.isAvailable()
-    .then(SafariView.show({
-      url: url
-		}))
-		.catch((err) => {
-			Linking.canOpenURL(url).then(supported => {
-				if (!supported) {
-					console.log(`Can't handle url: ${url}`);
-				} else {
-					return Linking.openURL(url);
-				}
-			}).catch(err => console.error('An error occurred', err));
-		});
+		handleExternalUrl(url);
   }
 
   renderSpeaker(item) {
