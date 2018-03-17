@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView, Linking } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Linking } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { TwitterButton } from './TwitterButton';
 
 export default class SpeakerDetailsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -27,17 +27,9 @@ export default class SpeakerDetailsScreen extends React.Component {
   componentWillMount = () => {
     const speaker = this.props.navigation.state.params;
     speaker.twitter &&
-    this.props.navigation.setParams({ 
-      button: <Ionicons 
-        color="#e91e63" 
-        name="logo-twitter" 
-        size={30}
-        style={styles.twitterIcon}
-        onPress={() => 
-          Linking.openURL(`https://twitter.com/${speaker.twitter}`)
-        } 
-      />
-    });
+      this.props.navigation.setParams({ 
+        button: <TwitterButton />
+      });
   }
 
   render = () => {
@@ -121,8 +113,5 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     margin: 10,
-  },
-  twitterIcon: {
-    paddingRight: 8
   }
 })
