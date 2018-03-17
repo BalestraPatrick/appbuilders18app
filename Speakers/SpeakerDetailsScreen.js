@@ -1,16 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView, WebView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ScrollView, Linking } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
 
 export default class SpeakerDetailsScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
     return {
-      title: `${navigation.state.params.firstName} ${navigation.state.params.lastName}`,
+      title: `${params.firstName} ${params.lastName}`,
       tabBarLabel: 'Speakers',
       showIcon: true,
       headerTintColor: '#e91e63',
       headerTitleStyle: { color: 'black' },
+      headerRight: params.button,
       tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../images/speaker.png')}
@@ -20,19 +22,21 @@ export default class SpeakerDetailsScreen extends React.Component {
     }
   };
 
-  twitter(username) {
-    return `<!DOCTYPE HTML>
-    <html>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-      </head>
-      <body>
-        <a class="twitter-timeline" data-dnt="true" data-link-color="#e91e63" href="https://twitter.com/${username}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </body>
-    </html>`
+  componentWillMount = () => {
+    const speaker = this.props.navigation.state.params;
+    speaker.twitter &&
+    this.props.navigation.setParams({ 
+      button: <Button 
+        color="#e91e63" 
+        title="twitter" 
+        onPress={() => 
+          Linking.openURL(`https://twitter.com/${speaker.twitter}`)
+        } 
+      />
+    });
   }
 
-  render() {
+  render = () => {
     const item = this.props.navigation.state.params;
     return (
       <ScrollView style={styles.viewContainer}>
@@ -45,7 +49,6 @@ export default class SpeakerDetailsScreen extends React.Component {
             </View>
           </View>
           <Text style={styles.speakerBiography}>{item.biography}</Text>
-          <WebView style={styles.webView} source={{html: this.twitter(item.twitter)}}/>
         </View>
       </ScrollView>
     );
