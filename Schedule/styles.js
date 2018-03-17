@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
      paddingTop: 0,
      backgroundColor: 'transparent'
     },
+    icon: {},
     talkMainContainer: {
       flex: 1,
       flexDirection: 'row',
