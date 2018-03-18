@@ -10,7 +10,7 @@ import { handleExternalUrl } from '../components/Browser';
 export default class InformationScreen extends React.Component {
   static navigationOptions = {
     title: 'Information',
-    tabBarLabel: 'Information',
+    tabBarLabel: 'Info',
     showIcon: true,
     tabBarIcon: ({ tintColor }) => (
       <Image

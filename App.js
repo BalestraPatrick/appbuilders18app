@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, Text, View, SafeAreaView, Button, Platform } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import ScheduleScreen from './Schedule/ScheduleScreen';
@@ -50,6 +51,29 @@ const Tabs = TabNavigator({
   swipeEnabled: false,
   tabBarOptions: {
     activeTintColor: '#e91e63',
+    ...Platform.select({
+      android: {
+        inactiveTintColor: 'grey',
+        pressColor: '#e91e63',
+        showIcon: true,
+        showLabel: true,
+        upperCaseLabel: false,
+        iconStyle: {
+          width: 35,
+          height: 30
+        },
+        labelStyle: {
+          fontSize: 11,
+        },
+        indicatorStyle: {
+          backgroundColor: 'white'
+        },
+        style: {
+          backgroundColor: 'white',
+        },
+      },
+      ios: {}
+    })
   }
 });
 
