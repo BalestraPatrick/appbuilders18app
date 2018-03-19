@@ -27,7 +27,7 @@
 			"lastName": "Sundell",
 			"jobTitle": "Creator of Swift by Sundell",
 			"company": "",
-			"biography": "",
+			"biography": "Programmer, speaker, podcaster, blogger, game dev 👨‍💻. Making @swiftbysundell and co-host of @stacktracepod.",
 			"picture": "https://appbuilders.ch/images/speakers/john.jpg",
 			"twitter": "johnsundell",
 			"speakerId": 2,
@@ -192,7 +192,7 @@
 			"lastName": "Kosmaczewski",
 			"jobTitle": "Writer, Software Developer and Trainer",
 			"company": "AKOSMA training",
-			"biography": "",
+			"biography": "Adrian Kosmaczewski is a writer, a software developer and a trainer. He is the author of five books about mobile software development, and has shipped mobile, web and desktop apps for iOS, Android, Mac OS X, Windows and Linux since 1996. Adrian holds a Master in Information Technology from the University of Liverpool.\nWhen not coding or teaching, Adrian likes to spend time with his wife Claudia, his cat Max and his Olivetti Lettera 22 typewriter.",
 			"picture": "https://appbuilders.ch/images/speakers/adrian.jpg",
 			"twitter": "akosma",
 			"speakerId": 17,
@@ -258,7 +258,7 @@
 			"lastName": "Rothwell",
 			"jobTitle": "Software Engineer",
 			"company": "Zuhlke Engineering",
-			"biography": "",
+			"biography": "Jonathan is a software engineer whose interests include mobile apps, engineering for accessibility, and the ethical implications of software in society. In his spare time, he enjoys travel, swimming, and photography. He is also a fan of science fiction and an amateur writer, and is currently working on a second novel.",
 			"picture": "https://appbuilders.ch/images/speakers/jonathan.jpg",
 			"twitter": "JoroDev",
 			"speakerId": 23,
@@ -269,7 +269,7 @@
 			"lastName": "How",
 			"jobTitle": "Android Developer",
 			"company": "MyDrive Solutions",
-			"biography": "",
+			"biography": "Hi, my name is Pascal and I am an Android developer at MyDrive Solutions in London. I have a background in mechatronics and recently made the switch to Android about 2 years ago. What drove me to mobile development was the ability to develop beautiful and engaging apps that people can hold in their hands. Throughout my journey so far, I learned a lot from the people around me and now I would like to give back to the community by sharing my experiences and learnings. Some of my recent activities include talking at a Google Developer Group London Meetup and Udacity Connect event.",
 			"picture": "https://appbuilders.ch/images/speakers/pascal.jpg",
 			"twitter": null,
 			"speakerId": 24,
@@ -291,7 +291,7 @@
 			"lastName": "Steinberger",
 			"jobTitle": "Founder and CEO",
 			"company": "PSPDFKit",
-			"biography": "",
+			"biography": "Peter founded and bootstrapped PSPDFKit in 2011, and has since expanded the company with the goal of providing the highest quality PDF framework for all platforms. While Peter is responsible for the day-to-day management of the team, he never misses the chance to go under PSPDFKit’s hood and get his hands dirty with writing and debugging code. Peter has worked with iOS since the inception of the iPhone, and is regularly invited to speak at conferences around the world. He also organizes Cocoaheads, a meetup for developers that work with Apple platforms. Prior to PSPDFKit, he worked as a Senior iOS Engineer at a startup in San Francisco and taught iOS and Mac development at his alma mater, the Vienna University of Technology.",
 			"picture": "https://appbuilders.ch/images/speakers/peter.jpg",
 			"twitter": "steipete",
 			"speakerId": 26,
@@ -315,7 +315,7 @@
 			"company": "Atipik",
 			"biography": "David Hart is the Lead iOS Developer at Atipik, a web & mobile development shop in Geneva. After beginning his career in the games industry, David reconverted to mobile development in 2009. Since then, he been crafting apps for iOS with a deep care for user experience and design. More recently, he’s shown a strong interest in Swift through participation in the Swift Evolution process and contributions to the Swift Package Manager.",
 			"picture": "https://appbuilders.ch/images/speakers/david.jpg",
-			"twitter": null,
+			"twitter": "dhartbit",
 			"speakerId": 28,
 			"isStory": false
 		},
@@ -384,7 +384,19 @@
 			"twitter": "tobiasdm",
 			"speakerId": 34,
 			"isStory": false
+		},
+		{
+			"firstName": "Beatrice",
+			"lastName": "Sigrist Charbonnier",
+			"jobTitle": "Executive Coaching",
+			"company": "Sigrist Coaching",
+			"biography": "Beatrice is skilled in creating stimulating, trusting, and insightful relationships with C-Suite senior executives to help them unleash and employ more of their leadership potential. Beatrice is a Certified Coach by the International Coach Federation (ICF), an Advanced Future Core Coach, and earned her PhD in business administration from the Universities of Basel and Geneva, Switzerland (entrepreneurship: opportunity recognition). She also holds a master’s degree in sociology from the École des Hautes Études en Sciences Sociales in Paris, France, and a master’s degree in economics from the University of Berne. In addition, Beatrice is committed to high coaching standards as a member of ICF (International Coach Federation see coachfederation.org), former vice-president of the board of ICF Switzerland, currently serving as their ambassador and as a board member of the Swiss Expert Network on Burnout (burnout.ch). Further, she is a member of the European Mentoring and Coaching Council (EMCC) and an affiliate member of the Institute of Coaching Professional Association at McLean Hospital, a Harvard Medical School affiliate.",
+			"picture": "https://appbuilders.ch/images/speakers/beatrice.jpg",
+			"twitter": null,
+			"speakerId": 35,
+			"isStory": true
 		}
+
 	],
 	"talks": [
 		{
@@ -407,7 +419,7 @@
 			"description": "TBD",
 			"title": "TBD",
 			"time": "10:10",
-			"speaker": null,
+			"speaker": 35,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
