@@ -396,7 +396,18 @@
 			"speakerId": 35,
 			"isStory": true
 		}
-
+		,
+		{
+			"firstName": "Stefan",
+			"lastName": "Aebischer",
+			"jobTitle": "Mobile Software Engineer",
+			"company": "SBB",
+			"biography": "Following his studies, Stefan began his career as a Mobile Software Engineer with an award-winning Swiss startup specializing in video surveillance and artificial intelligence. In his time off, Stefan, a passionate photographer, sought to teach his computer “what a good photograph looks like” so he could let the machine work for him and clean up his messy photo library. Unfortunately, algorithms and hardware weren’t that good at the time, so Stefan did it himself, the old time-intensive way. A couple of iPhone releases later, Stefan discovered Convolutional Neural Networks and got bitten by this game-changing technology. At SBB Stefan and his colleagues developed an app able to recognize most of the defect-images reported by travelers, gaining the immediate attention of top management. Will the machine finally replace Stefan?",
+			"picture": "https://appbuilders.ch/images/speakers/stefan.jpg",
+			"twitter": null,
+			"speakerId": 36,
+			"isStory": false
+		}
 	],
 	"talks": [
 		{
@@ -427,7 +438,7 @@
 			"description": "TBD",
 			"title": "TBD",
 			"time": "10:40",
-			"speaker": 9,
+			"speaker": 7,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
@@ -467,7 +478,7 @@
 			"description": "TBD",
 			"title": "TBD",
 			"time": "12:20",
-			"speaker": 7,
+			"speaker": 9,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
@@ -680,10 +691,10 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "SBB and its employees are committed to ensuring that 1.25 million travelers reach their destinations safely, punctually and comfortably every day. Travelers have the option of reporting defects and dirty rolling stock or train stations simply using the SBB Mobile app. In order for SBB to clearly identify and assign the issue for repair, travelers must specify information about the car, or ticket machine and station.\n\nIn this talk you will learn how we simplified the reporting process using deep learning. The goal is to enable travelers to identify and report defects using only their smartphone camera.\n\nThe initial neural network was trained on a base of 20k images. It continuous to learn from new images that arrive every day. The trained model is only 14 MB in size, runs locally on iOS and Android, and recognizes already more than 100 defects. This talk explains our technical approach and some best practices in Deep Learning for mobile devices.",
+			"title": "How to succeed in teaching neural networks",
 			"time": "15:10",
-			"speaker": null,
+			"speaker": 36,
 			"room": "Secondary",
 			"day": "Tuesday 17th"
 		},
