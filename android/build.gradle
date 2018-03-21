@@ -24,5 +24,11 @@ allprojects {
         maven {
             url 'https://maven.google.com'
         }
+        configurations.all {
+            resolutionStrategy {
+                force "com.google.android.gms:play-services-gcm:11.6.0"
+            }
+        }
+   
     }
 }
