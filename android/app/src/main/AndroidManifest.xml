@@ -12,9 +12,6 @@
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
         android:resource="@mipmap/ic_stat_ic_notification" />
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBdAbDTbMqtmu3JK_e54hxdx20misWp7J4" />
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -27,6 +24,11 @@
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme"
       android:launchMode="singleTop">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBdAbDTbMqtmu3JK_e54hxdx20misWp7J4" />
+
         <service
             android:name="io.invertase.firebase.messaging.MessagingService"
             android:enabled="true"
