@@ -59,11 +59,12 @@ export default class VenueInformationScreen extends React.Component {
             <MapView
               style={styles.map}
               initialRegion={{
-              latitude: 46.005063,
-              longitude: 8.956442,
-              latitudeDelta: 0.005,
-              longitudeDelta: 0.005
-              }}>
+                latitude: 46.005063,
+                longitude: 8.956442,
+                latitudeDelta: 0.005,
+                longitudeDelta: 0.005
+              }}
+            >
               <MapView.Marker.Animated ref={marker => { this.marker = marker }} coordinate={this.state.coordinate}/>
             </MapView>
         	</View>
