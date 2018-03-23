@@ -67,17 +67,6 @@
 			"isStory": false
 		},
 		{
-			"firstName": "Fernando",
-			"lastName": "Cejas",
-			"jobTitle": "Developers Advocate",
-			"company": "IBM",
-			"biography": "Fernando Cejas is a Software Engineer focused on Mobile Platforms. He has worked for several companies in a wide variety of projects in J2ME, C-Sharp, Java, Php, Ruby, Scala and Kotlin in different contexts: Social networks, NFC/RFID Hardware Solutions, E-Commerce and Music Platforms. \nHe has been involved on Android since its appearance and currently as part of his job he advocates developers by exploring new technologies, speaking at conferences and sharing knowledge.",
-			"picture": "https://appbuilders.ch/images/speakers/fernando.jpg",
-			"twitter": "fernando_cejas",
-			"speakerId": 6,
-			"isStory": false
-		},
-		{
 			"firstName": "Krzysztof",
 			"lastName": "Zabłocki",
 			"jobTitle": "Lead iOS developer",
@@ -214,7 +203,7 @@
 			"lastName": "Haskins",
 			"jobTitle": "Swift Compiler Contributor",
 			"company": "",
-			"biography": "",
+			"biography": "Harlan is a student at Rochester Institute of Technology. He co-founded LLVMSwift, an organization that aims to provide Swift engineers with compiler-oriented tools. He has spent the past two summers at Apple working on Swift, and plans to return full time on the Swift compiler team.",
 			"picture": "https://appbuilders.ch/images/speakers/harlan.jpg",
 			"twitter": "harlanhaskins",
 			"speakerId": 19,
@@ -225,7 +214,7 @@
 			"lastName": "Widmann",
 			"jobTitle": "Swift Compiler Contributor",
 			"company": "",
-			"biography": "",
+			"biography": "Robert is a student and former Mac developer turned programming language enthusiast. He is the co-founder of TypeLift, an open-source organization for publishing declarative libraries that take maximum advantage of Swift’s type system. He has spent his past two summers interning on the Swift team at Apple and is returning this year to work on the compiler frontend team.",
 			"picture": "https://appbuilders.ch/images/speakers/robert.jpg",
 			"twitter": "codafi_",
 			"speakerId": 20,
@@ -395,8 +384,7 @@
 			"twitter": null,
 			"speakerId": 35,
 			"isStory": true
-		}
-		,
+		},
 		{
 			"firstName": "Stefan",
 			"lastName": "Aebischer",
@@ -406,6 +394,17 @@
 			"picture": "https://appbuilders.ch/images/speakers/stefan.jpg",
 			"twitter": null,
 			"speakerId": 36,
+			"isStory": false
+		},
+		{
+			"firstName": "Reto",
+			"lastName": "Schiegg",
+			"jobTitle": "Data Scientist",
+			"company": "SBB",
+			"biography": "Reto is a data scientist at SBB/CFF/FFS where he works mainly on computer vision and image recognition. Due to the increase of computational power on smartphones, a part of Reto’s work focuses on developing computer vision algorithms on smartphones. Prior to joining the company, Reto had a part-time job as a software engineer while completing his master degree in computer science with specialization in data science at the University of Bern.",
+			"picture": "https://appbuilders.ch/images/speakers/reto.jpg",
+			"twitter": null,
+			"speakerId": 37,
 			"isStory": false
 		}
 	],
@@ -419,8 +418,8 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "A discussion about why App Stores have guidelines, how apps are reviewed, what reviewers are looking for, and what the common mistakes are. In this talk, I will give you tips and tricks necessary to avoid problems on the App Store and Google Play.",
+			"title": "Lessons Learned from the App Store",
 			"time": "09:30",
 			"speaker": 5,
 			"room": "Firebase Room",
@@ -435,8 +434,8 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "iOS Application Architecture",
+			"title": "Let’s talk about the things that really matter for maintainable architecture in iOS apps",
 			"time": "10:40",
 			"speaker": 7,
 			"room": "Firebase Room",
@@ -523,8 +522,8 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "How can I React native my Android mobile app?",
+			"title": "Are we sure React Native is just a shortcut for Javascript developers to develop mobile app? How a native mobile developer can use React Native in their apps. We will dive into the pitfall & benefit to develop mobile app with this new approach.",
 			"time": "14:30",
 			"speaker": 31,
 			"room": "Secondary",
@@ -678,7 +677,7 @@
 			"description": "TBD",
 			"title": "TBD",
 			"time": "14:30",
-			"speaker": 6,
+			"speaker": null,
 			"room": "Secondary",
 			"day": "Tuesday 17th"
 		},
