@@ -60,6 +60,7 @@ export default class ScheduleScreen extends React.Component {
       { id: 1, name: "Dreipol", image: require("../images/sponsors/dreipol.jpg"), url: "http://www.dreipol.ch/" },
       { id: 2, name: "Ubique", image: require("../images/sponsors/ubique.jpg"), url: "https://www.ubique.ch" },
       { id: 3, name: "SBB", image: require("../images/sponsors/sbb.jpg"), url: "https://www.sbb.ch" },
+      { id: 4, name: "SAP", image: require("../images/sponsors/sap.jpg"), url: "https://www.sap.com/apple" },
     ]
     const gold = [
       { id: 1, name: "Fondazione Agire", image: require("../images/sponsors/agire.jpg"), url: "http://www.agire.ch/" },
