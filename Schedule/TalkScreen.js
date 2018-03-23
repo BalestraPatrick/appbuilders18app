@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   speakerInformation: {
     paddingTop: 5,
-    fontSize: 18,
+    fontSize: 20,
   },
   speakerBiography: {
     margin: 10
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   talkTitle: {
     margin: 10,
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 22
   },
   speakerContainer: {
     flex: 1,

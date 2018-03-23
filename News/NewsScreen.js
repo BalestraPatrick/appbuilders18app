@@ -92,8 +92,8 @@ export default class NewsScreen extends React.Component {
       <View style={styles.newsContainer}>
           <View style={styles.newsInformation}>
             <Text style={styles.title}>{news.title}</Text>
-            <Text style={styles.newsDate}>{news.date}</Text>
           </View>
+          <Text style={styles.newsDate}>{news.date}</Text>
           <View style={styles.dividerLine}/>
           <View style={styles.arrowContainer}>
             <Text style={styles.content}>{news.content}</Text>
@@ -103,7 +103,6 @@ export default class NewsScreen extends React.Component {
   }
 
   handlePress(i) {
-    // TODO: find solution on Android and/or use Twitter default app
     if (i == 0) return;
     if (i == 1) {
       url = 'https://twitter.com/AppBuilders_CH';

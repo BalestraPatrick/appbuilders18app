@@ -54,12 +54,12 @@ export default class ScheduleScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const diamond = [
       { id: 1, name: "Firebase", image: require("../images/sponsors/firebase.jpg"), url: "http://www.firebase.com/" },
+      { id: 2, name: "Cryms", image: require("../images/sponsors/cryms.jpg"), url: "http://www.cryms.ch/" },
     ]
     const platinum = [
-      { id: 1, name: "Cryms", image: require("../images/sponsors/cryms.jpg"), url: "http://www.cryms.ch/" },
-      { id: 2, name: "Dreipol", image: require("../images/sponsors/dreipol.jpg"), url: "http://www.dreipol.ch/" },
-      { id: 3, name: "Ubique", image: require("../images/sponsors/ubique.jpg"), url: "https://www.ubique.ch" },
-      { id: 4, name: "SBB", image: require("../images/sponsors/sbb.jpg"), url: "https://www.sbb.ch" },
+      { id: 1, name: "Dreipol", image: require("../images/sponsors/dreipol.jpg"), url: "http://www.dreipol.ch/" },
+      { id: 2, name: "Ubique", image: require("../images/sponsors/ubique.jpg"), url: "https://www.ubique.ch" },
+      { id: 3, name: "SBB", image: require("../images/sponsors/sbb.jpg"), url: "https://www.sbb.ch" },
     ]
     const gold = [
       { id: 1, name: "Fondazione Agire", image: require("../images/sponsors/agire.jpg"), url: "http://www.agire.ch/" },

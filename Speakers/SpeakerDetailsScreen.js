@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   speakerInformation: {
     paddingTop: 5,
-    fontSize: 18,
+    fontSize: 20,
   },
   speakerBiography: {
     margin: 10
