@@ -392,7 +392,7 @@
 			"company": "SBB",
 			"biography": "Following his studies, Stefan began his career as a Mobile Software Engineer with an award-winning Swiss startup specializing in video surveillance and artificial intelligence. In his time off, Stefan, a passionate photographer, sought to teach his computer “what a good photograph looks like” so he could let the machine work for him and clean up his messy photo library. Unfortunately, algorithms and hardware weren’t that good at the time, so Stefan did it himself, the old time-intensive way. A couple of iPhone releases later, Stefan discovered Convolutional Neural Networks and got bitten by this game-changing technology. At SBB Stefan and his colleagues developed an app able to recognize most of the defect-images reported by travelers, gaining the immediate attention of top management. Will the machine finally replace Stefan?",
 			"picture": "https://appbuilders.ch/images/speakers/stefan.jpg",
-			"twitter": null,
+			"twitter": "aebischers",
 			"speakerId": 36,
 			"isStory": false
 		},
@@ -405,6 +405,17 @@
 			"picture": "https://appbuilders.ch/images/speakers/reto.jpg",
 			"twitter": null,
 			"speakerId": 37,
+			"isStory": false
+		},
+		{
+			"firstName": "Andreas",
+			"lastName": "Schlosser",
+			"jobTitle": "Chief Product Owner and Lead Architect",
+			"company": "SAP",
+			"biography": "Andreas has 10 years experience in mobile. He was the responsible architect of SAP Mobile Platform 3.0 and with the shift towards cloud then defined the architecture of SAP Cloud Platform Mobile Services. His main focus is on service consumability and APIs. Recently, Andreas took responsibility for the SAP Cloud Platform SDK for iOS as the Chief Product Owner. In this role, his attention is on building an easy to consume, modern Swift SDK that feels natural to iOS developers and makes it easy to develop enterprise mobile applications end-to-end – from mobile app to mobile services to the backend.",
+			"picture": "https://appbuilders.ch/images/speakers/andreas.jpg",
+			"twitter": null,
+			"speakerId": 38,
 			"isStory": false
 		}
 	],
@@ -434,8 +445,8 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "iOS Application Architecture",
-			"title": "Let’s talk about the things that really matter for maintainable architecture in iOS apps",
+			"description": "Let’s talk about the things that really matter for maintainable architecture in iOS apps",
+			"title": "iOS Application Architecture",
 			"time": "10:40",
 			"speaker": 7,
 			"room": "Firebase Room",
@@ -458,10 +469,10 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "One of the best things about being a developer these days is the awesome communities that are built up around the technologies we work with. Whether you’re an iOS or Android developer, there’s always blogs to read, open source to use and conferences to attend. But getting started contributing to the community yourself, and sharing parts of your own work, is not always easy (in fact, it can be quite scary!). In this talk, John will talk about his experiences (and share lots of tips!) of starting a blog, a podcast, working on open source and sharing work in other ways.",
-			"title": "Sharing",
+			"description": "Users demand the same awesome user experience they get from their consumer apps also when it comes to business apps. SAP offers the complete toolset to build great native iOS apps on top of SAP backends. We will give a quick overview of the whole stack from on-premise backends and cloud-based mobile services to the native Swift SDK, so that we can then dive deeper into the tools for mobile development. We will browse the rich set of enterprise UI controls, generate a working app with the SAP Cloud Platform SDK for iOS Assistant in a couple minutes and examine the code in a bit more detail.",
+			"title": "Native iOS Apps for the Enterprise with SAP",
 			"time": "11:40",
-			"speaker": 2,
+			"speaker": 38,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
@@ -514,17 +525,17 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "Swift is a landmark open-source project with hundreds of contributors and many many times more users. The Swift community is full of intelligent, insightful users ready to contribute their voice to the project. Join Harlan and Robert, two former interns on the Swift team, on a journey from checking out source to closing a Swift bug report, live! Along the way, learn about core concepts, tips, and best practices for effectively making your mark on the Swift project.",
+			"title": "Becoming An Effective Contributor to Swift",
 			"time": "15:10",
 			"speaker": 19,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "How can I React native my Android mobile app?",
-			"title": "Are we sure React Native is just a shortcut for Javascript developers to develop mobile app? How a native mobile developer can use React Native in their apps. We will dive into the pitfall & benefit to develop mobile app with this new approach.",
-			"time": "14:30",
+			"description": "Are we sure React Native is just a shortcut for Javascript developers to develop mobile app? How a native mobile developer can use React Native in their apps. We will dive into the pitfall & benefit to develop mobile app with this new approach.",
+			"title": "How can I React native my Android mobile app?",
+			"time": "15:10",
 			"speaker": 31,
 			"room": "Secondary",
 			"day": "Monday 16th"
@@ -540,7 +551,7 @@
 		{
 			"description": "",
 			"title": "☕️ Coffee Break",
-			"time": "16:20",
+			"time": "16:30",
 			"speaker": null,
 			"room": "Entrance Hall",
 			"day": "Monday 16th"
@@ -548,7 +559,7 @@
 		{
 			"description": "TBD",
 			"title": "TBD",
-			"time": "17:00",
+			"time": "16:50",
 			"speaker": 18,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
@@ -556,7 +567,7 @@
 		{
 			"description": "You can never really know just how secure your app is until you've done your best trying to break it.\nIn a world where building apps is similar to playing with Legos, the sturdiness and stability of our creations is mostly tested by others. Unfortunately, this places our users at risk of exposing their data into potentially harmful hands.\nLet's dive together and explore a series of practical, hands-on examples on how to explore an app, dismantle it and alter it in a way it wasn't intended to be.",
 			"title": "Break you app before someone else does",
-			"time": "17:00",
+			"time": "16:50",
 			"speaker": 4,
 			"room": "Secondary",
 			"day": "Monday 16th"
@@ -564,7 +575,7 @@
 		{
 			"description": "We as developers are spending 50% of our time either fixing bugs or making code work.\nIn this talk we’re going over breakpoints, commands, arguments and tools that will help you be more efficient and faster when debugging your Apps.",
 			"title": "Advanced Debugging Technics your senior hasn’t told you about",
-			"time": "17:40",
+			"time": "17:30",
 			"speaker": 8,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
@@ -572,17 +583,17 @@
 		{
 			"description": "Ever since Google has announced full Kotlin support for writing Android apps at I/O 2017, the language has taken the world by storm and many companies have started adopting it as their language of choice for Android development. One of the new exciting features introduced by Kotlin to Android are extension functions. In this talk, you will get an overview on how to create and use extension functions in your Kotlin code as well as how it interops with existing Java code. You will then be taken on a tour across common areas of Android where extension functions work wonders in making your code more concise and less prone to bugs. Transitioning from Java to Kotlin can be tricky so we will go through some of the best practices when doing the migration. By the end of the session, you will have a better understanding on what Kotlin and extension functions can do for you as well as some of the pitfalls that need to be kept in mind.",
 			"title": "Kotlin Extension Functions and Beyond",
-			"time": "17:40",
+			"time": "17:30",
 			"speaker": 24,
 			"room": "Secondary",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "🎉 End",
-			"time": "18:10",
-			"speaker": null,
-			"room": "Entrance Hall",
+			"description": "One of the best things about being a developer these days is the awesome communities that are built up around the technologies we work with. Whether you’re an iOS or Android developer, there’s always blogs to read, open source to use and conferences to attend. But getting started contributing to the community yourself, and sharing parts of your own work, is not always easy (in fact, it can be quite scary!). In this talk, John will talk about his experiences (and share lots of tips!) of starting a blog, a podcast, working on open source and sharing work in other ways.",
+			"title": "Sharing",
+			"time": "18:00",
+			"speaker": 2,
+			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
 		{
@@ -602,8 +613,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "The Swift generics system is extremely powerful. Protocols with associated types are everywhere and allow us to abstract over types with hidden type information. But they come with their complexity tax. Join David Hart in a journey through Swift's generics to better understand PATs, discover ways to overcome them, and how future Swift might resolve most of those issues.",
+			"title": "Swift Generics - Surviving Associated Types",
 			"time": "10:40",
 			"speaker": 28,
 			"room": "Firebase Room",
@@ -650,8 +661,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "The Google Assistant - your own Google, always ready to help - and its developer platform have been out for more than a year.\nBesides controlling your music, lights and asking about the weather, Assistant apps have been struggling to get into the users’ daily routine. It is time for you to be on the forefront of the revolution by adding some conversational features in your mobile app.\nIn this talk, we’re going to explain how you can implement a custom conversational feature in your existing Android or iOS app. Today, mobile apps are the medium people use to get their information and get things done, and is the perfect way of getting them used to this new world of conversational apps.\nGoogle is really pushing this new platform forward by adding a plethora of new features to the Google Assistant such as support for more languages, family-friendly apps, an improved app directory and making it available on a lot of devices, from your phone to cars and smart speakers.",
+			"title": "Adding conversational features to your mobile app",
 			"time": "12:20",
 			"speaker": 32,
 			"room": "Secondary",
@@ -682,8 +693,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "The year 2018 marks the the 10th anniversary of the iOS SDK. To celebrate the occasion, we will explore the the history of iOS, starting with the introduction of iPhone OS 2 in 2008 and working our way forward to the present day.",
+			"title": "iOS: 10 years in review",
 			"time": "15:10",
 			"speaker": 1,
 			"room": "Firebase Room",
@@ -724,7 +735,7 @@
 		{
 			"description": "TBD",
 			"title": "TBD",
-			"time": "17:00",
+			"time": "16:50",
 			"speaker": 29,
 			"room": "Firebase Room",
 			"day": "Tuesday 17th"
@@ -732,7 +743,7 @@
 		{
 			"description": "TBD",
 			"title": "TBD",
-			"time": "17:00",
+			"time": "16:50",
 			"speaker": 22,
 			"room": "Secondary",
 			"day": "Tuesday 17th"
@@ -740,7 +751,7 @@
 		{
 			"description": "TBD",
 			"title": "TBD",
-			"time": "17:40",
+			"time": "17:30",
 			"speaker": 17,
 			"room": "Firebase Room",
 			"day": "Tuesday 17th"
@@ -748,7 +759,7 @@
 		{
 			"description": "",
 			"title": "🏆 Closing Ceremony",
-			"time": "18:10",
+			"time": "18:00",
 			"speaker": null,
 			"room": "Firebase Room",
 			"day": "Tuesday 17th"
