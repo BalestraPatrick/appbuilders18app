@@ -414,7 +414,7 @@
 			"company": "SAP",
 			"biography": "Andreas has 10 years experience in mobile. He was the responsible architect of SAP Mobile Platform 3.0 and with the shift towards cloud then defined the architecture of SAP Cloud Platform Mobile Services. His main focus is on service consumability and APIs. Recently, Andreas took responsibility for the SAP Cloud Platform SDK for iOS as the Chief Product Owner. In this role, his attention is on building an easy to consume, modern Swift SDK that feels natural to iOS developers and makes it easy to develop enterprise mobile applications end-to-end – from mobile app to mobile services to the backend.",
 			"picture": "https://appbuilders.ch/images/speakers/andreas.jpg",
-			"twitter": null,
+			"twitter": "schlossermobile",
 			"speakerId": 38,
 			"isStory": false
 		}
@@ -597,8 +597,8 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "At Firebase, we make app development easy. We will show you how we make products mobile-friendly and what it takes to turn an existing backend service into a fully-blown product that's ready for iOS, Android and the Web.\nFollow along as we take a service that fulfills trillions of queries per month and add the features that you need on a daily basis.",
+			"title": "Why We Build Products",
 			"time": "09:30",
 			"speaker": 15,
 			"room": "Firebase Room",
