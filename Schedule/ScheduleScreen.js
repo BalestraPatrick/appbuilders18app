@@ -56,6 +56,8 @@ export default class ScheduleScreen extends Component {
         isLoading: false,
         sections: talks
       });
+    }).catch(error => {
+      console.log(error);
     });
 
   // given a conference day and a time, finds closest talk to time

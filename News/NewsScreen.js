@@ -48,6 +48,8 @@ export default class NewsScreen extends React.Component {
         isLoading: false,
         news: news
       });
+    }).catch(error => {
+      console.log(error);
     });
   }
 

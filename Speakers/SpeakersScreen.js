@@ -31,6 +31,8 @@ export default class SpeakersScreen extends React.Component {
         isLoading: false,
         sections: speakers
       });
+    }).catch(error => {
+      console.log(error);
     });
   }
 
