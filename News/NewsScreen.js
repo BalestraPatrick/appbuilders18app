@@ -73,16 +73,14 @@ export default class NewsScreen extends React.Component {
     });
   }
 
-  twitter(username) {
-    return 
-    `<!DOCTYPE HTML>
+  twitter() {
+    return `<!DOCTYPE HTML>
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
       </head>
       <body>
-        <a class="twitter-timeline" data-dnt="true" data-link-color="#e91e63" href="https://twitter.com/${username}?ref_src=twsrc%5Etfw"></a> 
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <a class="twitter-timeline" href="https://twitter.com/appbuilders_ch?ref_src=twsrc%5Etfw">Tweets by appbuilders_ch</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </body>
     </html>`
   }
@@ -143,7 +141,7 @@ export default class NewsScreen extends React.Component {
             keyExtractor={(item, index) => `${index}`}
           />
         ) : (
-          <WebView style={styles.webView} source={{html: this.twitter('AppBuilders_CH')}}/>
+          <WebView style={styles.webView} source={{html: this.twitter()}}/>
         )
       }
       <ActionSheet
