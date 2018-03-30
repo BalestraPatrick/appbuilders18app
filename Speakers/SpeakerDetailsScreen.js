@@ -28,7 +28,7 @@ export default class SpeakerDetailsScreen extends React.Component {
     const speaker = this.props.navigation.state.params;
     speaker.twitter &&
       this.props.navigation.setParams({ 
-        button: <TwitterButton />
+        button: <TwitterButton speaker={speaker.twitter}/>
       });
   }
 
