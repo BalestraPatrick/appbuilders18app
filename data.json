@@ -232,17 +232,6 @@
 			"isStory": false
 		},
 		{
-			"firstName": "Gautier",
-			"lastName": "Mechling",
-			"jobTitle": "Android Craftsman",
-			"company": "",
-			"biography": "Gautier is an Android Developer by day, and a Google Developer Expert for IoT.",
-			"picture": "https://appbuilders.ch/images/speakers/gautier.jpg",
-			"twitter": "Nilhcem",
-			"speakerId": 22,
-			"isStory": false
-		},
-		{
 			"firstName": "Jonathan",
 			"lastName": "Rothwell",
 			"jobTitle": "Software Engineer",
@@ -359,7 +348,7 @@
 			"company": "Freelance",
 			"biography": "Technical leader and Scrum Master on mobile and IoT projects (Android Wear), I have a background as a mobile developer. I am passionate by mobile innovation and user experience. I help clients to express there needs and transform their ideas into reality. Since a year, I am interested in voice interface, with the help of the Google Assistant platform.",
 			"picture": "https://appbuilders.ch/images/speakers/jade.jpg",
-			"twitter": "elainedbatista",
+			"twitter": "jadechabaro",
 			"speakerId": 33,
 			"isStory": false
 		},
@@ -653,8 +642,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "In a perfect world many of us would choose to have a 100 % Swift codebase, while others would choose to have a 100 % Objective-C codebase - both of which are perfectly fine. Would you choose to maintain a mixed codebase? Probably not, but that‘s the reality many of us live in. Legacy Code, don‘t we all love it?\nWhile Mix & Match between Swift and Objective-C works great out of the box, there are many rough edges. Let‘s explore some tricks we can use to bring first-class APIs to both worlds - restoring our sanity, and harmony between both languages.",
+			"title": "Swift & Objective-C: The most adventurous mashup since „Avengers: Infinity War“",
 			"time": "12:20",
 			"speaker": 13,
 			"room": "Firebase Room",
@@ -744,7 +733,7 @@
 			"description": "TBD",
 			"title": "TBD",
 			"time": "16:50",
-			"speaker": 22,
+			"speaker": null,
 			"room": "Secondary",
 			"day": "Tuesday 17th"
 		},
