@@ -111,13 +111,13 @@
 			"isStory": false
 		},
 		{
-			"firstName": "Daniel",
-			"lastName": "Steinberg",
-			"jobTitle": "iOS Developer",
+			"firstName": "Paul",
+			"lastName": "Hudson",
+			"jobTitle": "Creator of Hacking with Swift",
 			"company": "",
-			"biography": "Daniel is the author of more than a dozen books including the best selling book [A Swift Kickstart](http://editorscut.com/Book/SwiftKickstart/bookPage.html). He has written apps for the iPhone and the iPad since the SDKs first appeared and has written programs for the Mac all the way back to System 7. Daniel presents iPhone, Cocoa, and Swift training and consults through his company [Dim Sum Thinking](https://www.dimsumthinking.com/). When he's not coding or talking about coding for the Mac, the iPhone, and the iPad he's probably cooking or hanging out with friends.",
-			"picture": "https://appbuilders.ch/images/speakers/daniel.jpg",
-			"twitter": "dimsumthinking",
+			"biography": "Paul is the author of Hacking with Swift, Pro Swift, Hacking with macOS, Server-Side Swift, Swift Coding Challenges, Practical iOS 10, and Objective-C for Swift Developers. Suffice it to say, he quite likes Swift. And coffee. (But mostly Swift.) (And coffee.)",
+			"picture": "https://appbuilders.ch/images/speakers/paul.jpg",
+			"twitter": "twostraws",
 			"speakerId": 11,
 			"isStory": false
 		},
@@ -446,7 +446,7 @@
 			"title": "Building an Instant App",
 			"time": "10:40",
 			"speaker": 50,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Monday 16th"
 		},
 		{
@@ -470,23 +470,23 @@
 			"title": "Exploring Android Developer Options",
 			"time": "11:40",
 			"speaker": 14,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "There are many different ways to build your apps, and each approach brings its own set of challenges and pitfalls. Recent years have seen the emergence of patterns like MVVM, VIPER, FRP, and ReactNative that attempt to solve some of MVC’s problems.\nIn this talk, we’ll explore a simple modification to MVC that will allow you to easily avoid its most common problems without having to fight the frameworks.",
+			"title": "A Better MVC",
 			"time": "12:20",
 			"speaker": 9,
 			"room": "Firebase Room",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "With RxJava you can write some complex, multithreaded code - and testing it is easy!",
+			"title": "Testing and RxJava 2",
 			"time": "12:20",
 			"speaker": 21,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Monday 16th"
 		},
 		{
@@ -510,11 +510,11 @@
 			"title": "To Inject or not inject - Dependency injection in a Kotlin world",
 			"time": "14:30",
 			"speaker": 10,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Monday 16th"
 		},
 		{
-			"description": "Swift is a landmark open-source project with hundreds of contributors and many many times more users. The Swift community is full of intelligent, insightful users ready to contribute their voice to the project. Join Harlan and Robert, two former interns on the Swift team, on a journey from checking out source to closing a Swift bug report, live! Along the way, learn about core concepts, tips, and best practices for effectively making your mark on the Swift project.",
+			"description": "Swift is a landmark open-source project with hundreds of contributors and many many times more users. The Swift community is full of intelligent, insightful users ready to contribute their voice to the project. Join Harlan and Robert, two former interns on the Swift team, on a journey from checking out source to closing a Swift bug report, live! Along the way, learn about core concepts, tips, and best practices for effectively making your mark on the Swift project.\nThis talk is going to be presented by Harlan Haskins and Robert Widmann.",
 			"title": "Becoming An Effective Contributor to Swift",
 			"time": "15:10",
 			"speaker": 19,
@@ -526,7 +526,7 @@
 			"title": "How can I React native my Android mobile app?",
 			"time": "15:10",
 			"speaker": 31,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Monday 16th"
 		},
 		{
@@ -546,8 +546,8 @@
 			"day": "Monday 16th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "Did you ever think your awesome new app would get you into a legal pickle? Vikram tells a true story with bits of code and some crucial advice on how to survive such an ordeal.",
+			"title": "The Little App that Got Us into Big Trouble",
 			"time": "16:50",
 			"speaker": 18,
 			"room": "Firebase Room",
@@ -558,7 +558,7 @@
 			"title": "Break you app before someone else does",
 			"time": "16:50",
 			"speaker": 4,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Monday 16th"
 		},
 		{
@@ -574,7 +574,7 @@
 			"title": "Kotlin Extension Functions and Beyond",
 			"time": "17:30",
 			"speaker": 24,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Monday 16th"
 		},
 		{
@@ -583,6 +583,14 @@
 			"time": "18:00",
 			"speaker": 2,
 			"room": "Firebase Room",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "",
+			"title": "🎉 Conference Party",
+			"time": "19:00",
+			"speaker": null,
+			"room": "Seven - The Lounge",
 			"day": "Monday 16th"
 		},
 		{
@@ -603,7 +611,7 @@
 		},
 		{
 			"description": "The Swift generics system is extremely powerful. Protocols with associated types are everywhere and allow us to abstract over types with hidden type information. But they come with their complexity tax. Join David Hart in a journey through Swift's generics to better understand PATs, discover ways to overcome them, and how future Swift might resolve most of those issues.",
-			"title": "Swift Generics - Surviving Associated Types",
+			"title": "Swift Generics - The 5 Stages of PATs",
 			"time": "10:40",
 			"speaker": 28,
 			"room": "Firebase Room",
@@ -614,7 +622,7 @@
 			"title": "ARrrrg! The Google AR Android Demo Application deciphered",
 			"time": "10:40",
 			"speaker": 16,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Tuesday 17th"
 		},
 		{
@@ -626,8 +634,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "It's easy to rely on tools and techniques you've always used, but if you do that you're missing out on all the great new features Apple has introduced in newer iOS versions. In this session you'll learn how to take advantage of features introduced in iOS 9, 10, and 11 to make your apps look and work better with little effort.",
+			"title": "How to Build a Modern iOS App: Wide color, 3D Touch, Spotlight, and more",
 			"time": "11:40",
 			"speaker": 11,
 			"room": "Firebase Room",
@@ -638,7 +646,7 @@
 			"title": "Want a faster mobile development? Flutter is the way!",
 			"time": "11:40",
 			"speaker": 12,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Tuesday 17th"
 		},
 		{
@@ -654,7 +662,7 @@
 			"title": "Adding conversational features to your mobile app",
 			"time": "12:20",
 			"speaker": 32,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Tuesday 17th"
 		},
 		{
@@ -666,19 +674,19 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "When is it valuable to consider using machine learning to help solve your iOS app’s problems? We will go through criteria to evaluate that, practical use cases of incorporating ML models on device, and how to bootstrap the training process for creating machine learning models that will run on device (iOS).\nUsing techniques such as transfer learning and taking inspiration from the plentiful resources from industry and academia, you can get started doing this now. In this talk, we will go through some examples across different domains, and, yes, we will move beyond the dog / cat classifier.",
+			"title": "Bootstrapping the Machine Learning Training Process",
 			"time": "14:30",
 			"speaker": 30,
 			"room": "Firebase Room",
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "In a post-truth world, software doesn’t have to be malicious to be dangerous. For example, in 2016, Facebook replaced its (human) news editors with an algorithm. Within days, conspiracy theories were at the top of the trending feeds, presented as 'news.'\n\nIn this talk, we'll discuss the ethical considerations of building software in a world that looks more like an unfolding episode of 'Black Mirror' with every passing week. No software exists in a vacuum. As developers, we have to understand the social implications of our software to help us make ethical decisions about what we get involved in, and how we build software in general. And we have to be brave and speak up when we think something could go wrong. And, if someone else speaks up, we must be willing to listen.\n\nIn short: we must be humble, we must be watchful, and we must ensure the decisions we make mean we can sleep at night.",
+			"title": "So You Can Sleep At Night - ethics in software engineering",
 			"time": "14:30",
-			"speaker": null,
-			"room": "Secondary",
+			"speaker": 23,
+			"room": "Cryms Room",
 			"day": "Tuesday 17th"
 		},
 		{
@@ -690,11 +698,11 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "SBB and its employees are committed to ensuring that 1.25 million travelers reach their destinations safely, punctually and comfortably every day. Travelers have the option of reporting defects and dirty rolling stock or train stations simply using the SBB Mobile app. In order for SBB to clearly identify and assign the issue for repair, travelers must specify information about the car, or ticket machine and station.\n\nIn this talk you will learn how we simplified the reporting process using deep learning. The goal is to enable travelers to identify and report defects using only their smartphone camera.\n\nThe initial neural network was trained on a base of 20k images. It continuous to learn from new images that arrive every day. The trained model is only 14 MB in size, runs locally on iOS and Android, and recognizes already more than 100 defects. This talk explains our technical approach and some best practices in Deep Learning for mobile devices.",
+			"description": "SBB and its employees are committed to ensuring that 1.25 million travelers reach their destinations safely, punctually and comfortably every day. Travelers have the option of reporting defects and dirty rolling stock or train stations simply using the SBB Mobile app. In order for SBB to clearly identify and assign the issue for repair, travelers must specify information about the car, or ticket machine and station.\n\nIn this talk you will learn how we simplified the reporting process using deep learning. The goal is to enable travelers to identify and report defects using only their smartphone camera.\n\nThe initial neural network was trained on a base of 20k images. It continuous to learn from new images that arrive every day. The trained model is only 14 MB in size, runs locally on iOS and Android, and recognizes already more than 100 defects. This talk explains our technical approach and some best practices in Deep Learning for mobile devices.\nThis talk is going to be presented by Reto Schiegg and Stefan Aebischer.",
 			"title": "How to succeed in teaching neural networks",
 			"time": "15:10",
 			"speaker": 36,
-			"room": "Secondary",
+			"room": "Cryms Room",
 			"day": "Tuesday 17th"
 		},
 		{
@@ -706,11 +714,11 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "In a post-truth world, software doesn’t have to be malicious to be dangerous. For example, in 2016, Facebook replaced its (human) news editors with an algorithm. Within days, conspiracy theories were at the top of the trending feeds, presented as 'news.'\n\nIn this talk, we'll discuss the ethical considerations of building software in a world that looks more like an unfolding episode of 'Black Mirror' with every passing week. No software exists in a vacuum. As developers, we have to understand the social implications of our software to help us make ethical decisions about what we get involved in, and how we build software in general. And we have to be brave and speak up when we think something could go wrong. And, if someone else speaks up, we must be willing to listen.\n\nIn short: we must be humble, we must be watchful, and we must ensure the decisions we make mean we can sleep at night.",
-			"title": "So You Can Sleep At Night - ethics in software engineering",
+			"description": "In this talk we will explore how to use CoreML to drive an RC car around a track. We will explain the challenges we had during the project, about the hardware and the software. We will go into details in how we reached the final status and discuss the pro and cons of CoreML.",
+			"title": "Can CoreML drive an (RC) car?",
 			"time": "15:50",
-			"speaker": 23,
-			"room": "Secondary",
+			"speaker": 29,
+			"room": "Cryms Room",
 			"day": "Tuesday 17th"
 		},
 		{
@@ -725,22 +733,6 @@
 			"description": "TBD",
 			"title": "TBD",
 			"time": "16:50",
-			"speaker": 29,
-			"room": "Firebase Room",
-			"day": "Tuesday 17th"
-		},
-		{
-			"description": "TBD",
-			"title": "TBD",
-			"time": "16:50",
-			"speaker": null,
-			"room": "Secondary",
-			"day": "Tuesday 17th"
-		},
-		{
-			"description": "TBD",
-			"title": "TBD",
-			"time": "17:30",
 			"speaker": 17,
 			"room": "Firebase Room",
 			"day": "Tuesday 17th"
@@ -748,13 +740,18 @@
 		{
 			"description": "",
 			"title": "🏆 Closing Ceremony",
-			"time": "18:00",
+			"time": "17:30",
 			"speaker": null,
 			"room": "Firebase Room",
 			"day": "Tuesday 17th"
 		}
 	],
 	"news": [
+		{
+			"title": "Only 1 week to go!",
+			"content": "We are very excited to welcome you in Lugano next week. We have just published a last-minute change to the schedule which should now be complete.",
+			"date": "8th April 2018"
+		},
 		{
 			"title": "Welcome to App Builders 2018!",
 			"content": "Only a few months left until the third edition of App Builders is going to take place in Lugano, Switzerland.",
