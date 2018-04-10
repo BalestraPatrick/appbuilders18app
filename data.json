@@ -563,7 +563,7 @@
 		},
 		{
 			"description": "We as developers are spending 50% of our time either fixing bugs or making code work.\nIn this talk we’re going over breakpoints, commands, arguments and tools that will help you be more efficient and faster when debugging your Apps.",
-			"title": "Advanced Debugging Technics your senior hasn’t told you about",
+			"title": "Advanced Debugging Techniques your senior hasn’t told you about",
 			"time": "17:30",
 			"speaker": 8,
 			"room": "Firebase Room",
