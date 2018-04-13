@@ -406,6 +406,94 @@
 			"twitter": "schlossermobile",
 			"speakerId": 38,
 			"isStory": false
+		},
+		{
+			"firstName": "Florent",
+			"lastName": "Pillet",
+			"jobTitle": "Architect, Mobile Software Expert",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/florent.jpg",
+			"twitter": "fpillet",
+			"speakerId": 100,
+			"isStory": false
+		},
+		{
+			"firstName": "Aleksandar",
+			"lastName": "Vacić",
+			"jobTitle": "",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/aleksandar.jpg",
+			"twitter": "radiantav",
+			"speakerId": 101,
+			"isStory": false
+		},
+		{
+			"firstName": "Seán",
+			"lastName": "Labastille",
+			"jobTitle": "Software Engineer",
+			"company": "FAIRTIQ",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/sean.jpg",
+			"twitter": "flufffel",
+			"speakerId": 102,
+			"isStory": false
+		},
+		{
+			"firstName": "Marin",
+			"lastName": "Todorov",
+			"jobTitle": "Independent iOS developer, book author, trainer, and speaker",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/marin.jpg",
+			"twitter": "icanzilb",
+			"speakerId": 103,
+			"isStory": false
+		},
+		{
+			"firstName": "Dorin",
+			"lastName": "Danciu",
+			"jobTitle": "Cocoa Junkie",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/dorin.jpg",
+			"twitter": "dorindanciu",
+			"speakerId": 104,
+			"isStory": false
+		},
+		{
+			"firstName": "Nataliya",
+			"lastName": "Patsovska",
+			"jobTitle": "Tech Lead",
+			"company": "iZettle",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/nataliya.jpg",
+			"twitter": "nataliya_bg",
+			"speakerId": 105,
+			"isStory": false
+		},
+		{
+			"firstName": "Michele",
+			"lastName": "Marchetti",
+			"jobTitle": "Mobile Architect",
+			"company": "Appway",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/michele.jpg",
+			"twitter": "MarchettiMikele",
+			"speakerId": 106,
+			"isStory": false
+		},
+		{
+			"firstName": "Josselin",
+			"lastName": "Pello",
+			"jobTitle": "",
+			"company": "",
+			"biography": "",
+			"picture": "https://appbuilders.ch/images/speakers/josselin.jpg",
+			"twitter": "JosselinPello",
+			"speakerId": 107,
+			"isStory": false
 		}
 	],
 	"talks": [
@@ -494,6 +582,38 @@
 			"title": "🍝 Lunch Break",
 			"time": "13:00",
 			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "",
+			"title": "⚡️ Talk - Apple MDM and Kiosk applications",
+			"time": "14:00",
+			"speaker": 100,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "",
+			"title": "⚡️ Talk - One nice trick to solve way too many Auto Layout issues",
+			"time": "14:05",
+			"speaker": 101,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "",
+			"title": "⚡️ Talk - Using the Swift Package Manager on iOS: How to build a MongoDB client with MongoKitten",
+			"time": "14:10",
+			"speaker": 102,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		},
+		{
+			"description": "",
+			"title": "⚡️ Talk - TBA",
+			"time": "14:15",
+			"speaker": 103,
 			"room": "Entrance Hall",
 			"day": "Monday 16th"
 		},
@@ -670,6 +790,38 @@
 			"title": "🍝 Lunch Break",
 			"time": "13:00",
 			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "",
+			"title": "⚡️ Talk - Jumpstarting localization using AppleGlot4",
+			"time": "14:00",
+			"speaker": 104,
+			"room": "Entrance Hall",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "",
+			"title": "⚡️ Talk - Tasty cakes have complicated recipes",
+			"time": "14:05",
+			"speaker": 105,
+			"room": "Entrance Hall",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "",
+			"title": "⚡️ Talk - Review your own code with Android Lint",
+			"time": "14:10",
+			"speaker": 106,
+			"room": "Entrance Hall",
+			"day": "Tuesday 17th"
+		},
+		{
+			"description": "In the last 6 months, I went from knowing nothing about Android to having a highly-rated and profitable app with 20k+ downloads on the Play Store. During this joyful time, I found that building your own app and putting it on the store is actually the most fulfilling and complete way to learn mobile development. Seeing your app users' positive feedback keeps you motivated, seeing their crashes makes you care much more about memory management, and getting requests from them keeps you busy learning new things.",
+			"title": "⚡️ Talk - Building your app, or being built by it?",
+			"time": "14:15",
+			"speaker": 107,
 			"room": "Entrance Hall",
 			"day": "Tuesday 17th"
 		},
