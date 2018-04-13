@@ -588,7 +588,7 @@
 		{
 			"description": "",
 			"title": "🎉 Conference Party",
-			"time": "19:00",
+			"time": "19:30 - 24:00",
 			"speaker": null,
 			"room": "Seven - The Lounge",
 			"day": "Monday 16th"
@@ -730,8 +730,8 @@
 			"day": "Tuesday 17th"
 		},
 		{
-			"description": "TBD",
-			"title": "TBD",
+			"description": "After having explored personal growth in 'Being a Developer at 40', and professional change in 'The Developer Guide to the Galaxy', Adrian will delve into the third installment of his manifesto for software developers, hoping for us to tackle the larger problems of our modern society with passion, hope and, yes, some dark humor, too.",
+			"title": "A Quest for a Better World",
 			"time": "16:50",
 			"speaker": 17,
 			"room": "Firebase Room",
