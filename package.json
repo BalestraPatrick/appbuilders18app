@@ -11,8 +11,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "rndebugger-open"
+    "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
     "preset": "jest-expo"
@@ -25,7 +24,6 @@
     "react-native-about-libraries": "^0.0.3",
     "react-native-actionsheet": "^2.3.0",
     "react-native-cli": "^2.0.1",
-    "react-native-debugger-open": "^0.3.16",
     "react-native-device-info": "^0.13.0",
     "react-native-elements": "^0.19.0",
     "react-native-firebase": "^3.2.0",

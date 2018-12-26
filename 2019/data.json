@@ -1,0 +1,65 @@
+{
+	"speakers": [
+		{
+			"firstName": "Rebecca",
+			"lastName": "Franks",
+			"jobTitle": "Android Engineer",
+			"company": "Over",
+			"biography": "Rebecca is an Android Engineer and Google Developer Expert for Android. She works remotely for Over which is a mobile design application. She loves travelling and contributing to the development community in any way she can, whether it is with blog posts, talks or videos, she loves to share her learnings with others.",
+			"picture": "http://appbuilders.ch/img/speakers/rebecca.jpg",
+			"twitter": "riggaroo",
+			"speakerId": 1,
+			"isStory": false
+		},
+		{
+			"firstName": "Soroush",
+			"lastName": "Khanlou",
+			"jobTitle": "Freelancer",
+			"company": "",
+			"biography": "Soroush Khanlou is a New York-based iOS consultant. He’s written apps for the New Yorker, David Chang’s Ando, Rap Genius, and non-profits like Urban Archive. He blogs about programming at khanlou.com, mostly making fun of view controllers. In his free time, he runs, bakes bread and pastries, and collects suitcases.",
+			"picture": "http://appbuilders.ch/img/speakers/soroush.jpg",
+			"twitter": "khanlou",
+			"speakerId": 2,
+			"isStory": false
+		},
+		{
+			"firstName": "Cecilia",
+			"lastName": "Humlelu",
+			"jobTitle": "iOS developer",
+			"company": "Spotify",
+			"biography": "I am Cecilia, developer, crafter for chiyogami and miniatures, and maybe something more. Something you might have not guessed about me: I was once a lift truck operator.",
+			"picture": "http://appbuilders.ch/img/speakers/cecilia.jpg",
+			"twitter": "CeciliaHumlelu",
+			"speakerId": 3,
+			"isStory": false
+		},
+		{
+			"firstName": "Marcin",
+			"lastName": "Krzyzanowski",
+			"jobTitle": "iOS developer",
+			"company": "PSPDFKit",
+			"biography": "Aspiring and swift junior intern manager. iOS wrangler. Building developer tools for fun and for profit. Critical OSS contributor. Encryptor and Decryptor in one person. Always learning. Always open to new ideas.",
+			"picture": "http://appbuilders.ch/img/speakers/marcin.jpg",
+			"twitter": "krzyzanowskim",
+			"speakerId": 4,
+			"isStory": false
+		}
+	],
+	"talks": [
+		{
+			"description": "",
+			"title": "🎫 Registration",
+			"time": "08:30",
+			"speaker": null,
+			"room": "Entrance Hall",
+			"day": "Monday 16th"
+		}
+	],
+	"news": [
+		{
+			"title": "Let's party!",
+			"content": "After dinner, feel free to drop by between 7:30pm and 12:00am for a free drink with us at Seven Lugano. Just enter the bar and show your badge to access our reserved first floor.",
+			"date": "16th April 2018"
+		}
+	]
+}
