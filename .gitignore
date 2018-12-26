@@ -52,6 +52,9 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 
+# Bundle artifact
+*.jsbundle
+
 constants.js
 service-key.json
 ios/GoogleService-Info.plist

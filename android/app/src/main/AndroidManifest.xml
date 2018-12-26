@@ -1,7 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.appbuilders"
-    android:versionCode="1"
-    android:versionName="1.0">
+    package="com.appbuilders">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
@@ -12,10 +10,6 @@
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
         android:resource="@mipmap/ic_stat_ic_notification" />
-
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
 
     <application
       android:name=".MainApplication"
