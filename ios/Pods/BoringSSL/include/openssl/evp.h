@@ -225,10 +225,6 @@ OPENSSL_EXPORT EVP_PKEY *EVP_parse_private_key(CBS *cbs);
 // success and zero on error.
 OPENSSL_EXPORT int EVP_marshal_private_key(CBB *cbb, const EVP_PKEY *key);
 
-// EVP_set_buggy_rsa_parser configures whether |RSA_parse_public_key_buggy| is
-// used by |EVP_parse_public_key|. By default, it is not used.
-OPENSSL_EXPORT void EVP_set_buggy_rsa_parser(int buggy);
-
 
 // Signing
 
@@ -761,7 +757,7 @@ OPENSSL_EXPORT void EVP_MD_do_all_sorted(void (*callback)(const EVP_MD *cipher,
 // RSA keys are serialized as a DER-encoded RSAPublicKey (RFC 3447) structure.
 // EC keys are serialized as a DER-encoded ECPrivateKey (RFC 5915) structure.
 //
-// Use |RSA_marshal_private_key| or |EC_marshal_private_key| instead.
+// Use |RSA_marshal_private_key| or |EC_KEY_marshal_private_key| instead.
 OPENSSL_EXPORT int i2d_PrivateKey(const EVP_PKEY *key, uint8_t **outp);
 
 // i2d_PublicKey marshals a public key from |key| to a type-specific format.

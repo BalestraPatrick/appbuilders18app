@@ -196,8 +196,8 @@ typedef struct {
     data frame, Int valued, milliseconds. */
 #define GRPC_ARG_HTTP2_MIN_SENT_PING_INTERVAL_WITHOUT_DATA_MS \
   "grpc.http2.min_time_between_pings_ms"
-/** Minimum allowed time between receiving successive ping frames without
-    sending any data frame. Int valued, milliseconds */
+/** Minimum allowed time between a server receiving successive ping frames
+   without sending any data frame. Int valued, milliseconds */
 #define GRPC_ARG_HTTP2_MIN_RECV_PING_INTERVAL_WITHOUT_DATA_MS \
   "grpc.http2.min_ping_interval_without_data_ms"
 /** Channel arg to override the http2 :scheme header */
@@ -258,6 +258,10 @@ typedef struct {
     secure channel is an SSL channel). If this parameter is specified and the
     underlying is not an SSL channel, it will just be ignored. */
 #define GRPC_SSL_TARGET_NAME_OVERRIDE_ARG "grpc.ssl_target_name_override"
+/** If non-zero, a pointer to a session cache (a pointer of type
+    grpc_ssl_session_cache*). (use grpc_ssl_session_cache_arg_vtable() to fetch
+    an appropriate pointer arg vtable) */
+#define GRPC_SSL_SESSION_CACHE_ARG "grpc.ssl_session_cache"
 /** Maximum metadata size, in bytes. Note this limit applies to the max sum of
     all metadata key-value entries in a batch of headers. */
 #define GRPC_ARG_MAX_METADATA_SIZE "grpc.max_metadata_size"
@@ -281,6 +285,14 @@ typedef struct {
 #define GRPC_ARG_SOCKET_MUTATOR "grpc.socket_mutator"
 /** The grpc_socket_factory instance to create and bind sockets. A pointer. */
 #define GRPC_ARG_SOCKET_FACTORY "grpc.socket_factory"
+/** The maximum number of trace events to keep in the tracer for each channel or
+ * subchannel. The default is 10. If set to 0, channel tracing is disabled. */
+#define GRPC_ARG_MAX_CHANNEL_TRACE_EVENTS_PER_NODE \
+  "grpc.max_channel_trace_events_per_node"
+/** If non-zero, gRPC library will track stats and information at at per channel
+ * level. Disabling channelz naturally disables channel tracing. The default
+ * is for channelz to be disabled. */
+#define GRPC_ARG_ENABLE_CHANNELZ "grpc.enable_channelz"
 /** If non-zero, Cronet transport will coalesce packets to fewer frames
  * when possible. */
 #define GRPC_ARG_USE_CRONET_PACKET_COALESCING \
@@ -314,6 +326,22 @@ typedef struct {
     Defaults to "blend". In the current implementation "blend" is equivalent to
     "latency". */
 #define GRPC_ARG_OPTIMIZATION_TARGET "grpc.optimization_target"
+/** If set to zero, disables retry behavior. Otherwise, transparent retries
+    are enabled for all RPCs, and configurable retries are enabled when they
+    are configured via the service config. For details, see:
+      https://github.com/grpc/proposal/blob/master/A6-client-retries.md
+ */
+#define GRPC_ARG_ENABLE_RETRIES "grpc.enable_retries"
+/** Per-RPC retry buffer size, in bytes. Default is 256 KiB. */
+#define GRPC_ARG_PER_RPC_RETRY_BUFFER_SIZE "grpc.per_rpc_retry_buffer_size"
+/** Channel arg that carries the bridged objective c object for custom metrics
+ * logging filter. */
+#define GRPC_ARG_MOBILE_LOG_CONTEXT "grpc.mobile_log_context"
+/** If non-zero, client authority filter is disabled for the channel */
+#define GRPC_ARG_DISABLE_CLIENT_AUTHORITY_FILTER \
+  "grpc.disable_client_authority_filter"
+/** If set to zero, disables use of http proxies. Enabled by default. */
+#define GRPC_ARG_ENABLE_HTTP_PROXY "grpc.enable_http_proxy"
 /** \} */
 
 /** Result of a grpc call. If the caller satisfies the prerequisites of a
@@ -551,6 +579,8 @@ typedef struct grpc_op {
     } recv_initial_metadata;
     /** ownership of the byte buffer is moved to the caller; the caller must
         call grpc_byte_buffer_destroy on this value, or reuse it in a future op.
+        The returned byte buffer will be NULL if trailing metadata was
+        received instead of a message.
        */
     struct grpc_op_recv_message {
       struct grpc_byte_buffer** recv_message;

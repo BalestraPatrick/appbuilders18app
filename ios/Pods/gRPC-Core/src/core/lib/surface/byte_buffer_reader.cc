@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include <grpc/byte_buffer_reader.h>
 #include <string.h>
 
@@ -27,6 +29,7 @@
 #include <grpc/support/log.h>
 
 #include "src/core/lib/compression/message_compress.h"
+#include "src/core/lib/iomgr/exec_ctx.h"
 #include "src/core/lib/slice/slice_internal.h"
 
 static int is_compressed(grpc_byte_buffer* buffer) {

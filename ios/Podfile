@@ -27,7 +27,6 @@ target 'AppBuilders' do
     'RCTNetwork',
     'RCTWebSocket',
     'DevSupport',
-    'BatchedBridge',
     'RCTGeolocation',
   ]
 

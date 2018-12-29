@@ -82,6 +82,9 @@
 // Rabin-Miller
 #define DSS_prime_checks 50
 
+static int dsa_sign_setup(const DSA *dsa, BN_CTX *ctx_in, BIGNUM **out_kinv,
+                          BIGNUM **out_r);
+
 static CRYPTO_EX_DATA_CLASS g_ex_data_class = CRYPTO_EX_DATA_CLASS_INIT;
 
 DSA *DSA_new(void) {
@@ -117,8 +120,6 @@ void DSA_free(DSA *dsa) {
   BN_clear_free(dsa->g);
   BN_clear_free(dsa->pub_key);
   BN_clear_free(dsa->priv_key);
-  BN_clear_free(dsa->kinv);
-  BN_clear_free(dsa->r);
   BN_MONT_CTX_free(dsa->method_mont_p);
   BN_MONT_CTX_free(dsa->method_mont_q);
   CRYPTO_MUTEX_cleanup(&dsa->method_mont_lock);
@@ -237,11 +238,6 @@ int DSA_generate_parameters_ex(DSA *dsa, unsigned bits, const uint8_t *seed_in,
     goto err;
   }
   BN_CTX_start(ctx);
-
-  mont = BN_MONT_CTX_new();
-  if (mont == NULL) {
-    goto err;
-  }
 
   r0 = BN_CTX_get(ctx);
   g = BN_CTX_get(ctx);
@@ -400,8 +396,9 @@ end:
     goto err;
   }
 
-  if (!BN_set_word(test, h) ||
-      !BN_MONT_CTX_set(mont, p, ctx)) {
+  mont = BN_MONT_CTX_new_for_modulus(p, ctx);
+  if (mont == NULL ||
+      !BN_set_word(test, h)) {
     goto err;
   }
 
@@ -544,14 +541,13 @@ void DSA_SIG_free(DSA_SIG *sig) {
   OPENSSL_free(sig);
 }
 
-DSA_SIG *DSA_do_sign(const uint8_t *digest, size_t digest_len, DSA *dsa) {
+DSA_SIG *DSA_do_sign(const uint8_t *digest, size_t digest_len, const DSA *dsa) {
   BIGNUM *kinv = NULL, *r = NULL, *s = NULL;
   BIGNUM m;
   BIGNUM xr;
   BN_CTX *ctx = NULL;
   int reason = ERR_R_BN_LIB;
   DSA_SIG *ret = NULL;
-  int noredo = 0;
 
   BN_init(&m);
   BN_init(&xr);
@@ -571,16 +567,8 @@ DSA_SIG *DSA_do_sign(const uint8_t *digest, size_t digest_len, DSA *dsa) {
   }
 
 redo:
-  if (dsa->kinv == NULL || dsa->r == NULL) {
-    if (!DSA_sign_setup(dsa, ctx, &kinv, &r)) {
-      goto err;
-    }
-  } else {
-    kinv = dsa->kinv;
-    dsa->kinv = NULL;
-    r = dsa->r;
-    dsa->r = NULL;
-    noredo = 1;
+  if (!dsa_sign_setup(dsa, ctx, &kinv, &r)) {
+    goto err;
   }
 
   if (digest_len > BN_num_bytes(dsa->q)) {
@@ -613,10 +601,6 @@ redo:
   // Redo if r or s is zero as required by FIPS 186-3: this is
   // very unlikely.
   if (BN_is_zero(r) || BN_is_zero(s)) {
-    if (noredo) {
-      reason = DSA_R_NEED_NEW_SETUP_VALUES;
-      goto err;
-    }
     goto redo;
   }
   ret = DSA_SIG_new();
@@ -758,7 +742,7 @@ err:
 }
 
 int DSA_sign(int type, const uint8_t *digest, size_t digest_len,
-             uint8_t *out_sig, unsigned int *out_siglen, DSA *dsa) {
+             uint8_t *out_sig, unsigned int *out_siglen, const DSA *dsa) {
   DSA_SIG *s;
 
   s = DSA_do_sign(digest, digest_len, dsa);
@@ -848,10 +832,10 @@ int DSA_size(const DSA *dsa) {
   return ret;
 }
 
-int DSA_sign_setup(const DSA *dsa, BN_CTX *ctx_in, BIGNUM **out_kinv,
-                   BIGNUM **out_r) {
+static int dsa_sign_setup(const DSA *dsa, BN_CTX *ctx_in, BIGNUM **out_kinv,
+                          BIGNUM **out_r) {
   BN_CTX *ctx;
-  BIGNUM k, kq, *kinv = NULL, *r = NULL;
+  BIGNUM k, *kinv = NULL, *r = NULL;
   int ret = 0;
 
   if (!dsa->p || !dsa->q || !dsa->g) {
@@ -860,7 +844,6 @@ int DSA_sign_setup(const DSA *dsa, BN_CTX *ctx_in, BIGNUM **out_kinv,
   }
 
   BN_init(&k);
-  BN_init(&kq);
 
   ctx = ctx_in;
   if (ctx == NULL) {
@@ -871,54 +854,22 @@ int DSA_sign_setup(const DSA *dsa, BN_CTX *ctx_in, BIGNUM **out_kinv,
   }
 
   r = BN_new();
-  if (r == NULL) {
-    goto err;
-  }
-
-  // Get random k
-  if (!BN_rand_range_ex(&k, 1, dsa->q)) {
-    goto err;
-  }
-
-  if (!BN_MONT_CTX_set_locked((BN_MONT_CTX **)&dsa->method_mont_p,
+  kinv = BN_new();
+  if (r == NULL || kinv == NULL ||
+      // Get random k
+      !BN_rand_range_ex(&k, 1, dsa->q) ||
+      !BN_MONT_CTX_set_locked((BN_MONT_CTX **)&dsa->method_mont_p,
                               (CRYPTO_MUTEX *)&dsa->method_mont_lock, dsa->p,
                               ctx) ||
       !BN_MONT_CTX_set_locked((BN_MONT_CTX **)&dsa->method_mont_q,
                               (CRYPTO_MUTEX *)&dsa->method_mont_lock, dsa->q,
-                              ctx)) {
-    goto err;
-  }
-
-  // Compute r = (g^k mod p) mod q
-  if (!BN_copy(&kq, &k)) {
-    goto err;
-  }
-
-  // We do not want timing information to leak the length of k,
-  // so we compute g^k using an equivalent exponent of fixed length.
-  //
-  // (This is a kludge that we need because the BN_mod_exp_mont()
-  // does not let us specify the desired timing behaviour.)
-
-  if (!BN_add(&kq, &kq, dsa->q)) {
-    goto err;
-  }
-  if (BN_num_bits(&kq) <= BN_num_bits(dsa->q) && !BN_add(&kq, &kq, dsa->q)) {
-    goto err;
-  }
-
-  if (!BN_mod_exp_mont_consttime(r, dsa->g, &kq, dsa->p, ctx,
-                                 dsa->method_mont_p)) {
-    goto err;
-  }
-  if (!BN_mod(r, r, dsa->q, ctx)) {
-    goto err;
-  }
-
-  // Compute part of 's = inv(k) (m + xr) mod q' using Fermat's Little
-  // Theorem.
-  kinv = BN_new();
-  if (kinv == NULL ||
+                              ctx) ||
+      // Compute r = (g^k mod p) mod q
+      !BN_mod_exp_mont_consttime(r, dsa->g, &k, dsa->p, ctx,
+                                 dsa->method_mont_p) ||
+      !BN_mod(r, r, dsa->q, ctx) ||
+      // Compute part of 's = inv(k) (m + xr) mod q' using Fermat's Little
+      // Theorem.
       !bn_mod_inverse_prime(kinv, &k, dsa->q, ctx, dsa->method_mont_q)) {
     goto err;
   }
@@ -942,7 +893,6 @@ err:
     BN_CTX_free(ctx);
   }
   BN_clear_free(&k);
-  BN_clear_free(&kq);
   BN_clear_free(kinv);
   return ret;
 }

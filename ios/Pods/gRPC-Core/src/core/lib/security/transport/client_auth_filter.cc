@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/lib/security/transport/auth_filters.h"
 
 #include <string.h>
@@ -40,11 +42,10 @@
 namespace {
 /* We can have a per-call credentials. */
 struct call_data {
+  gpr_arena* arena;
   grpc_call_stack* owning_call;
   grpc_call_combiner* call_combiner;
   grpc_call_credentials* creds;
-  bool have_host;
-  bool have_method;
   grpc_slice host;
   grpc_slice method;
   /* pollset{_set} bound to this call; if we need to make external
@@ -276,10 +277,12 @@ static void auth_start_transport_stream_op_batch(
   channel_data* chand = static_cast<channel_data*>(elem->channel_data);
 
   if (!batch->cancel_stream) {
+    // TODO(hcaseyal): move this to init_call_elem once issue #15927 is
+    // resolved.
     GPR_ASSERT(batch->payload->context != nullptr);
     if (batch->payload->context[GRPC_CONTEXT_SECURITY].value == nullptr) {
       batch->payload->context[GRPC_CONTEXT_SECURITY].value =
-          grpc_client_security_context_create();
+          grpc_client_security_context_create(calld->arena);
       batch->payload->context[GRPC_CONTEXT_SECURITY].destroy =
           grpc_client_security_context_destroy;
     }
@@ -292,27 +295,15 @@ static void auth_start_transport_stream_op_batch(
   }
 
   if (batch->send_initial_metadata) {
-    for (grpc_linked_mdelem* l = batch->payload->send_initial_metadata
-                                     .send_initial_metadata->list.head;
-         l != nullptr; l = l->next) {
-      grpc_mdelem md = l->md;
-      /* Pointer comparison is OK for md_elems created from the same context.
-       */
-      if (grpc_slice_eq(GRPC_MDKEY(md), GRPC_MDSTR_AUTHORITY)) {
-        if (calld->have_host) {
-          grpc_slice_unref_internal(calld->host);
-        }
-        calld->host = grpc_slice_ref_internal(GRPC_MDVALUE(md));
-        calld->have_host = true;
-      } else if (grpc_slice_eq(GRPC_MDKEY(md), GRPC_MDSTR_PATH)) {
-        if (calld->have_method) {
-          grpc_slice_unref_internal(calld->method);
-        }
-        calld->method = grpc_slice_ref_internal(GRPC_MDVALUE(md));
-        calld->have_method = true;
-      }
+    grpc_metadata_batch* metadata =
+        batch->payload->send_initial_metadata.send_initial_metadata;
+    if (metadata->idx.named.path != nullptr) {
+      calld->method =
+          grpc_slice_ref_internal(GRPC_MDVALUE(metadata->idx.named.path->md));
     }
-    if (calld->have_host) {
+    if (metadata->idx.named.authority != nullptr) {
+      calld->host = grpc_slice_ref_internal(
+          GRPC_MDVALUE(metadata->idx.named.authority->md));
       batch->handler_private.extra_arg = elem;
       GRPC_CALL_STACK_REF(calld->owning_call, "check_call_host");
       GRPC_CLOSURE_INIT(&calld->async_result_closure, on_host_checked, batch,
@@ -347,8 +338,11 @@ static void auth_start_transport_stream_op_batch(
 static grpc_error* init_call_elem(grpc_call_element* elem,
                                   const grpc_call_element_args* args) {
   call_data* calld = static_cast<call_data*>(elem->call_data);
+  calld->arena = args->arena;
   calld->owning_call = args->call_stack;
   calld->call_combiner = args->call_combiner;
+  calld->host = grpc_empty_slice();
+  calld->method = grpc_empty_slice();
   return GRPC_ERROR_NONE;
 }
 
@@ -365,12 +359,8 @@ static void destroy_call_elem(grpc_call_element* elem,
   call_data* calld = static_cast<call_data*>(elem->call_data);
   grpc_credentials_mdelem_array_destroy(&calld->md_array);
   grpc_call_credentials_unref(calld->creds);
-  if (calld->have_host) {
-    grpc_slice_unref_internal(calld->host);
-  }
-  if (calld->have_method) {
-    grpc_slice_unref_internal(calld->method);
-  }
+  grpc_slice_unref_internal(calld->host);
+  grpc_slice_unref_internal(calld->method);
   grpc_auth_metadata_context_reset(&calld->auth_md_context);
 }
 

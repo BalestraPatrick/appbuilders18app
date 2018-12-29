@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/ext/filters/client_channel/http_connect_handshaker.h"
 
 #include <string.h>
@@ -324,7 +326,7 @@ static void http_connect_handshaker_do_handshake(
 
 static const grpc_handshaker_vtable http_connect_handshaker_vtable = {
     http_connect_handshaker_destroy, http_connect_handshaker_shutdown,
-    http_connect_handshaker_do_handshake};
+    http_connect_handshaker_do_handshake, "http_connect"};
 
 static grpc_handshaker* grpc_http_connect_handshaker_create() {
   http_connect_handshaker* handshaker =

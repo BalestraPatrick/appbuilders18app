@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include <string.h>
 
 #include <grpc/support/alloc.h>
@@ -64,7 +66,7 @@ void grpc_lb_addresses_set_address(grpc_lb_addresses* addresses, size_t index,
   if (user_data != nullptr) GPR_ASSERT(addresses->user_data_vtable != nullptr);
   grpc_lb_address* target = &addresses->addresses[index];
   memcpy(target->address.addr, address, address_len);
-  target->address.len = address_len;
+  target->address.len = static_cast<socklen_t>(address_len);
   target->is_balancer = is_balancer;
   target->balancer_name = gpr_strdup(balancer_name);
   target->user_data = user_data;
@@ -150,4 +152,12 @@ grpc_lb_addresses* grpc_lb_addresses_find_channel_arg(
   if (lb_addresses_arg == nullptr || lb_addresses_arg->type != GRPC_ARG_POINTER)
     return nullptr;
   return static_cast<grpc_lb_addresses*>(lb_addresses_arg->value.pointer.p);
+}
+
+bool grpc_lb_addresses_contains_balancer_address(
+    const grpc_lb_addresses& addresses) {
+  for (size_t i = 0; i < addresses.num_addresses; ++i) {
+    if (addresses.addresses[i].is_balancer) return true;
+  }
+  return false;
 }

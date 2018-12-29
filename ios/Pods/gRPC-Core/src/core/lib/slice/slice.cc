@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/lib/slice/slice_internal.h"
 
 #include <grpc/slice.h>
@@ -67,8 +69,12 @@ grpc_slice grpc_slice_ref(grpc_slice slice) {
 
 /* Public API */
 void grpc_slice_unref(grpc_slice slice) {
-  grpc_core::ExecCtx exec_ctx;
-  grpc_slice_unref_internal(slice);
+  if (grpc_core::ExecCtx::Get() == nullptr) {
+    grpc_core::ExecCtx exec_ctx;
+    grpc_slice_unref_internal(slice);
+  } else {
+    grpc_slice_unref_internal(slice);
+  }
 }
 
 /* grpc_slice_from_static_string support structure - a refcount that does

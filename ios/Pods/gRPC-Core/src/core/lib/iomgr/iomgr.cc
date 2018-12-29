@@ -31,8 +31,8 @@
 
 #include "src/core/lib/gpr/env.h"
 #include "src/core/lib/gpr/string.h"
-#include "src/core/lib/gpr/thd.h"
 #include "src/core/lib/gpr/useful.h"
+#include "src/core/lib/gprpp/thd.h"
 #include "src/core/lib/iomgr/exec_ctx.h"
 #include "src/core/lib/iomgr/executor.h"
 #include "src/core/lib/iomgr/iomgr_internal.h"
@@ -47,6 +47,7 @@ static grpc_iomgr_object g_root_object;
 
 void grpc_iomgr_init() {
   grpc_core::ExecCtx exec_ctx;
+  grpc_determine_iomgr_platform();
   g_shutdown = 0;
   gpr_mu_init(&g_mu);
   gpr_cv_init(&g_rcv);
@@ -68,6 +69,8 @@ static size_t count_objects(void) {
   }
   return n;
 }
+
+size_t grpc_iomgr_count_objects_for_testing(void) { return count_objects(); }
 
 static void dump_objects(const char* kind) {
   grpc_iomgr_object* obj;

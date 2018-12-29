@@ -6140,10 +6140,10 @@ react-native-elements@^0.19.0:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
-react-native-firebase@^3.2.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-firebase/-/react-native-firebase-3.3.1.tgz#b93cbb9b11f4f8a23a0d608567573b43a8c2de70"
-  integrity sha512-8OFIO+x0/7vs03oVKIJaDyLP3pDmhYuGPPviAS2/98G9BCyrsvZXSEN/LPjKtYq5yb3pBfEkZCU5FOuwGlTWmw==
+react-native-firebase@^4.3.0:
+  version "4.3.8"
+  resolved "https://registry.yarnpkg.com/react-native-firebase/-/react-native-firebase-4.3.8.tgz#a425b260aca0b97cde023dd2556fc18d16a3b7b3"
+  integrity sha512-lQuRrcnRd6Y3Drk8X66GYodfqPhWqy82+3S0rjOCoB3LhapnYXpi6QCqKJwkdBsy49zTyVsuH9cmMgQyejYW+w==
   dependencies:
     opencollective "^1.0.3"
     postinstall-build "^5.0.1"

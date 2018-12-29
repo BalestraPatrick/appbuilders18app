@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.appbuilders",
+    package = "com.patrickbalestra.appbuilders",
 )
 
 android_resource(
     name = "res",
-    package = "com.appbuilders",
+    package = "com.patrickbalestra.appbuilders",
     res = "src/main/res",
 )
 

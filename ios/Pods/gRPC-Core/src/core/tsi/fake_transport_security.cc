@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/tsi/fake_transport_security.h"
 
 #include <stdlib.h>
@@ -23,7 +25,6 @@
 
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
-#include <grpc/support/port_platform.h>
 
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/slice/slice_internal.h"
@@ -737,6 +738,7 @@ static const tsi_handshaker_vtable handshaker_vtable = {
     nullptr, /* create_frame_protector    -- deprecated */
     fake_handshaker_destroy,
     fake_handshaker_next,
+    nullptr, /* shutdown */
 };
 
 tsi_handshaker* tsi_create_fake_handshaker(int is_client) {

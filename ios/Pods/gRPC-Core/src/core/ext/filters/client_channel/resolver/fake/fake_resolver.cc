@@ -17,6 +17,8 @@
 // This is similar to the sockaddr resolver, except that it supports a
 // bunch of query args that are useful for dependency injection in tests.
 
+#include <grpc/support/port_platform.h>
+
 #include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -24,7 +26,6 @@
 #include <string.h>
 
 #include <grpc/support/alloc.h>
-#include <grpc/support/port_platform.h>
 #include <grpc/support/string_util.h>
 
 #include "src/core/ext/filters/client_channel/lb_policy_factory.h"
@@ -81,6 +82,8 @@ class FakeResolver : public Resolver {
   grpc_closure* next_completion_ = nullptr;
   // target result address for next completion
   grpc_channel_args** target_result_ = nullptr;
+  // if true, return failure
+  bool return_failure_ = false;
 };
 
 FakeResolver::FakeResolver(const ResolverArgs& args) : Resolver(args.combiner) {
@@ -120,12 +123,16 @@ void FakeResolver::RequestReresolutionLocked() {
 }
 
 void FakeResolver::MaybeFinishNextLocked() {
-  if (next_completion_ != nullptr && next_results_ != nullptr) {
-    *target_result_ = grpc_channel_args_union(next_results_, channel_args_);
+  if (next_completion_ != nullptr &&
+      (next_results_ != nullptr || return_failure_)) {
+    *target_result_ =
+        return_failure_ ? nullptr
+                        : grpc_channel_args_union(next_results_, channel_args_);
     grpc_channel_args_destroy(next_results_);
     next_results_ = nullptr;
     GRPC_CLOSURE_SCHED(next_completion_, GRPC_ERROR_NONE);
     next_completion_ = nullptr;
+    return_failure_ = false;
   }
 }
 
@@ -192,6 +199,26 @@ void FakeResolverResponseGenerator::SetReresolutionResponse(
   GRPC_CLOSURE_SCHED(
       GRPC_CLOSURE_INIT(&closure_arg->set_response_closure,
                         SetReresolutionResponseLocked, closure_arg,
+                        grpc_combiner_scheduler(resolver_->combiner())),
+      GRPC_ERROR_NONE);
+}
+
+void FakeResolverResponseGenerator::SetFailureLocked(void* arg,
+                                                     grpc_error* error) {
+  SetResponseClosureArg* closure_arg = static_cast<SetResponseClosureArg*>(arg);
+  FakeResolver* resolver = closure_arg->generator->resolver_;
+  resolver->return_failure_ = true;
+  resolver->MaybeFinishNextLocked();
+  Delete(closure_arg);
+}
+
+void FakeResolverResponseGenerator::SetFailure() {
+  GPR_ASSERT(resolver_ != nullptr);
+  SetResponseClosureArg* closure_arg = New<SetResponseClosureArg>();
+  closure_arg->generator = this;
+  GRPC_CLOSURE_SCHED(
+      GRPC_CLOSURE_INIT(&closure_arg->set_response_closure, SetFailureLocked,
+                        closure_arg,
                         grpc_combiner_scheduler(resolver_->combiner())),
       GRPC_ERROR_NONE);
 }

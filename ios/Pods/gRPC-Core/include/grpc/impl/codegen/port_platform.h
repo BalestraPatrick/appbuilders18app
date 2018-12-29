@@ -227,7 +227,10 @@
 #define GPR_POSIX_SYNC 1
 #define GPR_POSIX_TIME 1
 #define GPR_GETPID_IN_UNISTD_H 1
+/* TODO(mxyan): Remove when CFStream becomes default */
+#ifndef GRPC_CFSTREAM
 #define GPR_SUPPORT_CHANNELS_FROM_FD 1
+#endif
 #ifdef _LP64
 #define GPR_ARCH_64 1
 #else /* _LP64 */
@@ -499,6 +502,17 @@ typedef unsigned __int64 uint64_t;
 #endif /* __EXCEPTIONS */
 #endif /* __GPR_WINDOWS */
 #endif /* GRPC_ALLOW_EXCEPTIONS */
+
+/* Use GPR_LIKELY only in cases where you are sure that a certain outcome is the
+ * most likely. Ideally, also collect performance numbers to justify the claim.
+ */
+#ifdef __GNUC__
+#define GPR_LIKELY(x) __builtin_expect((x), 1)
+#define GPR_UNLIKELY(x) __builtin_expect((x), 0)
+#else /* __GNUC__ */
+#define GPR_LIKELY(x) (x)
+#define GPR_UNLIKELY(x) (x)
+#endif /* __GNUC__ */
 
 #ifndef __STDC_FORMAT_MACROS
 #define __STDC_FORMAT_MACROS

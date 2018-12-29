@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/lib/iomgr/port.h"
 
 #include "src/core/lib/iomgr/is_epollexclusive_available.h"
@@ -25,6 +27,7 @@
 #include <grpc/support/log.h>
 
 #include <errno.h>
+#include <sys/epoll.h>
 #include <sys/eventfd.h>
 #include <unistd.h>
 

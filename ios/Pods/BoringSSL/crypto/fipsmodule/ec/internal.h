@@ -73,16 +73,36 @@
 #include <openssl/bn.h>
 #include <openssl/ex_data.h>
 #include <openssl/thread.h>
+#include <openssl/type_check.h>
+
+#include "../bn/internal.h"
 
 #if defined(__cplusplus)
 extern "C" {
 #endif
 
 
+// Cap the size of all field elements and scalars, including custom curves, to
+// 66 bytes, large enough to fit secp521r1 and brainpoolP512r1, which appear to
+// be the largest fields anyone plausibly uses.
+#define EC_MAX_SCALAR_BYTES 66
+#define EC_MAX_SCALAR_WORDS ((66 + BN_BYTES - 1) / BN_BYTES)
+
+OPENSSL_COMPILE_ASSERT(EC_MAX_SCALAR_WORDS <= BN_SMALL_MAX_WORDS,
+                       bn_small_functions_applicable);
+
+// An EC_SCALAR is an integer fully reduced modulo the order. Only the first
+// |order->width| words are used. An |EC_SCALAR| is specific to an |EC_GROUP|
+// and must not be mixed between groups.
+typedef union {
+  // bytes is the representation of the scalar in little-endian order.
+  uint8_t bytes[EC_MAX_SCALAR_BYTES];
+  BN_ULONG words[EC_MAX_SCALAR_WORDS];
+} EC_SCALAR;
+
 struct ec_method_st {
   int (*group_init)(EC_GROUP *);
   void (*group_finish)(EC_GROUP *);
-  int (*group_copy)(EC_GROUP *, const EC_GROUP *);
   int (*group_set_curve)(EC_GROUP *, const BIGNUM *p, const BIGNUM *a,
                          const BIGNUM *b, BN_CTX *);
   int (*point_get_affine_coordinates)(const EC_GROUP *, const EC_POINT *,
@@ -93,8 +113,14 @@ struct ec_method_st {
   // Computes |r = p_scalar*p| if g_scalar is null. At least one of |g_scalar|
   // and |p_scalar| must be non-null, and |p| must be non-null if |p_scalar| is
   // non-null.
-  int (*mul)(const EC_GROUP *group, EC_POINT *r, const BIGNUM *g_scalar,
-             const EC_POINT *p, const BIGNUM *p_scalar, BN_CTX *ctx);
+  int (*mul)(const EC_GROUP *group, EC_POINT *r, const EC_SCALAR *g_scalar,
+             const EC_POINT *p, const EC_SCALAR *p_scalar, BN_CTX *ctx);
+  // mul_public performs the same computation as mul. It further assumes that
+  // the inputs are public so there is no concern about leaking their values
+  // through timing.
+  int (*mul_public)(const EC_GROUP *group, EC_POINT *r,
+                    const EC_SCALAR *g_scalar, const EC_POINT *p,
+                    const EC_SCALAR *p_scalar, BN_CTX *ctx);
 
   // 'field_mul' and 'field_sqr' can be used by 'add' and 'dbl' so that the
   // same implementations of point operations can be used with different
@@ -114,12 +140,14 @@ const EC_METHOD *EC_GFp_mont_method(void);
 struct ec_group_st {
   const EC_METHOD *meth;
 
+  // Unlike all other |EC_POINT|s, |generator| does not own |generator->group|
+  // to avoid a reference cycle.
   EC_POINT *generator;
   BIGNUM order;
 
   int curve_name;  // optional NID for named curve
 
-  const BN_MONT_CTX *order_mont;  // data for ECDSA inverse
+  BN_MONT_CTX *order_mont;  // data for ECDSA inverse
 
   // The following members are handled by the method functions,
   // even if they appear generic
@@ -130,13 +158,17 @@ struct ec_group_st {
 
   int a_is_minus3;  // enable optimized point arithmetics for special case
 
+  CRYPTO_refcount_t references;
+
   BN_MONT_CTX *mont;  // Montgomery structure.
 
   BIGNUM one;  // The value one.
 } /* EC_GROUP */;
 
 struct ec_point_st {
-  const EC_METHOD *meth;
+  // group is an owning reference to |group|, unless this is
+  // |group->generator|.
+  EC_GROUP *group;
 
   BIGNUM X;
   BIGNUM Y;
@@ -145,20 +177,54 @@ struct ec_point_st {
 } /* EC_POINT */;
 
 EC_GROUP *ec_group_new(const EC_METHOD *meth);
-int ec_group_copy(EC_GROUP *dest, const EC_GROUP *src);
 
-// ec_group_get_order_mont returns a Montgomery context for operations modulo
-// |group|'s order. It may return NULL in the case that |group| is not a
-// built-in group.
-const BN_MONT_CTX *ec_group_get_order_mont(const EC_GROUP *group);
+// ec_bignum_to_scalar converts |in| to an |EC_SCALAR| and writes it to
+// |*out|. It returns one on success and zero if |in| is out of range.
+OPENSSL_EXPORT int ec_bignum_to_scalar(const EC_GROUP *group, EC_SCALAR *out,
+                                       const BIGNUM *in);
 
-int ec_wNAF_mul(const EC_GROUP *group, EC_POINT *r, const BIGNUM *g_scalar,
-                const EC_POINT *p, const BIGNUM *p_scalar, BN_CTX *ctx);
+// ec_bignum_to_scalar_unchecked behaves like |ec_bignum_to_scalar| but does not
+// check |in| is fully reduced.
+int ec_bignum_to_scalar_unchecked(const EC_GROUP *group, EC_SCALAR *out,
+                                  const BIGNUM *in);
+
+// ec_random_nonzero_scalar sets |out| to a uniformly selected random value from
+// 1 to |group->order| - 1. It returns one on success and zero on error.
+int ec_random_nonzero_scalar(const EC_GROUP *group, EC_SCALAR *out,
+                             const uint8_t additional_data[32]);
+
+// ec_point_mul_scalar sets |r| to generator * |g_scalar| + |p| *
+// |p_scalar|. Unlike other functions which take |EC_SCALAR|, |g_scalar| and
+// |p_scalar| need not be fully reduced. They need only contain as many bits as
+// the order.
+int ec_point_mul_scalar(const EC_GROUP *group, EC_POINT *r,
+                        const EC_SCALAR *g_scalar, const EC_POINT *p,
+                        const EC_SCALAR *p_scalar, BN_CTX *ctx);
+
+// ec_point_mul_scalar_public performs the same computation as
+// ec_point_mul_scalar.  It further assumes that the inputs are public so
+// there is no concern about leaking their values through timing.
+OPENSSL_EXPORT int ec_point_mul_scalar_public(
+    const EC_GROUP *group, EC_POINT *r, const EC_SCALAR *g_scalar,
+    const EC_POINT *p, const EC_SCALAR *p_scalar, BN_CTX *ctx);
+
+// ec_compute_wNAF writes the modified width-(w+1) Non-Adjacent Form (wNAF) of
+// |scalar| to |out| and returns one on success or zero on internal error. |out|
+// must have room for |bits| + 1 elements, each of which will be either zero or
+// odd with an absolute value less than  2^w  satisfying
+//     scalar = \sum_j out[j]*2^j
+// where at most one of any  w+1  consecutive digits is non-zero
+// with the exception that the most significant digit may be only
+// w-1 zeros away from that next non-zero digit.
+int ec_compute_wNAF(const EC_GROUP *group, int8_t *out, const EC_SCALAR *scalar,
+                    size_t bits, int w);
+
+int ec_wNAF_mul(const EC_GROUP *group, EC_POINT *r, const EC_SCALAR *g_scalar,
+                const EC_POINT *p, const EC_SCALAR *p_scalar, BN_CTX *ctx);
 
 // method functions in simple.c
 int ec_GFp_simple_group_init(EC_GROUP *);
 void ec_GFp_simple_group_finish(EC_GROUP *);
-int ec_GFp_simple_group_copy(EC_GROUP *, const EC_GROUP *);
 int ec_GFp_simple_group_set_curve(EC_GROUP *, const BIGNUM *p, const BIGNUM *a,
                                   const BIGNUM *b, BN_CTX *);
 int ec_GFp_simple_group_get_curve(const EC_GROUP *, BIGNUM *p, BIGNUM *a,
@@ -166,23 +232,11 @@ int ec_GFp_simple_group_get_curve(const EC_GROUP *, BIGNUM *p, BIGNUM *a,
 unsigned ec_GFp_simple_group_get_degree(const EC_GROUP *);
 int ec_GFp_simple_point_init(EC_POINT *);
 void ec_GFp_simple_point_finish(EC_POINT *);
-void ec_GFp_simple_point_clear_finish(EC_POINT *);
 int ec_GFp_simple_point_copy(EC_POINT *, const EC_POINT *);
 int ec_GFp_simple_point_set_to_infinity(const EC_GROUP *, EC_POINT *);
-int ec_GFp_simple_set_Jprojective_coordinates_GFp(const EC_GROUP *, EC_POINT *,
-                                                  const BIGNUM *x,
-                                                  const BIGNUM *y,
-                                                  const BIGNUM *z, BN_CTX *);
-int ec_GFp_simple_get_Jprojective_coordinates_GFp(const EC_GROUP *,
-                                                  const EC_POINT *, BIGNUM *x,
-                                                  BIGNUM *y, BIGNUM *z,
-                                                  BN_CTX *);
 int ec_GFp_simple_point_set_affine_coordinates(const EC_GROUP *, EC_POINT *,
                                                const BIGNUM *x, const BIGNUM *y,
                                                BN_CTX *);
-int ec_GFp_simple_set_compressed_coordinates(const EC_GROUP *, EC_POINT *,
-                                             const BIGNUM *x, int y_bit,
-                                             BN_CTX *);
 int ec_GFp_simple_add(const EC_GROUP *, EC_POINT *r, const EC_POINT *a,
                       const EC_POINT *b, BN_CTX *);
 int ec_GFp_simple_dbl(const EC_GROUP *, EC_POINT *r, const EC_POINT *a,
@@ -205,7 +259,6 @@ int ec_GFp_mont_group_init(EC_GROUP *);
 int ec_GFp_mont_group_set_curve(EC_GROUP *, const BIGNUM *p, const BIGNUM *a,
                                 const BIGNUM *b, BN_CTX *);
 void ec_GFp_mont_group_finish(EC_GROUP *);
-int ec_GFp_mont_group_copy(EC_GROUP *, const EC_GROUP *);
 int ec_GFp_mont_field_mul(const EC_GROUP *, BIGNUM *r, const BIGNUM *a,
                           const BIGNUM *b, BN_CTX *);
 int ec_GFp_mont_field_sqr(const EC_GROUP *, BIGNUM *r, const BIGNUM *a,
@@ -214,11 +267,6 @@ int ec_GFp_mont_field_encode(const EC_GROUP *, BIGNUM *r, const BIGNUM *a,
                              BN_CTX *);
 int ec_GFp_mont_field_decode(const EC_GROUP *, BIGNUM *r, const BIGNUM *a,
                              BN_CTX *);
-
-int ec_point_set_Jprojective_coordinates_GFp(const EC_GROUP *group,
-                                             EC_POINT *point, const BIGNUM *x,
-                                             const BIGNUM *y, const BIGNUM *z,
-                                             BN_CTX *ctx);
 
 void ec_GFp_nistp_recode_scalar_bits(uint8_t *sign, uint8_t *digit, uint8_t in);
 
@@ -229,11 +277,18 @@ const EC_METHOD *EC_GFp_nistp256_method(void);
 // x86-64 optimized P256. See http://eprint.iacr.org/2013/816.
 const EC_METHOD *EC_GFp_nistz256_method(void);
 
+// An EC_WRAPPED_SCALAR is an |EC_SCALAR| with a parallel |BIGNUM|
+// representation. It exists to support the |EC_KEY_get0_private_key| API.
+typedef struct {
+  BIGNUM bignum;
+  EC_SCALAR scalar;
+} EC_WRAPPED_SCALAR;
+
 struct ec_key_st {
   EC_GROUP *group;
 
   EC_POINT *pub_key;
-  BIGNUM *priv_key;
+  EC_WRAPPED_SCALAR *priv_key;
 
   // fixed_k may contain a specific value of 'k', to be used in ECDSA signing.
   // This is only for the FIPS power-on tests.

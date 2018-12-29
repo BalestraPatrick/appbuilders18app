@@ -16,6 +16,8 @@
  *
  */
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/ext/transport/chttp2/transport/hpack_parser.h"
 #include "src/core/ext/transport/chttp2/transport/internal.h"
 
@@ -25,7 +27,6 @@
 
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
-#include <grpc/support/port_platform.h>
 #include <grpc/support/string_util.h>
 
 #include "src/core/ext/transport/chttp2/transport/bin_encoder.h"
@@ -632,7 +633,7 @@ static grpc_error* on_hdr(grpc_chttp2_hpack_parser* p, grpc_mdelem md,
       v = grpc_slice_to_c_string(GRPC_MDVALUE(md));
     }
     gpr_log(
-        GPR_DEBUG,
+        GPR_INFO,
         "Decode: '%s: %s', elem_interned=%d [%d], k_interned=%d, v_interned=%d",
         k, v, GRPC_MDELEM_IS_INTERNED(md), GRPC_MDELEM_STORAGE(md),
         grpc_slice_is_interned(GRPC_MDKEY(md)),
@@ -1621,7 +1622,7 @@ grpc_error* grpc_chttp2_header_parser_parse(void* hpack_parser,
                                             grpc_chttp2_transport* t,
                                             grpc_chttp2_stream* s,
                                             grpc_slice slice, int is_last) {
-  GPR_TIMER_SCOPE("grpc_chttp2_hpack_parser_parse", 0);
+  GPR_TIMER_SCOPE("grpc_chttp2_header_parser_parse", 0);
   grpc_chttp2_hpack_parser* parser =
       static_cast<grpc_chttp2_hpack_parser*>(hpack_parser);
   if (s != nullptr) {

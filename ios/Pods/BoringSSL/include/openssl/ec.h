@@ -105,10 +105,13 @@ typedef enum {
 // curve specified by |nid|, or NULL on error.
 //
 // The supported NIDs are:
-//   NID_secp224r1,
-//   NID_X9_62_prime256v1,
-//   NID_secp384r1,
-//   NID_secp521r1
+//   NID_secp224r1 (P-224),
+//   NID_X9_62_prime256v1 (P-256),
+//   NID_secp384r1 (P-384),
+//   NID_secp521r1 (P-521)
+//
+// If in doubt, use |NID_X9_62_prime256v1|, or see the curve25519.h header for
+// more modern primitives.
 OPENSSL_EXPORT EC_GROUP *EC_GROUP_new_by_curve_name(int nid);
 
 // EC_GROUP_free frees |group| and the data that it points to.
@@ -162,10 +165,6 @@ OPENSSL_EXPORT EC_POINT *EC_POINT_new(const EC_GROUP *group);
 // EC_POINT_free frees |point| and the data that it points to.
 OPENSSL_EXPORT void EC_POINT_free(EC_POINT *point);
 
-// EC_POINT_clear_free clears the data that |point| points to, frees it and
-// then frees |point| itself.
-OPENSSL_EXPORT void EC_POINT_clear_free(EC_POINT *point);
-
 // EC_POINT_copy sets |*dest| equal to |*src|. It returns one on success and
 // zero otherwise.
 OPENSSL_EXPORT int EC_POINT_copy(EC_POINT *dest, const EC_POINT *src);
@@ -213,6 +212,9 @@ OPENSSL_EXPORT int EC_POINTs_make_affine(const EC_GROUP *group, size_t num,
 // EC_POINT_get_affine_coordinates_GFp sets |x| and |y| to the affine value of
 // |point| using |ctx|, if it's not NULL. It returns one on success and zero
 // otherwise.
+//
+// Either |x| or |y| may be NULL to skip computing that coordinate. This is
+// slightly faster in the common case where only the x-coordinate is needed.
 OPENSSL_EXPORT int EC_POINT_get_affine_coordinates_GFp(const EC_GROUP *group,
                                                        const EC_POINT *point,
                                                        BIGNUM *x, BIGNUM *y,
@@ -306,7 +308,7 @@ OPENSSL_EXPORT EC_GROUP *EC_GROUP_new_curve_GFp(const BIGNUM *p,
 // EC_GROUP_set_generator sets the generator for |group| to |generator|, which
 // must have the given order and cofactor. It may only be used with |EC_GROUP|
 // objects returned by |EC_GROUP_new_curve_GFp| and may only be used once on
-// each group.
+// each group. |generator| must have been created using |group|.
 OPENSSL_EXPORT int EC_GROUP_set_generator(EC_GROUP *group,
                                           const EC_POINT *generator,
                                           const BIGNUM *order,
@@ -349,6 +351,9 @@ typedef struct {
 // The |EC_builtin_curve| items describe the supported elliptic curves.
 OPENSSL_EXPORT size_t EC_get_builtin_curves(EC_builtin_curve *out_curves,
                                             size_t max_num_curves);
+
+// EC_POINT_clear_free calls |EC_POINT_free|.
+OPENSSL_EXPORT void EC_POINT_clear_free(EC_POINT *point);
 
 // Old code expects to get EC_KEY from ec.h.
 #include <openssl/ec_key.h>
@@ -403,5 +408,6 @@ BORINGSSL_MAKE_DELETER(EC_GROUP, EC_GROUP_free)
 #define EC_R_GROUP_MISMATCH 130
 #define EC_R_INVALID_COFACTOR 131
 #define EC_R_PUBLIC_KEY_VALIDATION_FAILED 132
+#define EC_R_INVALID_SCALAR 133
 
 #endif  // OPENSSL_HEADER_EC_H

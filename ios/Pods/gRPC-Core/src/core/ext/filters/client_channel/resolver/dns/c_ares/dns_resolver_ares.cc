@@ -17,6 +17,7 @@
  */
 
 #include <grpc/support/port_platform.h>
+
 #if GRPC_ARES == 1 && !defined(GRPC_UV)
 
 #include <limits.h>
@@ -26,6 +27,8 @@
 
 #include <grpc/support/alloc.h>
 #include <grpc/support/string_util.h>
+
+#include <address_sorting/address_sorting.h>
 
 #include "src/core/ext/filters/client_channel/http_connect_handshaker.h"
 #include "src/core/ext/filters/client_channel/lb_policy_registry.h"
@@ -132,6 +135,7 @@ AresDnsResolver::AresDnsResolver(const ResolverArgs& args)
   if (path[0] == '/') ++path;
   name_to_resolve_ = gpr_strdup(path);
   // Get DNS server from URI authority.
+  dns_server_ = nullptr;
   if (0 != strcmp(args.uri->authority, "")) {
     dns_server_ = gpr_strdup(args.uri->authority);
   }
@@ -294,7 +298,7 @@ void AresDnsResolver::OnResolvedLocked(void* arg, grpc_error* error) {
     size_t num_args_to_add = 0;
     new_args[num_args_to_add++] =
         grpc_lb_addresses_create_channel_arg(r->lb_addresses_);
-    grpc_service_config* service_config = nullptr;
+    grpc_core::UniquePtr<grpc_core::ServiceConfig> service_config;
     char* service_config_string = nullptr;
     if (r->service_config_json_ != nullptr) {
       service_config_string = ChooseServiceConfig(r->service_config_json_);
@@ -305,10 +309,11 @@ void AresDnsResolver::OnResolvedLocked(void* arg, grpc_error* error) {
         args_to_remove[num_args_to_remove++] = GRPC_ARG_SERVICE_CONFIG;
         new_args[num_args_to_add++] = grpc_channel_arg_string_create(
             (char*)GRPC_ARG_SERVICE_CONFIG, service_config_string);
-        service_config = grpc_service_config_create(service_config_string);
+        service_config =
+            grpc_core::ServiceConfig::Create(service_config_string);
         if (service_config != nullptr) {
           const char* lb_policy_name =
-              grpc_service_config_get_lb_policy_name(service_config);
+              service_config->GetLoadBalancingPolicyName();
           if (lb_policy_name != nullptr) {
             args_to_remove[num_args_to_remove++] = GRPC_ARG_LB_POLICY_NAME;
             new_args[num_args_to_add++] = grpc_channel_arg_string_create(
@@ -321,7 +326,6 @@ void AresDnsResolver::OnResolvedLocked(void* arg, grpc_error* error) {
     result = grpc_channel_args_copy_and_add_and_remove(
         r->channel_args_, args_to_remove, num_args_to_remove, new_args,
         num_args_to_add);
-    if (service_config != nullptr) grpc_service_config_destroy(service_config);
     gpr_free(service_config_string);
     grpc_lb_addresses_destroy(r->lb_addresses_);
     // Reset backoff state so that we start from the beginning when the
@@ -342,7 +346,7 @@ void AresDnsResolver::OnResolvedLocked(void* arg, grpc_error* error) {
     RefCountedPtr<Resolver> self = r->Ref(DEBUG_LOCATION, "retry-timer");
     self.release();
     if (timeout > 0) {
-      gpr_log(GPR_DEBUG, "retrying in %" PRIdPTR " milliseconds", timeout);
+      gpr_log(GPR_DEBUG, "retrying in %" PRId64 " milliseconds", timeout);
     } else {
       gpr_log(GPR_DEBUG, "retrying immediately");
     }
@@ -359,6 +363,15 @@ void AresDnsResolver::OnResolvedLocked(void* arg, grpc_error* error) {
 }
 
 void AresDnsResolver::MaybeStartResolvingLocked() {
+  // If there is an existing timer, the time it fires is the earliest time we
+  // can start the next resolution.
+  if (have_next_resolution_timer_) {
+    // TODO(dgq): remove the following two lines once Pick First stops
+    // discarding subchannels after selecting.
+    ++resolved_version_;
+    MaybeFinishNextLocked();
+    return;
+  }
   if (last_resolution_timestamp_ >= 0) {
     const grpc_millis earliest_next_resolution =
         last_resolution_timestamp_ + min_time_between_resolutions_;
@@ -368,20 +381,18 @@ void AresDnsResolver::MaybeStartResolvingLocked() {
       const grpc_millis last_resolution_ago =
           grpc_core::ExecCtx::Get()->Now() - last_resolution_timestamp_;
       gpr_log(GPR_DEBUG,
-              "In cooldown from last resolution (from %" PRIdPTR
-              " ms ago). Will resolve again in %" PRIdPTR " ms",
+              "In cooldown from last resolution (from %" PRId64
+              " ms ago). Will resolve again in %" PRId64 " ms",
               last_resolution_ago, ms_until_next_resolution);
-      if (!have_next_resolution_timer_) {
-        have_next_resolution_timer_ = true;
-        // TODO(roth): We currently deal with this ref manually.  Once the
-        // new closure API is done, find a way to track this ref with the timer
-        // callback as part of the type system.
-        RefCountedPtr<Resolver> self =
-            Ref(DEBUG_LOCATION, "next_resolution_timer_cooldown");
-        self.release();
-        grpc_timer_init(&next_resolution_timer_, ms_until_next_resolution,
-                        &on_next_resolution_);
-      }
+      have_next_resolution_timer_ = true;
+      // TODO(roth): We currently deal with this ref manually.  Once the
+      // new closure API is done, find a way to track this ref with the timer
+      // callback as part of the type system.
+      RefCountedPtr<Resolver> self =
+          Ref(DEBUG_LOCATION, "next_resolution_timer_cooldown");
+      self.release();
+      grpc_timer_init(&next_resolution_timer_, ms_until_next_resolution,
+                      &on_next_resolution_);
       // TODO(dgq): remove the following two lines once Pick First stops
       // discarding subchannels after selecting.
       ++resolved_version_;
@@ -393,6 +404,7 @@ void AresDnsResolver::MaybeStartResolvingLocked() {
 }
 
 void AresDnsResolver::StartResolvingLocked() {
+  gpr_log(GPR_DEBUG, "Start resolving.");
   // TODO(roth): We currently deal with this ref manually.  Once the
   // new closure API is done, find a way to track this ref with the timer
   // callback as part of the type system.
@@ -402,10 +414,10 @@ void AresDnsResolver::StartResolvingLocked() {
   resolving_ = true;
   lb_addresses_ = nullptr;
   service_config_json_ = nullptr;
-  pending_request_ = grpc_dns_lookup_ares(
+  pending_request_ = grpc_dns_lookup_ares_locked(
       dns_server_, name_to_resolve_, kDefaultPort, interested_parties_,
       &on_resolved_, &lb_addresses_, true /* check_grpclb */,
-      request_service_config_ ? &service_config_json_ : nullptr);
+      request_service_config_ ? &service_config_json_ : nullptr, combiner());
   last_resolution_timestamp_ = grpc_core::ExecCtx::Get()->Now();
 }
 
@@ -439,17 +451,32 @@ class AresDnsResolverFactory : public ResolverFactory {
 
 }  // namespace grpc_core
 
+extern grpc_address_resolver_vtable* grpc_resolve_address_impl;
+static grpc_address_resolver_vtable* default_resolver;
+
+static grpc_error* blocking_resolve_address_ares(
+    const char* name, const char* default_port,
+    grpc_resolved_addresses** addresses) {
+  return default_resolver->blocking_resolve_address(name, default_port,
+                                                    addresses);
+}
+
+static grpc_address_resolver_vtable ares_resolver = {
+    grpc_resolve_address_ares, blocking_resolve_address_ares};
+
 void grpc_resolver_dns_ares_init() {
   char* resolver_env = gpr_getenv("GRPC_DNS_RESOLVER");
   /* TODO(zyc): Turn on c-ares based resolver by default after the address
      sorter and the CNAME support are added. */
   if (resolver_env != nullptr && gpr_stricmp(resolver_env, "ares") == 0) {
+    address_sorting_init();
     grpc_error* error = grpc_ares_init();
     if (error != GRPC_ERROR_NONE) {
       GRPC_LOG_IF_ERROR("ares_library_init() failed", error);
       return;
     }
-    grpc_resolve_address = grpc_resolve_address_ares;
+    default_resolver = grpc_resolve_address_impl;
+    grpc_set_resolver_impl(&ares_resolver);
     grpc_core::ResolverRegistry::Builder::RegisterResolverFactory(
         grpc_core::UniquePtr<grpc_core::ResolverFactory>(
             grpc_core::New<grpc_core::AresDnsResolverFactory>()));
@@ -460,6 +487,7 @@ void grpc_resolver_dns_ares_init() {
 void grpc_resolver_dns_ares_shutdown() {
   char* resolver_env = gpr_getenv("GRPC_DNS_RESOLVER");
   if (resolver_env != nullptr && gpr_stricmp(resolver_env, "ares") == 0) {
+    address_sorting_shutdown();
     grpc_ares_cleanup();
   }
   gpr_free(resolver_env);

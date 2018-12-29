@@ -202,18 +202,24 @@ extern "C" {
 // ExtensionType value from RFC7627
 #define TLSEXT_TYPE_extended_master_secret 23
 
+// ExtensionType value from draft-ietf-tokbind-negotiation-10
+#define TLSEXT_TYPE_token_binding 24
+
+// ExtensionType value from draft-ietf-quic-tls
+#define TLSEXT_TYPE_quic_transport_parameters 26
+
 // ExtensionType value from RFC4507
 #define TLSEXT_TYPE_session_ticket 35
 
 // ExtensionType values from draft-ietf-tls-tls13-18
 #define TLSEXT_TYPE_supported_groups 10
-#define TLSEXT_TYPE_key_share 40
 #define TLSEXT_TYPE_pre_shared_key 41
 #define TLSEXT_TYPE_early_data 42
 #define TLSEXT_TYPE_supported_versions 43
 #define TLSEXT_TYPE_cookie 44
 #define TLSEXT_TYPE_psk_key_exchange_modes 45
-#define TLSEXT_TYPE_ticket_early_data_info 46
+#define TLSEXT_TYPE_certificate_authorities 47
+#define TLSEXT_TYPE_key_share 51
 
 // ExtensionType value from RFC5746
 #define TLSEXT_TYPE_renegotiate 0xff01
@@ -226,6 +232,9 @@ extern "C" {
 
 // This is not an IANA defined extension number
 #define TLSEXT_TYPE_channel_id 30032
+
+// This is not an IANA defined extension number
+#define TLSEXT_TYPE_dummy_pq_padding 54537
 
 // status request value from RFC 3546
 #define TLSEXT_STATUSTYPE_ocsp 1
@@ -600,22 +609,6 @@ extern "C" {
 #define TLS_CT_ECDSA_FIXED_ECDH 66
 
 #define TLS_MD_MAX_CONST_SIZE 20
-#define TLS_MD_CLIENT_FINISH_CONST "client finished"
-#define TLS_MD_CLIENT_FINISH_CONST_SIZE 15
-#define TLS_MD_SERVER_FINISH_CONST "server finished"
-#define TLS_MD_SERVER_FINISH_CONST_SIZE 15
-#define TLS_MD_KEY_EXPANSION_CONST "key expansion"
-#define TLS_MD_KEY_EXPANSION_CONST_SIZE 13
-#define TLS_MD_CLIENT_WRITE_KEY_CONST "client write key"
-#define TLS_MD_CLIENT_WRITE_KEY_CONST_SIZE 16
-#define TLS_MD_SERVER_WRITE_KEY_CONST "server write key"
-#define TLS_MD_SERVER_WRITE_KEY_CONST_SIZE 16
-#define TLS_MD_IV_BLOCK_CONST "IV block"
-#define TLS_MD_IV_BLOCK_CONST_SIZE 8
-#define TLS_MD_MASTER_SECRET_CONST "master secret"
-#define TLS_MD_MASTER_SECRET_CONST_SIZE 13
-#define TLS_MD_EXTENDED_MASTER_SECRET_CONST "extended master secret"
-#define TLS_MD_EXTENDED_MASTER_SECRET_CONST_SIZE 22
 
 
 #ifdef  __cplusplus
